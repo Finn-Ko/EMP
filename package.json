@@ -1,0 +1,27 @@
+{
+  "name": "emp",
+  "version": "1.0.0",
+  "description": "Error Message Parser - A website that makes programming error messages more readable",
+  "main": "/js/app.js",
+  "types": "/js/app.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Finn-Ko/EMP.git"
+  },
+  "keywords": [
+    "Error",
+    "Simplify"
+  ],
+  "author": "Finn Kockelke",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Finn-Ko/EMP/issues"
+  },
+  "homepage": "https://github.com/Finn-Ko/EMP#readme",
+  "dependencies": {
+    "tsc": "^2.0.3"
+  }
+}
