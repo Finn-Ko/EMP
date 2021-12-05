@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
 	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
@@ -13,7 +10,13 @@
 </head>
 <body>
 	<pre>
-	<div id="inputDiv" contenteditable="true" class="input-container" spellcheck="false"></div>
+	<code id="codeInput" contenteditable="true" class="input-container" spellcheck="false">
+def function(a, b):
+	return a + b aiaiaia
+	</code>
 	</pre>
 </body>
+<!-- <link rel="stylesheet" href="./highlight.js/styles/dark.min.css"> -->
+<!-- <script src="./highlight.js/highlight.js"></script> -->
+<script type="module" src="./js/bundle.js"></script>
 </html>
