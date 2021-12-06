@@ -6,17 +6,15 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
 	<link rel="manifest" href="./site.webmanifest" />
 	<link rel="stylesheet" type="text/css" href="./css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="./css/explain.css" />
+	<link rel="stylesheet" type="text/css" href="./node_modules/highlight.js/styles/dark.css" />
 	<title> Error Message Parser </title>
 </head>
 <body>
-	<pre>
-	<code id="codeInput" contenteditable="true" class="input-container" spellcheck="false">
-def function(a, b):
-	return a + b aiaiaia
-	</code>
-	</pre>
+	<!-- <div class="wrapper"> -->
+		<pre class="container output"><code id="codeOutput" class="code" spellcheck="false"></code></pre>
+		<pre class="container input"><code id="codeInput" class="code" contenteditable="true" spellcheck="false"></code></pre>
+	<!-- </div> -->
 </body>
-<!-- <link rel="stylesheet" href="./highlight.js/styles/dark.min.css"> -->
-<!-- <script src="./highlight.js/highlight.js"></script> -->
 <script type="module" src="./js/bundle.js"></script>
 </html>

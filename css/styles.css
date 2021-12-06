@@ -1,18 +1,48 @@
-body {
-    opacity:0.9;
-    background-color:#1e1e1e;
+html {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
-.input-container {
-    outline: 0px solid transparent;
+body {
+    opacity:0.9;
+    background-color:#333333;
+    height: 95%;
+    margin: 0px;
+    padding: 1%;
+}
+
+.container {
     color:#fff;
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:10px;
-    left:10px;
+    /* position:fixed; */
+    /* width:100%; */
+    /* height:100%; */
+    /* top:10px; */
+    /* left:10px; */
     z-index:1000;
     overflow: auto;
 }
 
-pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#ddd;}.hljs-keyword,.hljs-link,.hljs-literal,.hljs-section,.hljs-selector-tag{color:#fff}.hljs-addition,.hljs-attribute,.hljs-built_in,.hljs-bullet,.hljs-name,.hljs-string,.hljs-symbol,.hljs-template-tag,.hljs-template-variable,.hljs-title,.hljs-type,.hljs-variable{color:#d88}.hljs-comment,.hljs-deletion,.hljs-meta,.hljs-quote{color:#777}.hljs-doctag,.hljs-keyword,.hljs-literal,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-strong,.hljs-title,.hljs-type{font-weight:700}.hljs-emphasis{font-style:italic}
+.container.input {
+    margin: 0px;
+    position: relative;
+    margin-right: 51%;
+    /* background-color: red; */
+    height: 100%;
+}
+
+.container.output {
+    margin: 0px;
+    float: right;
+    position: relative;
+    text-align: left;
+    width: 49%;
+    /* background-color: blue; */
+    height: 100%;
+}
+
+.code {
+    display: block;
+    height: 100%;
+    background-color: #1e1e1e;
+}
