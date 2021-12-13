@@ -1,3 +1,4 @@
 export default interface LanguageInterface {
-    insertTips(input: string): string;
+    //takes (html) string and outputs html string with hints added
+    insertHints(input: string): string;
 }

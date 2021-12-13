@@ -1,6 +1,6 @@
 import hljs from 'highlight.js';
 import LanguageInterface from './LanguageInterface';
-import Python from './languages/python';
+import PythonHints from './languages/python';
 
 //Supported languages, add new additions here and import files above
 //must be present in highlight.js dependecy aswell
@@ -46,13 +46,22 @@ codeInputHTML!.addEventListener("paste", (e) => {
     }
 });
 
+//main function that is called when something changes in input to readjust output
 function rehighlight() {
     let hljsOutput = hljs.highlightAuto(codeInputHTML!.innerText, supportedLangs);
-    console.log("Detected language: " + hljsOutput.language);
+    console.log("Detected language: " + hljsOutput.language + ", second match: " + hljsOutput.secondBest);
     
-    //TODO this is a placeholder
-    let languageObject = new Python();
-    console.log(languageObject.insertTips(""));
+    let output = hljsOutput.value;
+    //TODO
+    let languageObject: LanguageInterface;
+    if (hljsOutput.language === "python") {
+        languageObject = new PythonHints();
+    }
+    else {
+        codeOutputHTML!.innerHTML = "Language could not be determined";
+        return;
+    }
+    output = languageObject.insertHints(output);
 
-    codeOutputHTML!.innerHTML = hljsOutput.value;
+    codeOutputHTML!.innerHTML = output;
 }

@@ -1,3 +1,3 @@
 export default interface LanguageInterface {
-    insertTips(input: string): string;
+    insertHints(input: string): string;
 }

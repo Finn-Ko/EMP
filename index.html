@@ -6,8 +6,9 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
 	<link rel="manifest" href="./site.webmanifest" />
 	<link rel="stylesheet" type="text/css" href="./css/styles.css" />
-	<link rel="stylesheet" type="text/css" href="./css/explain.css" />
-	<link rel="stylesheet" type="text/css" href="./css/dark.css" />
+	<link rel="stylesheet" type="text/css" href="./css/hint_box.css" />
+	<link rel="stylesheet" type="text/css" href="./css/a11y-dark.css" />
+	<script type="module" src="./js/bundle.js"></script>
 	<title> Error Message Parser </title>
 </head>
 <body>
@@ -16,5 +17,22 @@
 		<pre class="container input"><code id="codeInput" class="code" contenteditable="true" spellcheck="false"></code></pre>
 	<!-- </div> -->
 </body>
-<script type="module" src="./js/bundle.js"></script>
+<script>
+	let inputSave;
+	const codeInputHTML = document.getElementById("codeInput");
+
+	function showHint(hint) {
+		if (codeInputHTML.innerText) {
+			inputSave = codeInputHTML.innerText;
+		}
+
+		codeInputHTML.innerHTML = hint;
+	}
+	
+	function removeHint() {
+		if (inputSave) {
+			codeInputHTML.innerText = inputSave;
+		}
+	}
+</script>
 </html>

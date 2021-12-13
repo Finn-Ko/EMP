@@ -30,8 +30,16 @@ codeInputHTML.addEventListener("paste", (e) => {
 });
 function rehighlight() {
     let hljsOutput = highlight_js_1.default.highlightAuto(codeInputHTML.innerText, supportedLangs);
-    console.log("Detected language: " + hljsOutput.language);
-    let languageObject = new python_1.default();
-    console.log(languageObject.insertTips(""));
-    codeOutputHTML.innerHTML = hljsOutput.value;
+    console.log("Detected language: " + hljsOutput.language + ", second match: " + hljsOutput.secondBest);
+    let output = hljsOutput.value;
+    let languageObject;
+    if (hljsOutput.language === "python") {
+        languageObject = new python_1.default();
+    }
+    else {
+        codeOutputHTML.innerHTML = "Language could not be determined";
+        return;
+    }
+    output = languageObject.insertHints(output);
+    codeOutputHTML.innerHTML = output;
 }

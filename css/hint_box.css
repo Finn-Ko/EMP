@@ -9,18 +9,17 @@
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
     background-color: black;
     color: #fff;
-    text-align: center;
+    text-align: left;
     padding: 5px 0;
     border-radius: 6px;
+    font-style: normal;
 
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
-    top: -5px;
-    right: 105%;
+    display: flex;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

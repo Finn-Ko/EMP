@@ -31,27 +31,44 @@ codeInputHTML.addEventListener("paste", (e) => {
 });
 function rehighlight() {
     let hljsOutput = highlight_js_1.default.highlightAuto(codeInputHTML.innerText, supportedLangs);
-    console.log("Detected language: " + hljsOutput.language);
-    let languageObject = new python_1.default();
-    console.log(languageObject.insertTips(""));
-    codeOutputHTML.innerHTML = hljsOutput.value;
+    console.log("Detected language: " + hljsOutput.language + ", second match: " + hljsOutput.secondBest);
+    let output = hljsOutput.value;
+    let languageObject;
+    if (hljsOutput.language === "python") {
+        languageObject = new python_1.default();
+    }
+    else {
+        codeOutputHTML.innerHTML = "Language could not be determined";
+        return;
+    }
+    output = languageObject.insertHints(output);
+    codeOutputHTML.innerHTML = output;
 }
 
 },{"./languages/python":2,"highlight.js":4}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Python {
+class PythonHints {
     constructor() {
-        this.keywords = [
-            "if",
-            "return"
-        ];
+        this.keywords = new Map([
+            ["Test", "".concat("Lorem ipsum dolor sit amet, <br>", "consetetur sadipscing elitr, <br>", "sed diam nonumy eirmod tempor <br>", "invidunt ut labore et dolore <br>", "magna aliquyam erat, <br>", "sed diam voluptua. <br>", "At vero eos et accusam et <br>", "justo duo dolores et ea rebum. <br>", "Stet clita kasd gubergren, <br>", "no sea takimata sanctus est <br>", "Lorem ipsum dolor sit amet.")]
+        ]);
     }
-    insertTips(input) {
-        return "TODO" + this.keywords.join;
+    insertHints(input) {
+        for (let i = 0; i < input.length; i++) {
+            for (let [key, value] of this.keywords) {
+                if (input.substring(i, i + key.length) === key) {
+                    let toInsert = `<div class='hint' onmouseover='showHint(\"` + value + `\")' onmouseout='removeHint()'>` + key + "</div>";
+                    input = [input.slice(0, i), toInsert, input.slice(i + key.length)].join('');
+                    i += toInsert.length;
+                    break;
+                }
+            }
+        }
+        return input;
     }
 }
-exports.default = Python;
+exports.default = PythonHints;
 
 },{}],3:[function(require,module,exports){
 var deepFreezeEs6 = {exports: {}};

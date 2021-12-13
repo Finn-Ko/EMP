@@ -14,20 +14,14 @@ body {
 
 .container {
     color:#fff;
-    /* position:fixed; */
-    /* width:100%; */
-    /* height:100%; */
-    /* top:10px; */
-    /* left:10px; */
     z-index:1000;
-    overflow: auto;
+    background-color: #1e1e1e;
 }
 
 .container.input {
     margin: 0px;
     position: relative;
     margin-right: 51%;
-    /* background-color: red; */
     height: 100%;
 }
 
@@ -37,12 +31,19 @@ body {
     position: relative;
     text-align: left;
     width: 49%;
-    /* background-color: blue; */
     height: 100%;
 }
 
 .code {
+    background-color: #1e1e1e;
+    border: 0px solid transparent;
     display: block;
     height: 100%;
-    background-color: #1e1e1e;
+    overflow: auto;
+}
+
+.hint {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted white;
 }
