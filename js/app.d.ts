@@ -1,2 +1,2 @@
-declare function insertHintsEMP(input: string, spoLang?: string, proLang?: string): string;
+declare function insertHintsEMP(input: string, proLang: string, spoLang?: string): string;
 export default insertHintsEMP;

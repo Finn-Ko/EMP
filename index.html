@@ -14,25 +14,19 @@
 	<body>
 		<div class="wrapper">
 			<div class="input-side">
-				<form>
-					<input list="spokenLanguages" name="Languages" id="spoLang" class="selector-box">
-					<datalist id="spokenLanguages">
-						<option value="English 🇬🇧">
-						<option value="German 🇩🇪">
-					</datalist>
-				</form>
+				<select id="spoLang" class="selector-box">
+					<!-- add new Languages here -->
+					<option value="English">English</option>
+					<option value="German">German</option>
+				</select>
 				<pre class="code-wrapper"><code id="codeInput" contenteditable="true" spellcheck="false" class="code"></code></pre>
 			</div>
 			<div class="output-side">
 				<form>
-					<input list="programmingLanguages" name="Programming languages" id="proLang" class="selector-box">
-					<datalist id="programmingLanguages">
-						<option value="Python">
-						<option value="Java">
-						<option value="F#">
-						<option value="C">
-						<option value="Matlab">
-					</datalist>
+					<select id="proLang" class="selector-box">
+						<!-- add new Languages here -->
+						<option value="Python">Python</option>>
+					</select>
 				</form>
 				<pre class="code-wrapper"><code id="codeOutput" spellcheck="false" class="code"></code></pre>
 			</div>

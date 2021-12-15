@@ -1,25 +1,34 @@
-import hljs, { AutoHighlightResult } from 'highlight.js';
 import LanguageInterface from './LanguageInterface';
 import PythonHints from './languages/python';
 
 //Supported languages, add new additions here and import files above
-//must be present in highlight.js dependecy aswell
 let supportedLangs = new Map<string, LanguageInterface>(
     [
+        //add new languages here
         ["python", new PythonHints()]
-        //new languages add here
 
     ]);
 
-const codeInputHTML = document.getElementById("codeInput");
-const codeOutputHTML = document.getElementById("codeOutput");
+const codeInputHTML = document.getElementById("codeInput")!;
+const codeOutputHTML = document.getElementById("codeOutput")!;
+const spoLangSelector = document.getElementById("spoLang")! as HTMLSelectElement;
+const proLangSelector = document.getElementById("proLang")! as HTMLSelectElement;
 
 //initialize when page is loaded
 window.addEventListener("load", (e) => {
-    codeInputHTML!.focus();
+    codeInputHTML.focus();
 });
 
-codeInputHTML!.addEventListener("input", () => {
+//rehighlight on input or different language selected
+codeInputHTML.addEventListener("input", () => {
+    rehighlight();
+}, false);
+
+spoLangSelector.addEventListener("change", () => {
+    rehighlight();
+}, false);
+
+proLangSelector.addEventListener("change", () => {
     rehighlight();
 }, false);
 
@@ -28,7 +37,7 @@ codeInputHTML!.addEventListener("input", () => {
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
         e.preventDefault();
-        codeOutputHTML!.innerHTML = "The tab key doens't work yet, sorry. \nUse spaces instead";
+        codeOutputHTML.innerHTML = "The tab key doens't work yet, sorry. \nUse spaces instead";
     }
 });
 
@@ -39,48 +48,29 @@ codeInputHTML!.addEventListener("paste", (e) => {
     if (e.clipboardData) {
         let text = e.clipboardData.getData('text/plain');
         // insert text manually, this will replace text already present
-        codeInputHTML!.innerText = text;
+        codeInputHTML.innerText = text;
         rehighlight();
     }
 });
 
 //main function that is called when something changes in input to readjust output
 function rehighlight(): void {
+
+    let spoLang = spoLangSelector.value;
+    let proLang = proLangSelector.value;
     
-    //TODO use comboboxes
-    let output = insertHintsEMP(codeInputHTML!.innerHTML, undefined, "python");
-    
-    codeOutputHTML!.innerHTML = output;
+    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML!.innerHTML, proLang, spoLang);;
 }
 
-function insertHintsEMP(input: string, spoLang?: string, proLang?: string): string {
-    let hljsOutput: AutoHighlightResult;
-    
-    //try to auto detect programming lanugage if not given
-    if (!proLang) {
-        hljsOutput = hljs.highlightAuto(codeInputHTML!.innerText, [...supportedLangs.keys()]);
-        if (hljsOutput.language) {
-            proLang = hljsOutput.language;
-            input = hljsOutput.value;
-        }
-        else {
-            return "Unknown language";
-        }
-    }
-
-    //if programming language is given highlight using only the given language
-    else {
-        hljsOutput = hljs.highlightAuto(codeInputHTML!.innerText, [proLang]);
-        if (!hljsOutput.language) {
-            return "Cannot highlight with given language";
-        }
-        //input = hljsOutput.value;
-    }
+function insertHintsEMP(input: string, proLang: string, spoLang?: string ): string {
 
     //default spoken languge is english if not given otherwise
     if (!spoLang) {
         spoLang = "english";
     }
+
+    proLang = proLang.toLocaleLowerCase();
+    spoLang = spoLang.toLocaleLowerCase();
 
     let languageObject = supportedLangs.get(proLang);
 
