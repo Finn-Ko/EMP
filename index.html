@@ -10,14 +10,36 @@
 	<link rel="stylesheet" type="text/css" href="./css/a11y-dark.css" />
 	<script type="module" src="./js/bundle.js"></script>
 	<title> Error Message Parser </title>
-</head>
-<body>
-	<!-- <div class="wrapper"> -->
-		<pre class="container output"><code id="codeOutput" class="code" spellcheck="false"></code></pre>
-		<pre class="container input"><code id="codeInput" class="code" contenteditable="true" spellcheck="false"></code></pre>
-	<!-- </div> -->
-</body>
-<script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="input-side">
+				<form>
+					<input list="spokenLanguages" name="Languages" id="spoLang" class="selector-box">
+					<datalist id="spokenLanguages">
+						<option value="English 🇬🇧">
+						<option value="German 🇩🇪">
+					</datalist>
+				</form>
+				<pre class="code-wrapper"><code id="codeInput" contenteditable="true" spellcheck="false" class="code"></code></pre>
+			</div>
+			<div class="output-side">
+				<form>
+					<input list="programmingLanguages" name="Programming languages" id="proLang" class="selector-box">
+					<datalist id="programmingLanguages">
+						<option value="Python">
+						<option value="Java">
+						<option value="F#">
+						<option value="C">
+						<option value="Matlab">
+					</datalist>
+				</form>
+				<pre class="code-wrapper"><code id="codeOutput" spellcheck="false" class="code"></code></pre>
+			</div>
+			
+		</div>
+	</body>
+	<!-- <script>
 	let inputSave;
 	const codeInputHTML = document.getElementById("codeInput");
 
@@ -34,5 +56,5 @@
 			codeInputHTML.innerText = inputSave;
 		}
 	}
-</script>
+	</script> -->
 </html>

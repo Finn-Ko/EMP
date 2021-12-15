@@ -1,5 +1,6 @@
 import LanguageInterface from "../LanguageInterface";
+import Hint from "../Hint";
 export default class PythonHints implements LanguageInterface {
-    private keywords;
-    insertHints(input: string): string;
+    private dictionary;
+    getDictionary(): Map<string, Hint>;
 }

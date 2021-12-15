@@ -5,36 +5,22 @@ html {
 }
 
 body {
-    opacity:0.9;
     background-color:#333333;
     height: 95%;
-    margin: 0px;
-    padding: 1%;
 }
 
-.container {
-    color:#fff;
-    z-index:1000;
-    background-color: #1e1e1e;
-}
-
-.container.input {
-    margin: 0px;
-    position: relative;
-    margin-right: 51%;
-    height: 100%;
-}
-
-.container.output {
-    margin: 0px;
-    float: right;
-    position: relative;
-    text-align: left;
-    width: 49%;
+.wrapper {
+    padding: 0px;
+    margin: auto;
+    width: 100%;
+    max-width: 1800px;
+    overflow: auto;
     height: 100%;
 }
 
 .code {
+    padding: 4px solid red;
+    color: white;
     background-color: #1e1e1e;
     border: 0px solid transparent;
     display: block;
@@ -42,8 +28,31 @@ body {
     overflow: auto;
 }
 
-.hint {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted white;
+.code-wrapper {
+    margin: 0px;
+    height: 95%;
+}
+
+.input-side {
+    width: 47%;
+    float: left;
+    height: 100%
+}
+
+.output-side {
+    width: 47%;
+    float: right;
+    height: 100%;
+}
+
+.selector-box {
+    background-color: #1e1e1e;
+    border: 0px solid transparent;
+    border-bottom: 5px solid #333333;
+    color: white;
+    font-family: monospace;
+}
+
+.selector-option {
+    font-family: monospace;
 }

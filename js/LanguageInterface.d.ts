@@ -1,3 +1,4 @@
+import Hint from "./Hint";
 export default interface LanguageInterface {
-    insertHints(input: string): string;
+    getDictionary(): Map<string, Hint>;
 }
