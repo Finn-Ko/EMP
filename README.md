@@ -1,12 +1,12 @@
 # EMP
 Error Message Parser - A website that makes programming error messages more readable
+Accesible here: finn-ko.github.io/EMP/
 
 # dependencies:
 node/npm for dependency management use, npm install in this directory
 npm package - browserify to transpile the js files to work in browser
 npm package - (watchify) to run browserify in watch mode, this is only necessary for the run dev script
 npm package - http-server to start a local server
-
 
 # scripts - these only work on linux!:
 npm start - builds the website and starts a local server
