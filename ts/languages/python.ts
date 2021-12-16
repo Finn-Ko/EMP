@@ -7,7 +7,8 @@ export default class PythonLang implements LanguageInterface {
     public color(input: string): string {
         //1. Mark everything unimportant
         //2. find important things
-        return input + "TODO";
+        //TODO
+        return input;
     }
     
     private dictionary = new Map<string, Hint>(
