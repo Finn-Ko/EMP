@@ -1,11 +1,11 @@
 import LanguageInterface from './LanguageInterface';
-import PythonHints from './languages/python';
+import PythonLang from './languages/python';
 
 //Supported languages, add new additions here and import files above
 let supportedLangs = new Map<string, LanguageInterface>(
     [
         //add new languages here
-        ["python", new PythonHints()]
+        ["python", new PythonLang()]
 
     ]);
 
@@ -83,7 +83,6 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
         for (let [word, entry] of languageObject.getDictionary()) {
             //console.log(input.substring(i, i + key.length));
             if (input.substring(i, i + word.length) === word) {
-                //let toInsert = `<div class='hint' onmouseover='showHint(\"` + entry.getHint(spoLang) + `\")' onmouseout='removeHint()'>` + word + "</div>";
                 let toInsert =
                  "<div class='tooltip'>" + word + "<span class='tooltiptext'>" 
                  + entry.getHint(spoLang) + "</span></div>"
@@ -94,6 +93,8 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
         }
     }
     //trie? https://de.wikipedia.org/wiki/Trie
+
+    input = languageObject.color(input);
 
     return input;
 }

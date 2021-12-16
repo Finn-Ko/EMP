@@ -64,6 +64,7 @@ function insertHintsEMP(input, proLang, spoLang) {
             }
         }
     }
+    input = languageObject.color(input);
     return input;
 }
 exports.default = insertHintsEMP;

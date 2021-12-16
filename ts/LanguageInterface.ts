@@ -1,6 +1,9 @@
 import Hint from "./Hint";
 
 export default interface LanguageInterface {
-    //takes (html) string and outputs html string with hints added
+    //getter for language dictionary
     getDictionary(): Map<string, Hint>;
+
+    //takes (html) string and outputs html string with coloring added
+    color(input: string): string;
 }
