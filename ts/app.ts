@@ -9,7 +9,7 @@ let supportedLangs = new Map<string, LanguageInterface>(
 
     ]);
 
-const codeInputHTML = document.getElementById("codeInput")!;
+const codeInputHTML = document.getElementById("codeInput")! as HTMLInputElement;
 const codeOutputHTML = document.getElementById("codeOutput")!;
 const spoLangSelector = document.getElementById("spoLang")! as HTMLSelectElement;
 const proLangSelector = document.getElementById("proLang")! as HTMLSelectElement;
@@ -33,25 +33,43 @@ proLangSelector.addEventListener("change", () => {
 }, false);
 
 //prevent tab key from focusing out of the textarea
-//TODO
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
         e.preventDefault();
-        codeOutputHTML.innerHTML = "The tab key doens't work yet, sorry. \nUse spaces instead";
+        insertAtCursor(codeInputHTML, "    ");
     }
 });
 
-codeInputHTML!.addEventListener("paste", (e) => {
-    // cancel paste to prevent preformated text
-    e.preventDefault();
-    // get text representation of clipboard
-    if (e.clipboardData) {
-        let text = e.clipboardData.getData('text/plain');
-        // insert text manually, this will replace text already present
-        codeInputHTML.innerText = text;
-        rehighlight();
+function insertAtCursor(myField: HTMLInputElement, myValue: string) {
+    if (myField.selectionStart) {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        if (endPos) {
+            myField.value = myField.value.substring(0, startPos)
+            + myValue
+            + myField.value.substring(endPos, myField.value.length);
+        }
+        else {
+            myField.value = myField.value.substring(0, startPos)
+            + myValue
+            + myField.value.substring(startPos, myField.value.length);
+        }
+    } else {
+        myField.value += myValue;
     }
-});
+}
+
+// codeInputHTML!.addEventListener("paste", (e) => {
+//     // cancel paste to prevent preformated text
+//     e.preventDefault();
+//     // get text representation of clipboard
+//     if (e.clipboardData) {
+//         let text = e.clipboardData.getData('text/plain');
+//         // insert text manually, this will replace text already present
+//         codeInputHTML.innerText = text;
+//         rehighlight();
+//     }
+// });
 
 //main function that is called when something changes in input to readjust output
 function rehighlight(): void {
@@ -59,7 +77,7 @@ function rehighlight(): void {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
     
-    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML!.innerHTML, proLang, spoLang);;
+    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.value, proLang, spoLang);;
 }
 
 function insertHintsEMP(input: string, proLang: string, spoLang?: string ): string {

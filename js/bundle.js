@@ -49,21 +49,32 @@ proLangSelector.addEventListener("change", () => {
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
         e.preventDefault();
-        codeOutputHTML.innerHTML = "The tab key doens't work yet, sorry. \nUse spaces instead";
+        insertAtCursor(codeInputHTML, "    ");
     }
 });
-codeInputHTML.addEventListener("paste", (e) => {
-    e.preventDefault();
-    if (e.clipboardData) {
-        let text = e.clipboardData.getData('text/plain');
-        codeInputHTML.innerText = text;
-        rehighlight();
+function insertAtCursor(myField, myValue) {
+    if (myField.selectionStart) {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        if (endPos) {
+            myField.value = myField.value.substring(0, startPos)
+                + myValue
+                + myField.value.substring(endPos, myField.value.length);
+        }
+        else {
+            myField.value = myField.value.substring(0, startPos)
+                + myValue
+                + myField.value.substring(startPos, myField.value.length);
+        }
     }
-});
+    else {
+        myField.value += myValue;
+    }
+}
 function rehighlight() {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
-    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.innerHTML, proLang, spoLang);
+    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.value, proLang, spoLang);
     ;
 }
 function insertHintsEMP(input, proLang, spoLang) {
@@ -102,7 +113,7 @@ const Hint_1 = __importDefault(require("../Hint"));
 class PythonLang {
     constructor() {
         this.dictionary = new Map([
-            ["AssertionError", new Hint_1.default("".concat("Lorem ipsum dolor sit amet, <br>", "consetetur sadipscing elitr, <br>", "sed diam nonumy eirmod tempor <br>", "invidunt ut labore et dolore <br>", "magna aliquyam erat, <br>", "sed diam voluptua. <br>", "At vero eos et accusam et <br>", "justo duo dolores et ea rebum. <br>", "Stet clita kasd gubergren, <br>", "no sea takimata sanctus est <br>", "Lorem ipsum dolor sit amet."), "".concat("Es gab einen Fehler dabei ein \"assert\" <br>", "aus zu führen. <br>", "Dies passiert normal bei <br>", "automatisierten Tests die nicht klappen.<br>", "Suche in der Fehlermeldung nach einer Zeile,<br>", "in der \"assert irgendetwas\" steht.<br>", "Es wurde hier erwartet, dass das \"irgendetwas\"<br>", "Stimmt, also zu True auswertet.<br><br>", "Beispiel: assert x == 6<br>", "Hier wird erwartet, dass x den Wert 6 hat.<br>", "Wenn dies nicht der Fall ist,<br>", "gibt es einen AssertionError"))],
+            ["AssertionError", new Hint_1.default("".concat("An error occured when an \"assert\" <br>", "statement was run. <br>", "This usually happens with <br>", "failed automated tests. <br>", "Look for a line of code that <br>", "reads \"assert something\". <br>", "It was expected, that \"something\" <br>", "would turn out to be true. <br>", "Stet clita kasd gubergren, <br>", "no sea takimata sanctus est <br>", "Lorem ipsum dolor sit amet."), "".concat("Es gab einen Fehler dabei ein \"assert\" <br>", "aus zu führen. <br>", "Dies passiert normal bei <br>", "automatisierten Tests die nicht klappen.<br>", "Suche in der Fehlermeldung nach einer Zeile,<br>", "in der \"assert irgendetwas\" steht.<br>", "Es wurde hier erwartet, dass das \"irgendetwas\"<br>", "Stimmt, also zu True auswertet.<br><br>", "Beispiel: assert x == 6<br>", "Hier wird erwartet, dass x den Wert 6 hat.<br>", "Wenn dies nicht der Fall ist,<br>", "gibt es einen AssertionError"))],
             ["AttributeError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
             ["EOFError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
             ["FloatingPointError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
@@ -153,6 +164,11 @@ class PythonLang {
         ]);
     }
     color(input) {
+        let lines = input.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            lines[i] = lines[i] + "WAS";
+        }
+        input = "<span style='color: #484848;'>" + lines.join("\n") + "</span>";
         return input;
     }
     getDictionary() {

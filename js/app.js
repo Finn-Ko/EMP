@@ -26,21 +26,32 @@ proLangSelector.addEventListener("change", () => {
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') {
         e.preventDefault();
-        codeOutputHTML.innerHTML = "The tab key doens't work yet, sorry. \nUse spaces instead";
+        insertAtCursor(codeInputHTML, "    ");
     }
 });
-codeInputHTML.addEventListener("paste", (e) => {
-    e.preventDefault();
-    if (e.clipboardData) {
-        let text = e.clipboardData.getData('text/plain');
-        codeInputHTML.innerText = text;
-        rehighlight();
+function insertAtCursor(myField, myValue) {
+    if (myField.selectionStart) {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        if (endPos) {
+            myField.value = myField.value.substring(0, startPos)
+                + myValue
+                + myField.value.substring(endPos, myField.value.length);
+        }
+        else {
+            myField.value = myField.value.substring(0, startPos)
+                + myValue
+                + myField.value.substring(startPos, myField.value.length);
+        }
     }
-});
+    else {
+        myField.value += myValue;
+    }
+}
 function rehighlight() {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
-    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.innerHTML, proLang, spoLang);
+    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.value, proLang, spoLang);
     ;
 }
 function insertHintsEMP(input, proLang, spoLang) {

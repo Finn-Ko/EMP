@@ -3,6 +3,7 @@
 .tooltip {
     position: relative;
     display: inline-block;
+    font-weight: bold;
     border-bottom: 1px dotted green; /* If you want dots under the hoverable text */
 }
   

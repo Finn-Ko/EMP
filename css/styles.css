@@ -11,6 +11,7 @@ body {
 
 .wrapper {
     padding: 0px;
+    padding-top: 5px;
     margin: auto;
     width: 100%;
     max-width: 1500px;
@@ -25,6 +26,7 @@ body {
     display: block;
     height: 99%;
     overflow: auto;
+    width: 99%;
 }
 
 .code-wrapper {

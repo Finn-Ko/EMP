@@ -5,9 +5,15 @@ import Hint from "../Hint";
 export default class PythonLang implements LanguageInterface {
 
     public color(input: string): string {
-        //1. Mark everything unimportant
-        //2. find important things
-        //TODO
+        let lines = input.split("\n");
+
+        for (let i = 0; i < lines.length; i++) {
+            lines[i] = lines[i] + "WAS";
+        }
+
+        //Mark everything else unimportant
+        input = "<span style='color: #484848;'>" + lines.join("\n") + "</span>"
+
         return input;
     }
     
@@ -17,14 +23,14 @@ export default class PythonLang implements LanguageInterface {
             ["AssertionError", new Hint(
                 //english:
                 "".concat(
-                    "Lorem ipsum dolor sit amet, <br>",
-                    "consetetur sadipscing elitr, <br>",
-                    "sed diam nonumy eirmod tempor <br>",
-                    "invidunt ut labore et dolore <br>", 
-                    "magna aliquyam erat, <br>",
-                    "sed diam voluptua. <br>", 
-                    "At vero eos et accusam et <br>",
-                    "justo duo dolores et ea rebum. <br>",
+                    "An error occured when an \"assert\" <br>",
+                    "statement was run. <br>",
+                    "This usually happens with <br>",
+                    "failed automated tests. <br>", 
+                    "Look for a line of code that <br>",
+                    "reads \"assert something\". <br>", 
+                    "It was expected, that \"something\" <br>",
+                    "would turn out to be true. <br>",
                     "Stet clita kasd gubergren, <br>",
                     "no sea takimata sanctus est <br>",
                     "Lorem ipsum dolor sit amet."
