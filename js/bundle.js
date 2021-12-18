@@ -6,7 +6,7 @@ class Hint {
         this.english = english;
         this.german = german;
     }
-    getHint(language) {
+    getHintInLanguage(language) {
         if (language === "english") {
             return this.english;
         }
@@ -71,6 +71,14 @@ function insertAtCursor(myField, myValue) {
         myField.value += myValue;
     }
 }
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 function rehighlight() {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
@@ -78,6 +86,8 @@ function rehighlight() {
     ;
 }
 function insertHintsEMP(input, proLang, spoLang) {
+    var _a;
+    input = escapeHtml(input);
     if (!spoLang) {
         spoLang = "english";
     }
@@ -88,10 +98,10 @@ function insertHintsEMP(input, proLang, spoLang) {
         return "Language not supported";
     }
     for (let i = 0; i < input.length; i++) {
-        for (let [word, entry] of languageObject.getDictionary()) {
+        for (let word of languageObject.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
                 let toInsert = "<div class='tooltip'>" + word + "<span class='tooltiptext'>"
-                    + entry.getHint(spoLang) + "</span></div>";
+                    + ((_a = languageObject.getHint(word)) === null || _a === void 0 ? void 0 : _a.getHintInLanguage(spoLang)) + "</span></div>";
                 input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
                 i += toInsert.length;
                 break;
@@ -160,19 +170,57 @@ class PythonLang {
             ["NotADirectoryError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
             ["PermissionError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
             ["ProcessLookupError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
-            ["TimeoutError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))]
+            ["TimeoutError", new Hint_1.default("".concat("TODO"), "".concat("TODO"))],
+            ["Traceback", new Hint_1.default("".concat("TODO"), "".concat("TODO"))]
         ]);
+        this.keywords = [...this.dictionary.keys()];
+        this.keywords.sort(function (a, b) {
+            return b.length - a.length;
+        });
+    }
+    getKeywordsSorted() {
+        return this.keywords;
+    }
+    getHint(keyword) {
+        return this.dictionary.get(keyword);
     }
     color(input) {
+        if (input.substring(0, 9) === "testbook.") {
+            input = this.cleanTestbookOutput(input);
+        }
         let lines = input.split("\n");
         for (let i = 0; i < lines.length; i++) {
-            lines[i] = lines[i] + "WAS";
+            lines[i] = lines[i];
         }
-        input = "<span style='color: #484848;'>" + lines.join("\n") + "</span>";
+        input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
         return input;
     }
-    getDictionary() {
-        return new Map(this.dictionary);
+    cleanTestbookOutput(input) {
+        let weird = "#x1B[";
+        let lines = input.split("\n");
+        let firstOcc = 0;
+        while (lines[firstOcc].substring(0, weird.length) !== weird) {
+            firstOcc++;
+        }
+        let lastOcc = firstOcc;
+        while (lines[lastOcc].substring(0, weird.length) === weird) {
+            lastOcc++;
+        }
+        lines = lines.slice(firstOcc, lastOcc);
+        input = lines.join("\n");
+        for (let i = 0; i < input.length; i++) {
+            if (input.substring(i, i + weird.length) === weird) {
+                let weirdUntil = i + weird.length;
+                let maxSearchDepth = weirdUntil + 50;
+                while (input.charAt(weirdUntil) !== "m" || weirdUntil > maxSearchDepth) {
+                    weirdUntil++;
+                }
+                weirdUntil++;
+                input = [input.slice(0, i), input.slice(weirdUntil)].join("");
+                i--;
+            }
+        }
+        return input;
     }
 }
 exports.default = PythonLang;

@@ -27,3 +27,16 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+/* Styles for highlighting */
+.unimportantEMP {
+    color: #484848;
+}
+
+.invisibleEMP {
+    color: transparent;
+}
+
+.normalEMP {
+    color: white;
+}

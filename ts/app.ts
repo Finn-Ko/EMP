@@ -59,17 +59,16 @@ function insertAtCursor(myField: HTMLInputElement, myValue: string) {
     }
 }
 
-// codeInputHTML!.addEventListener("paste", (e) => {
-//     // cancel paste to prevent preformated text
-//     e.preventDefault();
-//     // get text representation of clipboard
-//     if (e.clipboardData) {
-//         let text = e.clipboardData.getData('text/plain');
-//         // insert text manually, this will replace text already present
-//         codeInputHTML.innerText = text;
-//         rehighlight();
-//     }
-// });
+//html string escaper 
+//https://stackoverflow.com/questions/6234773/can-i-escape-html-special-chars-in-javascript
+function escapeHtml(unsafe: string): string {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
 
 //main function that is called when something changes in input to readjust output
 function rehighlight(): void {
@@ -81,6 +80,9 @@ function rehighlight(): void {
 }
 
 function insertHintsEMP(input: string, proLang: string, spoLang?: string ): string {
+
+    //escape HTML in input
+    input = escapeHtml(input);
 
     //default spoken languge is english if not given otherwise
     if (!spoLang) {
@@ -98,12 +100,12 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
 
     //iterate over input and check if it contains keyword from specified index
     for (let i = 0; i < input.length; i++) {
-        for (let [word, entry] of languageObject.getDictionary()) {
+        for (let word of languageObject.getKeywordsSorted()) {
             //console.log(input.substring(i, i + key.length));
             if (input.substring(i, i + word.length) === word) {
                 let toInsert =
                  "<div class='tooltip'>" + word + "<span class='tooltiptext'>" 
-                 + entry.getHint(spoLang) + "</span></div>"
+                 + languageObject.getHint(word)?.getHintInLanguage(spoLang) + "</span></div>"
                 input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
                 i += toInsert.length;
                 break;

@@ -5,7 +5,7 @@ class Hint {
         this.english = english;
         this.german = german;
     }
-    getHint(language) {
+    getHintInLanguage(language) {
         if (language === "english") {
             return this.english;
         }

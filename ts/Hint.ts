@@ -8,7 +8,7 @@ export default class Hint {
         this.german = german;
     }
 
-    getHint(language: string): string {
+    getHintInLanguage(language: string): string {
         if (language === "english") {
             return this.english
         }

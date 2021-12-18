@@ -4,18 +4,87 @@ import Hint from "../Hint";
 //class for the python language
 export default class PythonLang implements LanguageInterface {
 
+    //only sort once when object is created
+    constructor() {
+        this.keywords = [ ...this.dictionary.keys() ];
+        this.keywords.sort(function(a, b){
+            // ASC  -> a.length - b.length
+            // DESC -> b.length - a.length
+            return b.length - a.length;
+        });
+    }
+
+    public getKeywordsSorted(): string[] {
+        return this.keywords;
+    }
+
+    public getHint(keyword: string): Hint | undefined{
+        return this.dictionary.get(keyword);
+    }
+    
     public color(input: string): string {
+
+        //testbook output requires special attention
+        if (input.substring(0, 9) === "testbook.") {
+            input = this.cleanTestbookOutput(input);
+        }
+
         let lines = input.split("\n");
 
         for (let i = 0; i < lines.length; i++) {
-            lines[i] = lines[i] + "WAS";
+            lines[i] = lines[i];
         }
 
         //Mark everything else unimportant
-        input = "<span style='color: #484848;'>" + lines.join("\n") + "</span>"
+        input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
 
         return input;
     }
+
+    private cleanTestbookOutput(input: string): string {
+        
+        let weird = "#x1B[";
+
+        //filter only the relevant part, which starts with the weird string
+        let lines = input.split("\n");
+
+        let firstOcc = 0;
+        while (lines[firstOcc].substring(0, weird.length) !== weird) {
+            firstOcc++;
+        }
+
+        let lastOcc = firstOcc;
+        while (lines[lastOcc].substring(0, weird.length) === weird) {
+            lastOcc++;
+        }
+
+        lines = lines.slice(firstOcc, lastOcc);
+
+        input = lines.join("\n");
+
+        //remove all of the weird strings from input,
+        for (let i = 0; i < input.length; i++) {
+            if (input.substring(i, i + weird.length) === weird) {
+
+                let weirdUntil = i + weird.length;
+                let maxSearchDepth = weirdUntil + 50;
+
+                //weird string always ends with m
+                while (input.charAt(weirdUntil) !== "m" || weirdUntil > maxSearchDepth) {
+                    weirdUntil++;
+                }
+                weirdUntil++;
+
+                input = [input.slice(0, i), input.slice(weirdUntil)].join("");
+                
+                //search again from same position
+                i--;
+            }
+        }
+        return input;
+    }
+
+    private keywords: string[];
     
     private dictionary = new Map<string, Hint>(
         [
@@ -567,13 +636,20 @@ export default class PythonLang implements LanguageInterface {
                 "".concat(
                     "TODO"
                 )
-            )]
+            )],
 
             //add keywords too? TODO
-        ]);
 
-    public getDictionary(): Map<string, Hint> {
-        return new Map<string, Hint>(this.dictionary);
-    }
+            ["Traceback", new Hint(
+                //english:
+                "".concat(
+                    "TODO"
+                ),
+                //german
+                "".concat(
+                    "TODO"
+                )
+            )]
+        ]);
 
 }

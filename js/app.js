@@ -48,6 +48,14 @@ function insertAtCursor(myField, myValue) {
         myField.value += myValue;
     }
 }
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 function rehighlight() {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
@@ -55,6 +63,8 @@ function rehighlight() {
     ;
 }
 function insertHintsEMP(input, proLang, spoLang) {
+    var _a;
+    input = escapeHtml(input);
     if (!spoLang) {
         spoLang = "english";
     }
@@ -65,10 +75,10 @@ function insertHintsEMP(input, proLang, spoLang) {
         return "Language not supported";
     }
     for (let i = 0; i < input.length; i++) {
-        for (let [word, entry] of languageObject.getDictionary()) {
+        for (let word of languageObject.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
                 let toInsert = "<div class='tooltip'>" + word + "<span class='tooltiptext'>"
-                    + entry.getHint(spoLang) + "</span></div>";
+                    + ((_a = languageObject.getHint(word)) === null || _a === void 0 ? void 0 : _a.getHintInLanguage(spoLang)) + "</span></div>";
                 input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
                 i += toInsert.length;
                 break;
