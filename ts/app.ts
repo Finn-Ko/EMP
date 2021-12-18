@@ -104,7 +104,7 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
             //console.log(input.substring(i, i + key.length));
             if (input.substring(i, i + word.length) === word) {
                 let toInsert =
-                 "<div class='tooltip'>" + word + "<span class='tooltiptext'>" 
+                 "<div class='tooltipEMP'>" + word + "<span class='tooltiptextEMP'>" 
                  + languageObject.getHint(word)?.getHintInLanguage(spoLang) + "</span></div>"
                 input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
                 i += toInsert.length;

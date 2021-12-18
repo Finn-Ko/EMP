@@ -100,7 +100,7 @@ function insertHintsEMP(input, proLang, spoLang) {
     for (let i = 0; i < input.length; i++) {
         for (let word of languageObject.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
-                let toInsert = "<div class='tooltip'>" + word + "<span class='tooltiptext'>"
+                let toInsert = "<div class='tooltipEMP'>" + word + "<span class='tooltiptextEMP'>"
                     + ((_a = languageObject.getHint(word)) === null || _a === void 0 ? void 0 : _a.getHintInLanguage(spoLang)) + "</span></div>";
                 input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
                 i += toInsert.length;
