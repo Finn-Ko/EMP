@@ -32,7 +32,39 @@ export default class PythonLang implements LanguageInterface {
         let lines = input.split("\n");
 
         for (let i = 0; i < lines.length; i++) {
-            lines[i] = lines[i];
+            //the ----> marking the imortant line
+            if (lines[i].substring(0, 9) === "----&gt; ") {
+                lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
+            }
+            //tab and then one number for the line
+            else if (/\s{6}\d+/.test(lines[i].substring(0, 7))) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+            //the ------ line that seperates python errors
+            else if (/-+/.test(lines[i].substring(0, 10))) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+            //if a keyword is present, this might need to be changed
+            else if (lines[i].includes("<span class='tooltiptextEMP'>")) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+            //for a different style which is marked like this
+            else if (lines[i].substring(0, 7) === "  File ") {
+                let quoteEnd = lines[i].lastIndexOf("&quot;,");
+                let lineNumberEnd = lines[i].indexOf(", in ");
+                lines[i] = 
+                    "<span class='normalEMP'>" +
+                    //the filename is marked, it comes after "  File &quot;"
+                    "  File &quot;<span class='importantEMP'>" + lines[i].substring(13, quoteEnd) + "</span>" +
+                    //the line number is marked
+                    lines[i].substring(quoteEnd, quoteEnd + 13) + "<span class='importantEMP'>" + 
+                    lines[i].substring(quoteEnd + 13, lineNumberEnd) + "</span>" + lines[i].substring(lineNumberEnd);
+                    "</span>";
+
+                //the next line contains the code
+                lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
+                i++;
+            }
         }
 
         //Mark everything else unimportant

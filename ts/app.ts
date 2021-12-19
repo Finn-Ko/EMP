@@ -131,7 +131,7 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     //trie? https://de.wikipedia.org/wiki/Trie
 
     input = languageObject.color(input);
-
+    
     return input;
 }
 

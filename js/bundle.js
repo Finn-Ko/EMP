@@ -208,7 +208,30 @@ class PythonLang {
         }
         let lines = input.split("\n");
         for (let i = 0; i < lines.length; i++) {
-            lines[i] = lines[i];
+            if (lines[i].substring(0, 9) === "----&gt; ") {
+                lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
+            }
+            else if (/\s{6}\d+/.test(lines[i].substring(0, 7))) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+            else if (/-+/.test(lines[i].substring(0, 10))) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+            else if (lines[i].includes("<span class='tooltiptextEMP'>")) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+            else if (lines[i].substring(0, 7) === "  File ") {
+                let quoteEnd = lines[i].lastIndexOf("&quot;,");
+                let lineNumberEnd = lines[i].indexOf(", in ");
+                lines[i] =
+                    "<span class='normalEMP'>" +
+                        "  File &quot;<span class='importantEMP'>" + lines[i].substring(13, quoteEnd) + "</span>" +
+                        lines[i].substring(quoteEnd, quoteEnd + 13) + "<span class='importantEMP'>" +
+                        lines[i].substring(quoteEnd + 13, lineNumberEnd) + "</span>" + lines[i].substring(lineNumberEnd);
+                "</span>";
+                lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
+                i++;
+            }
         }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
         return input;

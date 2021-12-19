@@ -4,11 +4,8 @@
     position: relative;
     display: inline-block;
     font-weight: bold;
-    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    border-bottom: 1px dotted green; /* If you want dots under the hoverable text */
+    color: yellow;
+    border-bottom: 1px dotted yellow; /* If you want dots under the hoverable text */
 }
   
 /* Tooltip text */
@@ -20,6 +17,7 @@
     padding: 5px 0;
     border-radius: 6px;
     font-weight: 100;
+    border: 1px solid white;
 
     /* Position the tooltip text - see examples below! */
     position: absolute;
@@ -43,4 +41,8 @@
 
 .normalEMP {
     color: white;
+}
+
+.importantEMP {
+    color: blue;
 }
