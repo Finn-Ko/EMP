@@ -204,8 +204,10 @@ class PythonLang {
                         lines[i].substring(quoteEnd, quoteEnd + 13) + "<span class='importantEMP'>" +
                         lines[i].substring(quoteEnd + 13, lineNumberEnd) + "</span>" + lines[i].substring(lineNumberEnd);
                 "</span>";
-                lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
-                i++;
+                if (/\s{4}/.test(lines[i].substring(0, 4))) {
+                    lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
+                    i++;
+                }
             }
         }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";

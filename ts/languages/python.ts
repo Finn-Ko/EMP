@@ -61,9 +61,11 @@ export default class PythonLang implements LanguageInterface {
                     lines[i].substring(quoteEnd + 13, lineNumberEnd) + "</span>" + lines[i].substring(lineNumberEnd);
                     "</span>";
 
-                //the next line contains the code
-                lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
-                i++;
+                //the next line contains the code if it starts with four spaces
+                if (/\s{4}/.test(lines[i].substring(0, 4))) {
+                    lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
+                    i++;
+                }
             }
         }
 
