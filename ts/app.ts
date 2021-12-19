@@ -9,19 +9,18 @@ let supportedLangs = new Map<string, LanguageInterface>(
 
     ]);
 
-const codeInputHTML = document.getElementById("codeInput")! as HTMLInputElement;
 const codeOutputHTML = document.getElementById("codeOutput")!;
 const spoLangSelector = document.getElementById("spoLang")! as HTMLSelectElement;
 const proLangSelector = document.getElementById("proLang")! as HTMLSelectElement;
 
-//initialize when page is loaded
-window.addEventListener("load", (e) => {
-    codeInputHTML.focus();
-});
+let stringToHighlight = "";
 
 //rehighlight on input or different language selected
-codeInputHTML.addEventListener("input", () => {
-    rehighlight();
+document.addEventListener('paste', (e) => {
+    if (e.clipboardData) {
+        stringToHighlight = (e.clipboardData).getData('text');
+        rehighlight();
+    }
 }, false);
 
 spoLangSelector.addEventListener("change", () => {
@@ -32,32 +31,6 @@ proLangSelector.addEventListener("change", () => {
     rehighlight();
 }, false);
 
-//prevent tab key from focusing out of the textarea
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-        e.preventDefault();
-        insertAtCursor(codeInputHTML, "    ");
-    }
-});
-
-function insertAtCursor(myField: HTMLInputElement, myValue: string) {
-    if (myField.selectionStart) {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        if (endPos) {
-            myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos, myField.value.length);
-        }
-        else {
-            myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(startPos, myField.value.length);
-        }
-    } else {
-        myField.value += myValue;
-    }
-}
 
 //main function that is called when something changes in input to readjust output
 function rehighlight(): void {
@@ -65,7 +38,7 @@ function rehighlight(): void {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
     
-    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.value, proLang, spoLang);;
+    codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);;
 }
 
 function insertHintsEMP(input: string, proLang: string, spoLang?: string ): string {

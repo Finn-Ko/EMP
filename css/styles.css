@@ -37,18 +37,6 @@ body {
     height: 95%;
 }
 
-.input-side {
-    width: 47%;
-    float: left;
-    height: 100%;
-}
-
-.output-side {
-    width: 47%;
-    float: right;
-    height: 100%;
-}
-
 .selector-box {
     background-color: #1e1e1e;
     border: 0px solid transparent;

@@ -30,15 +30,15 @@ const python_1 = __importDefault(require("./languages/python"));
 let supportedLangs = new Map([
     ["python", new python_1.default()]
 ]);
-const codeInputHTML = document.getElementById("codeInput");
 const codeOutputHTML = document.getElementById("codeOutput");
 const spoLangSelector = document.getElementById("spoLang");
 const proLangSelector = document.getElementById("proLang");
-window.addEventListener("load", (e) => {
-    codeInputHTML.focus();
-});
-codeInputHTML.addEventListener("input", () => {
-    rehighlight();
+let stringToHighlight = "";
+document.addEventListener('paste', (e) => {
+    if (e.clipboardData) {
+        stringToHighlight = (e.clipboardData).getData('text');
+        rehighlight();
+    }
 }, false);
 spoLangSelector.addEventListener("change", () => {
     rehighlight();
@@ -46,35 +46,10 @@ spoLangSelector.addEventListener("change", () => {
 proLangSelector.addEventListener("change", () => {
     rehighlight();
 }, false);
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-        e.preventDefault();
-        insertAtCursor(codeInputHTML, "    ");
-    }
-});
-function insertAtCursor(myField, myValue) {
-    if (myField.selectionStart) {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        if (endPos) {
-            myField.value = myField.value.substring(0, startPos)
-                + myValue
-                + myField.value.substring(endPos, myField.value.length);
-        }
-        else {
-            myField.value = myField.value.substring(0, startPos)
-                + myValue
-                + myField.value.substring(startPos, myField.value.length);
-        }
-    }
-    else {
-        myField.value += myValue;
-    }
-}
 function rehighlight() {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
-    codeOutputHTML.innerHTML = insertHintsEMP(codeInputHTML.value, proLang, spoLang);
+    codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);
     ;
 }
 function insertHintsEMP(input, proLang, spoLang) {
