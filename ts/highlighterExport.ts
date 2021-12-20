@@ -22,7 +22,7 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     let languageObject = supportedLangs.get(proLang);
 
     if (!languageObject) {   
-        return "Sorry, language is not supported!\n" + input;
+        return "Sorry, language is not supported!";
     }
 
     //iterate over input and check if it contains keyword from specified index

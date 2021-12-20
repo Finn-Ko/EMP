@@ -11,7 +11,7 @@ function insertHintsEMP(input, proLang, spoLang) {
     spoLang = spoLang.toLocaleLowerCase();
     let languageObject = supportedLangs.get(proLang);
     if (!languageObject) {
-        return "Sorry, language is not supported!\n" + input;
+        return "Sorry, language is not supported!";
     }
     for (let i = 0; i < input.length; i++) {
         if (input.charAt(i) === "&") {
