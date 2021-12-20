@@ -26,5 +26,5 @@ run "tsc" to transpile ts files to js
   
 You can import the highligting and adding of hints functionality to your website.  
 To do this add the following script Tag:  
-<script type="module"> import insertHintsEMP from '../EMP/js/app.js'; </script>  
+<script type="module"> import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js'; </script>  
 You can now use the insertHintsEMP(input, proLang, spoLang?) function on your website.
