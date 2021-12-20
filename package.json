@@ -6,9 +6,9 @@
   "types": "/js/app.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsc -w & watchify js/app.js -o js/bundle.js & http-server",
-    "build": "tsc && browserify js/app.js -o js/bundle.js",
-    "start": "tsc && browserify js/app.js -o js/bundle.js && http-server"
+    "dev": "tsc -w & http-server",
+    "build": "tsc",
+    "start": "tsc && http-server"
   },
   "repository": {
     "type": "git",

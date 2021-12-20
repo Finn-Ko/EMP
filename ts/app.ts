@@ -1,5 +1,5 @@
 import LanguageInterface from './LanguageInterface';
-import PythonLang from './languages/python';
+import PythonLang from './languages/python.js';
 
 //Supported languages, add new additions here and import files above
 let supportedLangs = new Map<string, LanguageInterface>(
@@ -9,9 +9,9 @@ let supportedLangs = new Map<string, LanguageInterface>(
 
     ]);
 
-const codeOutputHTML = document.getElementById("codeOutput")!;
-const spoLangSelector = document.getElementById("spoLang")! as HTMLSelectElement;
-const proLangSelector = document.getElementById("proLang")! as HTMLSelectElement;
+const codeOutputHTML = document.getElementById("codeOutput");
+const spoLangSelector = document.getElementById("spoLang") as HTMLSelectElement;
+const proLangSelector = document.getElementById("proLang") as HTMLSelectElement;
 
 let stringToHighlight = "";
 
@@ -23,13 +23,15 @@ document.addEventListener('paste', (e) => {
     }
 }, false);
 
-spoLangSelector.addEventListener("change", () => {
-    rehighlight();
-}, false);
+if (spoLangSelector && proLangSelector) {
+    spoLangSelector.addEventListener("change", () => {
+        rehighlight();
+    }, false);
 
-proLangSelector.addEventListener("change", () => {
-    rehighlight();
-}, false);
+    proLangSelector.addEventListener("change", () => {
+        rehighlight();
+    }, false);
+}
 
 
 //main function that is called when something changes in input to readjust output
@@ -37,8 +39,11 @@ function rehighlight(): void {
 
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
+
+    if (codeOutputHTML) {
+        codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);
+    }
     
-    codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);;
 }
 
 function insertHintsEMP(input: string, proLang: string, spoLang?: string ): string {

@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const python_1 = __importDefault(require("./languages/python"));
+import PythonLang from './languages/python.js';
 let supportedLangs = new Map([
-    ["python", new python_1.default()]
+    ["python", new PythonLang()]
 ]);
 const codeOutputHTML = document.getElementById("codeOutput");
 const spoLangSelector = document.getElementById("spoLang");
@@ -17,17 +12,20 @@ document.addEventListener('paste', (e) => {
         rehighlight();
     }
 }, false);
-spoLangSelector.addEventListener("change", () => {
-    rehighlight();
-}, false);
-proLangSelector.addEventListener("change", () => {
-    rehighlight();
-}, false);
+if (spoLangSelector && proLangSelector) {
+    spoLangSelector.addEventListener("change", () => {
+        rehighlight();
+    }, false);
+    proLangSelector.addEventListener("change", () => {
+        rehighlight();
+    }, false);
+}
 function rehighlight() {
     let spoLang = spoLangSelector.value;
     let proLang = proLangSelector.value;
-    codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);
-    ;
+    if (codeOutputHTML) {
+        codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);
+    }
 }
 function insertHintsEMP(input, proLang, spoLang) {
     var _a;
@@ -81,4 +79,4 @@ function insertHintsEMP(input, proLang, spoLang) {
     input = languageObject.color(input);
     return input;
 }
-exports.default = insertHintsEMP;
+export default insertHintsEMP;

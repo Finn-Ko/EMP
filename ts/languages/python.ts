@@ -1,5 +1,5 @@
 import LanguageInterface from "../LanguageInterface";
-import Hint from "../Hint";
+import Hint from "../Hint.js";
 
 //class for the python language
 export default class PythonLang implements LanguageInterface {

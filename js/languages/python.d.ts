@@ -1,5 +1,5 @@
 import LanguageInterface from "../LanguageInterface";
-import Hint from "../Hint";
+import Hint from "../Hint.js";
 export default class PythonLang implements LanguageInterface {
     constructor();
     getKeywordsSorted(): string[];

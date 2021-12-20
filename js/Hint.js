@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Hint {
+export default class Hint {
     constructor(english, german) {
         this.english = english;
         this.german = german;
@@ -17,4 +15,3 @@ class Hint {
         }
     }
 }
-exports.default = Hint;
