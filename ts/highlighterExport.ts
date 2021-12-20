@@ -16,7 +16,12 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
         spoLang = "english";
     }
 
-    proLang = proLang.toLocaleLowerCase();
+    if (proLang) {
+        proLang = proLang.toLocaleLowerCase();
+    }
+    else {
+        return "No programming language given!";
+    }
     spoLang = spoLang.toLocaleLowerCase();
 
     let languageObject = supportedLangs.get(proLang);

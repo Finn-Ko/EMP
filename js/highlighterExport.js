@@ -7,7 +7,12 @@ function insertHintsEMP(input, proLang, spoLang) {
     if (!spoLang) {
         spoLang = "english";
     }
-    proLang = proLang.toLocaleLowerCase();
+    if (proLang) {
+        proLang = proLang.toLocaleLowerCase();
+    }
+    else {
+        return "No programming language given!";
+    }
     spoLang = spoLang.toLocaleLowerCase();
     let languageObject = supportedLangs.get(proLang);
     if (!languageObject) {
