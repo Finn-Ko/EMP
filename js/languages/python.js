@@ -2,7 +2,7 @@ import Hint from "../Hint.js";
 export default class PythonLang {
     constructor() {
         this.dictionary = new Map([
-            ["AssertionError", new Hint("".concat("An error occured when an \"assert\" <br>", "statement was run. <br>", "This usually happens with <br>", "failed automated tests. <br>", "Look for a line of code that <br>", "reads \"assert something\". <br>", "It was expected, that \"something\" <br>", "would turn out to be true. <br>", "Stet clita kasd gubergren, <br>", "no sea takimata sanctus est <br>", "Lorem ipsum dolor sit amet."), "".concat("Es gab einen Fehler dabei ein \"assert\" <br>", "aus zu führen. <br>", "Dies passiert normal bei <br>", "automatisierten Tests die nicht klappen.<br>", "Suche in der Fehlermeldung nach einer Zeile,<br>", "in der \"assert irgendetwas\" steht.<br>", "Es wurde hier erwartet, dass das \"irgendetwas\"<br>", "Stimmt, also zu True auswertet.<br><br>", "Beispiel: assert x == 6<br>", "Hier wird erwartet, dass x den Wert 6 hat.<br>", "Wenn dies nicht der Fall ist,<br>", "gibt es einen AssertionError"))],
+            ["AssertionError", new Hint("".concat("An error occured when an \"assert\" \n", "statement was run. \n", "This usually happens with \n", "failed automated tests. \n", "Look for a line of code that \n", "reads \"assert something\". \n", "It was expected, that \"something\" \n", "would turn out to be true. \n", "Stet clita kasd gubergren, \n", "no sea takimata sanctus est \n", "Lorem ipsum dolor sit amet."), "".concat("Es gab einen Fehler dabei ein \"assert\" <br>", "aus zu führen. <br>", "Dies passiert normal bei <br>", "automatisierten Tests die nicht klappen.<br>", "Suche in der Fehlermeldung nach einer Zeile,<br>", "in der \"assert irgendetwas\" steht.<br>", "Es wurde hier erwartet, dass das \"irgendetwas\"<br>", "Stimmt, also zu True auswertet.<br><br>", "Beispiel: assert x == 6<br>", "Hier wird erwartet, dass x den Wert 6 hat.<br>", "Wenn dies nicht der Fall ist,<br>", "gibt es einen AssertionError"))],
             ["AttributeError", new Hint("".concat("TODO"), "".concat("TODO"))],
             ["EOFError", new Hint("".concat("TODO"), "".concat("TODO"))],
             ["FloatingPointError", new Hint("".concat("TODO"), "".concat("TODO"))],
@@ -67,6 +67,9 @@ export default class PythonLang {
         if (input.substring(0, 9) === "testbook.") {
             input = this.cleanTestbookOutput(input);
         }
+        if (input.substring(0, "AssertionError: ".length) === "AssertionError: ") {
+            return this.highlightPyTestOutput(input);
+        }
         let lines = input.split("\n");
         for (let i = 0; i < lines.length; i++) {
             if (lines[i].substring(0, 9) === "----&gt; ") {
@@ -75,7 +78,7 @@ export default class PythonLang {
             else if (/\s{6}\d+/.test(lines[i].substring(0, 7))) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
             }
-            else if (/-+/.test(lines[i].substring(0, 10))) {
+            else if (/-{10}/.test(lines[i].substring(0, 10))) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
             }
             else if (lines[i].includes("<span class='tooltiptextEMP'>")) {
@@ -124,6 +127,27 @@ export default class PythonLang {
                 i--;
             }
         }
+        return input;
+    }
+    highlightPyTestOutput(input) {
+        let endOfInitialMessage = input.indexOf("\n\n");
+        input = input.substring(0, endOfInitialMessage)
+            + "</span>" + input.substring(endOfInitialMessage);
+        let lines = input.split("\n");
+        lines[0] = "<span class='importantEMP'>" + lines[0] + "</span><span class='normalEMP'>";
+        let i = 1;
+        let messagePresent = false;
+        while (lines[i]) {
+            if (lines[i].substring(0, 3) === " : ") {
+                messagePresent = true;
+                lines[i] = "<span class='importantEMP'>" + lines[i];
+            }
+            i++;
+        }
+        if (messagePresent) {
+            lines[i] = "</span>" + "";
+        }
+        input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
         return input;
     }
 }

@@ -6,6 +6,7 @@ export default class PythonLang implements LanguageInterface {
     getHint(keyword: string): Hint | undefined;
     color(input: string): string;
     private cleanTestbookOutput;
+    private highlightPyTestOutput;
     private keywords;
     private dictionary;
 }

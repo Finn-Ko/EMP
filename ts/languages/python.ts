@@ -29,24 +29,33 @@ export default class PythonLang implements LanguageInterface {
             input = this.cleanTestbookOutput(input);
         }
 
+        // failed tests require special attention
+        if (input.substring(0, "AssertionError: ".length) === "AssertionError: ") {
+            return this.highlightPyTestOutput(input);
+        }
+
         let lines = input.split("\n");
 
         for (let i = 0; i < lines.length; i++) {
             //the ----> marking the imortant line
             if (lines[i].substring(0, 9) === "----&gt; ") {
                 lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
+                // console.log(lines[i] + " EINS");
             }
             //tab and then one number for the line
             else if (/\s{6}\d+/.test(lines[i].substring(0, 7))) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+                // console.log(lines[i] + " ZWEI");
             }
             //the ------ line that seperates python errors
-            else if (/-+/.test(lines[i].substring(0, 10))) {
+            else if (/-{10}/.test(lines[i].substring(0, 10))) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+                // console.log(lines[i] + " DREI");
             }
             //if a keyword is present, this might need to be changed
             else if (lines[i].includes("<span class='tooltiptextEMP'>")) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+                // console.log(lines[i] + " VIER");
             }
             //for a different style which is marked like this
             else if (lines[i].substring(0, 7) === "  File ") {
@@ -66,6 +75,7 @@ export default class PythonLang implements LanguageInterface {
                     lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
                     i++;
                 }
+                // console.log(lines[i] + " FUENF");
             }
         }
 
@@ -118,6 +128,38 @@ export default class PythonLang implements LanguageInterface {
         return input;
     }
 
+    private highlightPyTestOutput(input: string): string {
+
+        let endOfInitialMessage = input.indexOf("\n\n");
+
+        input = input.substring(0, endOfInitialMessage) 
+        + "</span>" + input.substring(endOfInitialMessage);
+
+
+        let lines = input.split("\n");
+
+        lines[0] = "<span class='importantEMP'>" + lines[0] + "</span><span class='normalEMP'>";
+
+        let i = 1;
+        let messagePresent = false;
+        while (lines[i]) {
+            if (lines[i].substring(0, 3) === " : ") {
+                messagePresent = true;
+                lines[i] = "<span class='importantEMP'>" + lines[i];
+            }
+            
+            i++;
+        }
+        if (messagePresent) {
+            lines[i] = "</span>" + "";
+        } 
+
+        //Mark everything else unimportant
+        input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
+
+        return input;
+    }
+
     private keywords: string[];
     
     private dictionary = new Map<string, Hint>(
@@ -126,16 +168,16 @@ export default class PythonLang implements LanguageInterface {
             ["AssertionError", new Hint(
                 //english:
                 "".concat(
-                    "An error occured when an \"assert\" <br>",
-                    "statement was run. <br>",
-                    "This usually happens with <br>",
-                    "failed automated tests. <br>", 
-                    "Look for a line of code that <br>",
-                    "reads \"assert something\". <br>", 
-                    "It was expected, that \"something\" <br>",
-                    "would turn out to be true. <br>",
-                    "Stet clita kasd gubergren, <br>",
-                    "no sea takimata sanctus est <br>",
+                    "An error occured when an \"assert\" \n",
+                    "statement was run. \n",
+                    "This usually happens with \n",
+                    "failed automated tests. \n", 
+                    "Look for a line of code that \n",
+                    "reads \"assert something\". \n", 
+                    "It was expected, that \"something\" \n",
+                    "would turn out to be true. \n",
+                    "Stet clita kasd gubergren, \n",
+                    "no sea takimata sanctus est \n",
                     "Lorem ipsum dolor sit amet."
                 ),
                 //german

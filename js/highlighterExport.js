@@ -44,19 +44,19 @@ function insertHintsEMP(input, proLang, spoLang) {
             input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
             i += insert.length - 1;
         }
-        else {
-            for (let word of languageObject.getKeywordsSorted()) {
-                if (input.substring(i, i + word.length) === word) {
-                    let toInsert = "<div class='tooltipEMP'>" + word + "<span class='tooltiptextEMP'>"
-                        + ((_a = languageObject.getHint(word)) === null || _a === void 0 ? void 0 : _a.getHintInLanguage(spoLang)) + "</span></div>";
-                    input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
-                    i += toInsert.length;
-                    break;
-                }
+    }
+    input = languageObject.color(input);
+    for (let i = 0; i < input.length; i++) {
+        for (let word of languageObject.getKeywordsSorted()) {
+            if (input.substring(i, i + word.length) === word) {
+                let toInsert = "<div class='tooltipEMP'>" + word + "<span class='tooltiptextEMP'>"
+                    + ((_a = languageObject.getHint(word)) === null || _a === void 0 ? void 0 : _a.getHintInLanguage(spoLang)) + "</span></div>";
+                input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
+                i += toInsert.length;
+                break;
             }
         }
     }
-    input = languageObject.color(input);
     return input;
 }
 export default insertHintsEMP;
