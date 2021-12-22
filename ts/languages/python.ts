@@ -256,44 +256,88 @@ export default class PythonLang implements LanguageInterface {
             ["GeneratorExit", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "This exception should not be thrown.\n",
+                    "Do you perhaps catch it\n",
+                    "or throw it yourself somewhere?"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dieser Fehler sollte nicht geworfen werden.\n",
+                    "Catcht oder throwst du ihn selbst irgendwo?"
                 )
             )],
 
             ["ImportError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Something that you are trying to import\n",
+                    "doesn't load properly.\n",
+                    "Did you change something about the files of\n",
+                    "the module you are trying to import?"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Etwas, dass du importieren möchtest\n",
+                    "kann nicht richtig geladen werden.\n",
+                    "Hast du an den zugehörigen Dateien\n",
+                    "etwas verändert?"
                 )
             )],
 
             ["ModuleNotFoundError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "A module that your are trying to import\n",
+                    "can't be found.\n",
+                    "Did you make a typo, or have you\n",
+                    "possibly not installed it?",
+                    "Example: import some_module\n",
+                    "Will throw this error when\n",
+                    "some_module can't be found"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Ein Modul, dass du importieren möchtest,\n",
+                    "kann nicht gefunden werden.\n",
+                    "Hast du vielleicht einen Tippfehler gemacht,\n",
+                    "oder das Modul nicht installiert?\n",
+                    "Beispiel: import ein_modul\n",
+                    "Wird diesen Fehler ergeben,\n",
+                    "wenn ein_modul nicht gefunden wird.\n",
+                    "Module (En) = Modul / Bauelement (De)"
                 )
             )],
 
             ["IndexError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to access an index\n",
+                    "that can't be accessed.\n",
+                    "Remember that in programming\n",
+                    "we start counting from zero!\n",
+                    "So the last element of a list is at\n",
+                    "it's length - 1 and the first one at 0\n",
+                    "Example:\n",
+                    "   x = [\"A\", \"B\"]\n",
+                    "   print(x[2])\n",
+                    "Will throw this error, as the list x\n",
+                    "only has the indexes 0 and 1 for A and B."
+
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versuchst eine Stelle zu nutzen,\n",
+                    "die nicht existiert.\n",
+                    "Vergiss nicht, dass beim Programmieren\n",
+                    "bei Null angefangen wird zu zählen!\n",
+                    "Das letzte Element einer Liste ist also\n",
+                    "bei ihrer Länge - 1 und das erste bei 0.\n",
+                    "Beispiel:\n",
+                    "   x = [\"A\", \"B\"]\n",
+                    "   print(x[2])\n",
+                    "Wird diesen Fehler ergeben, weil die Liste x\n",
+                    "nur die Stellen 0 und 1 für A und B hat.\n",
+                    "Index (En) = Index / Verzeichnis (De)"
                 )
             )],
 
