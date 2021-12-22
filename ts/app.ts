@@ -22,6 +22,16 @@ proLangSelector.addEventListener("change", () => {
     rehighlight();
 }, false);
 
+codeOutputHTML.addEventListener('contextmenu', async (e) => {
+    e.preventDefault();
+    let text = await navigator.clipboard.readText();
+    if (text) {
+        stringToHighlight = text;
+        rehighlight();
+    }
+    return false;
+}, false);
+
 
 //main function that is called when something changes in input to readjust output
 function rehighlight(): void {
