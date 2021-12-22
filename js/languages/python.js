@@ -86,7 +86,7 @@ export default class PythonLang {
             }
             else if (lines[i].substring(0, 7) === "  File ") {
                 let quoteEnd = lines[i].lastIndexOf("&quot;,");
-                let lineNumberEnd = lines[i].indexOf(", in ");
+                let lineNumberEnd = lines[i].indexOf(", in");
                 lines[i] =
                     "<span class='normalEMP'>" +
                         "  File &quot;<span class='importantEMP'>" + lines[i].substring(13, quoteEnd) + "</span>" +

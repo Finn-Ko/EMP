@@ -37,7 +37,7 @@ export default class PythonLang implements LanguageInterface {
         let lines = input.split("\n");
 
         for (let i = 0; i < lines.length; i++) {
-            //the ----> marking the imortant line
+            //the ----> marking the important line
             if (lines[i].substring(0, 9) === "----&gt; ") {
                 lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
                 // console.log(lines[i] + " EINS");
@@ -60,7 +60,7 @@ export default class PythonLang implements LanguageInterface {
             //for a different style which is marked like this
             else if (lines[i].substring(0, 7) === "  File ") {
                 let quoteEnd = lines[i].lastIndexOf("&quot;,");
-                let lineNumberEnd = lines[i].indexOf(", in ");
+                let lineNumberEnd = lines[i].indexOf(", in");
                 lines[i] = 
                     "<span class='normalEMP'>" +
                     //the filename is marked, it comes after "  File &quot;"
