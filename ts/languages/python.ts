@@ -172,61 +172,84 @@ export default class PythonLang implements LanguageInterface {
                     "statement was run. \n",
                     "This usually happens with \n",
                     "failed automated tests. \n", 
-                    "Look for a line of code that \n",
-                    "reads \"assert something\". \n", 
-                    "It was expected, that \"something\" \n",
-                    "would turn out to be true. \n",
-                    "Stet clita kasd gubergren, \n",
-                    "no sea takimata sanctus est \n",
-                    "Lorem ipsum dolor sit amet."
+                    "Different types of asserts exist. \n",
+                    "Example: \"assert x == 6\". \n", 
+                    "It is expected, x has the value 6.",
+                    "However if x is not 6 this error\n",
+                    "is thrown."
                 ),
                 //german
                 "".concat(
-                    "Es gab einen Fehler dabei ein \"assert\" <br>",
-                    "aus zu führen. <br>",
-                    "Dies passiert normal bei <br>",
-                    "automatisierten Tests die nicht klappen.<br>",
-                    "Suche in der Fehlermeldung nach einer Zeile,<br>",
-                    "in der \"assert irgendetwas\" steht.<br>",
-                    "Es wurde hier erwartet, dass das \"irgendetwas\"<br>",
-                    "Stimmt, also zu True auswertet.<br><br>",
-                    "Beispiel: assert x == 6<br>",
-                    "Hier wird erwartet, dass x den Wert 6 hat.<br>",
-                    "Wenn dies nicht der Fall ist,<br>",
-                    "gibt es einen AssertionError"
+                    "Es gab einen Fehler dabei ein \"assert\" \n",
+                    "aus zu führen. \n",
+                    "Dies passiert normal bei \n",
+                    "automatisierten Tests die nicht klappen.\n",
+                    "Es gibt verschiedene Arten von asserts.\n",
+                    "Beispiel: \"assert x == 6\"\n",
+                    "Hier wird erwartet, dass x den Wert 6 hat.\n",
+                    "Wenn dies nicht der Fall ist,\n",
+                    "gibt es einen AssertionError.\n",
+                    "Assert (En) = Behaupten (De)"
                 )
             )],
 
             ["AttributeError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "An Error occured when trying to \n",
+                    "use an invalid attribute. \n",
+                    "An attribute is something that can \n",
+                    "be accessed like so: x.some_attribute\n",
+                    "Example: \n",
+                    "   x = 5\n",
+                    "   x.hello\n",
+                    "Will throw this error because the number x\n",
+                    "doesn't have a \"hello\" attribute."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Es wurde versucht ein unbekanntes\n",
+                    "Attribut zu nutzen. \n",
+                    "Ein Attribut ist etwas auf das so\n",
+                    "zugegriffen wird: x.ein_attribut\n",
+                    "Beispiel:\n",
+                    "   x = 5\n",
+                    "   x.hallo\n",
+                    "Wird diesen Fehler ergeben, da die Zahl x\n",
+                    "kein Attribut \"hallo\" hat.\n",
+                    "Attribute (En) = Attribut / Eigenschaft (De)"
                 )
             )],
 
             ["EOFError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "EOF is short for End Of File.\n",
+                    "This error usually occurs when an\n",
+                    "input function is interrupted somehow.\n",
+                    "Example: input(\"Enter your name: \")\n",
+                    "Will raise this error if the user\n",
+                    "interrupts the resulting prompt with Ctl + D\n"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dieser Fehler wird normalerweise geworfen,\n",
+                    "wenn ein input unterbrochen wird.\n",
+                    "Besipiel: input(\"Gib deinen Namen ein: \")\n",
+                    "Ergibt diesen Fehler, wenn die resultierende\n",
+                    "Aufforderung mit Strg + D unterbrochen wird.\n",
+                    "EOF = End Of File (En) = Ende der Datei (De)"
                 )
             )],
 
             ["FloatingPointError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "This exception is currently not in use, how did you end up here?"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dieser Fehler ist zur Zeit ungenutzt, wie bist du hier gelandet?"
                 )
             )],
 

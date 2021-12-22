@@ -11,7 +11,7 @@ export default class Hint {
             return this.german;
         }
         else {
-            return "Unknown spoken language";
+            return "Spoken language not supported.";
         }
     }
 }
