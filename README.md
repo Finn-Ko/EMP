@@ -30,4 +30,16 @@ To do this add the following script Tag:
 `<script type="module"> import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js'; </script>`  
 And link one of the stylesheets from /css/EMP_* like so  
 `<link rel="stylesheet" type="text/css" href="https://finn-ko.github.io/EMP/css/EMP_dark.css" />`  
-You can now use the insertHintsEMP(input, proLang, spoLang?) function on your website.
+You can now use the `insertHintsEMP(input, proLang, spoLang?)` function on your website inside of the script tag from above.  
+If you wish to use the function outside of the script Tag you can add it as a property to `window` like so:  
+`<script type="module"> import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js'; window.insertHintsEMP = insertHintsEMP;</script>`  
+And then use it elsewhere with the `window.insertHintsEMP(input, proLang, spoLang?)` function.  
+  
+Parameters:  
+input: the "clean" error Message you want highlighted. (Clean means no html formating included)  
+proLang: so far only "python" is supported.  
+spoLang: "german" | "english" - optional parameter, if not given defaults to english.
+  
+Returns a html string with hover-over hints and highlighting included.  
+It is best placed inside of `<pre></pre>` Tags, as linebreaks are still "\n" characters.  
+However these could be replaced with `yourOutput.replace("\n", "<br>")` if wanted.
