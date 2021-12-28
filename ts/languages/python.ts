@@ -52,11 +52,6 @@ export default class PythonLang implements LanguageInterface {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
                 // console.log(lines[i] + " DREI");
             }
-            //if a keyword is present, this might need to be changed
-            else if (lines[i].includes("<span class='tooltiptextEMP'>")) {
-                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
-                // console.log(lines[i] + " VIER");
-            }
             //for a different style which is marked like this
             else if (lines[i].substring(0, 7) === "  File ") {
                 let quoteEnd = lines[i].lastIndexOf("&quot;,");
@@ -337,29 +332,52 @@ export default class PythonLang implements LanguageInterface {
                     "   print(x[2])\n",
                     "Wird diesen Fehler ergeben, weil die Liste x\n",
                     "nur die Stellen 0 und 1 für A und B hat.\n",
-                    "Index (En) = Index / Verzeichnis (De)"
+                    "index (En) = Index / Verzeichnis (De)"
                 )
             )],
 
             ["KeyError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to access a key in a dictionary,\n",
+                    "that doesn't contain the key.\n",
+                    "Did you possibly make a typo?\n",
+                    "Example:\n",
+                    "   x = {\"my_key\": \"Hello\"}\n",
+                    "   x[\"wrong_key\"]\n",
+                    "Will throw this error, as the dictionary x\n",
+                    "doesn't contain the wrong_key.\n",
+                    "It only contains my_key."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versuchts einen Wert in einem Dictionary\n",
+                    "zu nutzen, der darin nicht existiert.\n",
+                    "Beispiel:\n",
+                    "   x = {\"mein_key\": \"Hello\"}\n",
+                    "   x[\"falscher_key\"]\n",
+                    "Wird diesen Fehler produzieren, da das Dictionary\n",
+                    "nicht falscher_key enthält.\n",
+                    "Es enthält nur mein_key.\n",
+                    "key (En) = Schlüssel (De)\n",
+                    "dictionary (En) = Wörterbuch (De)"
                 )
             )],
 
             ["KeyboardInterrupt", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "The execution was interrupted by keyboard input.\n",
+                    "Did you accidentally press Ctrl + C or delete?"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Die Ausführung wurde durch eine\n",
+                    "Tastatur eingabe Unterbrochen.\n",
+                    "Hast du ausversehen Str + C\n",
+                    "oder Entfernen gedrückt?\n",
+                    "keyboard (En) = Tastatur (De)\n",
+                    "interrupt (En) = Unterbrechung (De)"
                 )
             )],
 
@@ -377,44 +395,78 @@ export default class PythonLang implements LanguageInterface {
             ["NameError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "This error is thrown, when you\n",
+                    "try to use something, that is not\n",
+                    "yet defined.\n",
+                    "Did you make a typo, or have you\n",
+                    "declared a variable after using it?\n",
+                    "Example: print(a)\n",
+                    "will throw this error, if a is not defined."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dieser Fehler ergibt sich, wenn\n",
+                    "man versucht etwas zu nutzen,\n",
+                    "das noch nicht definiert ist.\n",
+                    "Hast du einen Schreibfehler gemacht,\n",
+                    "oder nutzt du evtl. eine Variable bevor\n",
+                    "sie definiert wurde?\n",
+                    "Beispiel: print(a)\n",
+                    "Wird diesen Fehler ergeben,\n",
+                    "wenn a nicht definiert ist."
                 )
             )],
 
             ["NotImplementedError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to use a function,\n",
+                    "that is not yet implemented,\n",
+                    "but that is supposed to be."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versucht eine Funktion zu nutzen,\n",
+                    "die noch nicht implementiert ist\n",
+                    "es aber sein sollte."
                 )
             )],
 
             ["OSError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Something conncted to the operating system\n",
+                    "went wrong. You need to figure this out\n",
+                    "on your own with the error message, sorry!"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Etwas im Zusammehang mit dem Betriebssystem\n",
+                    "ist schiefgelaufen. Du musst selber mit dieser\n",
+                    "Fehlermeldung herausfinden was, sorry!"
                 )
             )],
 
             ["OverflowError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Something is overflowing,\n",
+                    "this means it's becomnng too large.",
+                    "Example:\n",
+                    "   import math\n",
+                    "   print(math.exp(1000))\n",
+                    "Causes this error,\n",
+                    "as the value of math.exp(1000) is too large."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Etwas wird zu groß.\n",
+                    "Beispiel:\n",
+                    "   import math\n",
+                    "   print(math.exp(1000))\n",
+                    "Ergibt diesen Fehler,\n",
+                    "da der Wert von math.exp(1000) zu groß ist.\n",
+                    "overflow (En) = Überlauf (De)"
                 )
             )],
 
@@ -783,14 +835,31 @@ export default class PythonLang implements LanguageInterface {
 
             //add keywords too? TODO
 
-            ["Traceback", new Hint(
+            ["Traceback (most recent call last)", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "A traceback is a report containing\n",
+                    "the function calls made in your code\n",
+                    "that were involved in producing this error.\n",
+                    "In other languages this is called a stack trace,\n",
+                    "or backtrace.\n",
+                    "\"most recent call last\" means,\n",
+                    "that the very bottom part of the traceback\n",
+                    "was the one that occured closest to\n",
+                    "this error."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Ein traceback ist ein Bericht,\n",
+                    "der Funktionsaufrufe in deinem Code enthält,\n",
+                    "die zu diesem Fehler geführt haben.\n",
+                    "In anderen Sprachen nennt man dies auch\n",
+                    "einen stack trace, oder backtrace.\n",
+                    "\"most recent call last\" heißt,\n",
+                    "dass der unterste Teil des traceback\n",
+                    "am nächsten zu diesem Fehler aufgerufen wurde.\n",
+                    "traceback (En) = zurück Verfolgung (De)\n",
+                    "most recent call last (En) = jüngste Aufforderung zuletzt (De)"
                 )
             )]
         ]);
