@@ -451,7 +451,7 @@ export default class PythonLang implements LanguageInterface {
                 //english:
                 "".concat(
                     "Something is overflowing,\n",
-                    "this means it's becomnng too large.\n",
+                    "this means it's becoming too large.\n",
                     "Example:\n",
                     "   import math\n",
                     "   print(math.exp(1000))\n",
@@ -644,11 +644,35 @@ export default class PythonLang implements LanguageInterface {
             ["UnboundLocalError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying assign a value to\n",
+                    "a varialbe outside of its scope.\n",
+                    "To use variables from outside of functions\n",
+                    "inside of them you need to use \"global my_variable\"\n",
+                    "inside of the function.\n",
+                    "Example:\n",
+                    "   x = 10\n",
+                    "   def function():\n",
+                    "       # global x <- this would fix it",
+                    "       x += 1\n",
+                    "   function()\n",
+                    "will result in this error, as the variable x\n",
+                    "is not defined inside of the function."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versuchst eine Variable außerhalb des Bereichs\n",
+                    "in dem sie definiert ist zu nutzen.\n",
+                    "Um eine Variable von außerhalb einer Funktion\n",
+                    "in ihr zu verwenden, musst du\n",
+                    "\"global meine_variable\" nutzen.\n",
+                    "Beispiel:\n",
+                    "   x = 10\n",
+                    "   def funktion():\n",
+                    "       # global x <- das würde es beheben.",
+                    "       x += 1\n",
+                    "   function()\n",
+                    "wird diesen Fehler ergeben, da die Variable x\n",
+                    "nicht in der Funktion definiert wurde."
                 )
             )],
 
