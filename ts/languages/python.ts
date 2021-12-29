@@ -168,8 +168,8 @@ export default class PythonLang implements LanguageInterface {
                     "This usually happens with \n",
                     "failed automated tests. \n", 
                     "Different types of asserts exist. \n",
-                    "Example: \"assert x == 6\". \n", 
-                    "It is expected, x has the value 6.",
+                    "Example: assert x == 6. \n", 
+                    "It is expected, that x has the value 6.\n",
                     "However if x is not 6 this error\n",
                     "is thrown."
                 ),
@@ -180,7 +180,7 @@ export default class PythonLang implements LanguageInterface {
                     "Dies passiert normal bei \n",
                     "automatisierten Tests die nicht klappen.\n",
                     "Es gibt verschiedene Arten von asserts.\n",
-                    "Beispiel: \"assert x == 6\"\n",
+                    "Beispiel: assert x == 6\n",
                     "Hier wird erwartet, dass x den Wert 6 hat.\n",
                     "Wenn dies nicht der Fall ist,\n",
                     "gibt es einen AssertionError.\n",
@@ -451,7 +451,7 @@ export default class PythonLang implements LanguageInterface {
                 //english:
                 "".concat(
                     "Something is overflowing,\n",
-                    "this means it's becomnng too large.",
+                    "this means it's becomnng too large.\n",
                     "Example:\n",
                     "   import math\n",
                     "   print(math.exp(1000))\n",
@@ -473,11 +473,32 @@ export default class PythonLang implements LanguageInterface {
             ["RecursionError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "This error occurs, when a function calls itself\n",
+                    "too many times in a row.\n",
+                    "The usual maximum amount is 1000 times.\n",
+                    "Is it possible that your function never stops\n",
+                    "calling itself?",
+                    "Example:\n",
+                    "   def function():\n",
+                    "       return function():\n",
+                    "   funciton()\n",
+                    "will throw this exception, as it will\n",
+                    "infinitely call itself."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dieser Fehler ensteht, wenn sich eine Funktion\n",
+                    "selbst zu oft hintereinander aufruft\n",
+                    "Das normale Maximum ist 1000 mal.\n",
+                    "Ist es möglich, dass deine Funktion nie\n",
+                    "aufhört sich selbst aufzurufen?\n",
+                    "Beispiel:\n",
+                    "   def funktion():\n",
+                    "       return funktion():\n",
+                    "   funktion()\n",
+                    "wird diesen Fehler ergeben, da sich\n",
+                    "die Funktion unendlich oft selbst aufruft.\n",
+                    "recurisive (En) = rekursiv / selbstaufrufend (De)"
                 )
             )],
 
@@ -495,22 +516,27 @@ export default class PythonLang implements LanguageInterface {
             ["RuntimeError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Something went wrong when your code was run,\n",
+                    "and no other exception fits it.\n",
+                    "Read what it says after this in your traceback."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Etwas ist schiefgelaufen, während dein Programm\n",
+                    "ausfegührt wurde und kein anderer Fehler passt.\n",
+                    "Lies dir durch was hier nach in deinem traceback steht.\n",
+                    "runtime (En) = Laufzeit (De)"
                 )
             )],
 
             ["StopIteration", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "TODO https://www.w3schools.com/python/gloss_python_iterator_stop.asp"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "TODO https://www.w3schools.com/python/gloss_python_iterator_stop.asp"
                 )
             )],
 
@@ -528,66 +554,90 @@ export default class PythonLang implements LanguageInterface {
             ["SyntaxError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You wrote invalid python code somewhere.\n",
+                    "Example: a = 1 +% 2\n",
+                    "will throw this exception,\n",
+                    "as +% is not valid python."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du hast falschen Python code geschrieben.\n",
+                    "Beispiel: a = 1 +% 2\n",
+                    "wird diesen Fehler ergeben,\n",
+                    "da +% kein richtiges Python ist."
                 )
             )],
 
             ["IndentationError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You indentation is wrong somewhere.\n"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Deine Einrückung ist falsch.\n",
+                    "indentation (En) = Einrückung (De)"
                 )
             )],
 
             ["TabError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Looks like you mixed tab and space Characters\n",
+                    "in you indentations."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du hast Tab und Leerzeichen bei der\n",
+                    "Einrückung vermischt."
                 )
             )],
 
             ["SystemError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Something internally went wrong with the python interpreter.\n",
+                    "How did you do this?!"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Ein python interner Fehler ist aufgetreten.\n",
+                    "Wie hast du das geschafft?"
                 )
             )],
 
             ["SystemExit", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "This exception should not be thrown or caught.\n",
+                    "Are you doing this?"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dieser Fehler sollte nicht geworden oder gefangen werden.\n",
+                    "Machst du das?"
                 )
             )],
 
             ["TypeError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to use wrong types somewhere.\n",
+                    "Types are automatically detected by python.\n",
+                    "Example: a = \"number: \" + 10\n",
+                    "will throw this error, as the type of\n",
+                    "\"number: \" (str) can't be added to\n",
+                    "the type fo 10 (int)."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versucht falsche Typen zu verwenden.\n",
+                    "Typen werden automatisch von Python erkannt.\n",
+                    "Beispiel: a = \"numer: \" + 10\n",
+                    "wird diesen Fehler produzieren, da der Typ von\n",
+                    "\"nummer: \" (str) nicht mit dem Typ von\n",
+                    "10 (int) addiert werden kann.\n",
+                    "type (En) = Typ / Art (De)"
                 )
             )],
 
