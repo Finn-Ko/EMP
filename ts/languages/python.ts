@@ -435,7 +435,7 @@ export default class PythonLang implements LanguageInterface {
             ["OSError", new Hint(
                 //english:
                 "".concat(
-                    "Something conncted to the operating system\n",
+                    "Something connected to the operating system\n",
                     "went wrong. You need to figure this out\n",
                     "on your own with the error message, sorry!"
                 ),
@@ -723,22 +723,53 @@ export default class PythonLang implements LanguageInterface {
             ["ValueError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You called a function with a paramter that\n",
+                    "is the right type, but still doesn't work.\n",
+                    "Example:\n",
+                    "   list = []\n",
+                    "   list.remove(\"x\")\n",
+                    "will cause this error, as the list does not\n",
+                    "contain the value \"x\"."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du hast eine Funktion mit einem Parameter\n",
+                    "aufgerufen der zwar den richtigen Typ hat,\n",
+                    "aber trotzdem nicht funktioniert.\n",
+                    "Beispiel:\n",
+                    "   liste = []\n",
+                    "   liste.remove(\"x\")\n",
+                    "wird diesen Fehler ergeben, da die Liste\n",
+                    "nicht den Wert \"x\" enthält.\n",
+                    "value (En) = Wert (De)"
                 )
             )],
 
             ["ZeroDivisionError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "Your code is trying to divide by zero.\n",
+                    "This is not mathematically possible.\n",
+                    "Make sure to handle the case in which\n",
+                    "the denominator is zero.\n",
+                    "Example:\n",
+                    "   x = 0\n",
+                    "   print(100 / x)\n",
+                    "Will cause this error, as python can't\n",
+                    "calculate 100 divided by 0."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Dein Programm versucht durch null zu teilen.\n",
+                    "Das ist mathematisch nicht möglich.\n",
+                    "Kümmere dich darum, dass dieser sonderfall\n",
+                    "nicht auftreten kann.\n",
+                    "Beispiel:\n",
+                    "   x = 0\n",
+                    "   print(100 / x)\n",
+                    "Ergibt diesen Fehler, da python\n",
+                    "nicht 100 geteilt durch 0 berechnen kann.\n",
+                    "zero division (En) = Teilund durch null (De)"
                 )
             )],
 
@@ -822,22 +853,29 @@ export default class PythonLang implements LanguageInterface {
             ["FileExistsError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to create a file that already exists.\n",
+                    "Don't do this."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versucht eine Datei zu erstellen die schon existiert.\n",
+                    "Mach das nicht.",
+                    "file (En) = Datei (De)"
                 )
             )],
 
             ["FileNotFoundError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to access a file or directory that\n",
+                    "does not exist. Did you make a typo?"
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versucht eine Datei oder einen Ordner zu nutzen,\n",
+                    "die oder der nicht existiert.\n",
+                    "Hast du einen Tippfehler gemacht.",
+                    "file (En) = Datei (De)"
                 )
             )],
 
@@ -855,33 +893,56 @@ export default class PythonLang implements LanguageInterface {
             ["IsADirectoryError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to do something with a directory\n",
+                    "that only works with files.\n",
+                    "Example: you can't delete a directory with the\n",
+                    "os.remove() function."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versuchst etwas mit einem Ordner zu tun,\n",
+                    "dass nur mit Dateien funktioniert.\n",
+                    "Beispiel: du kannst einen Ordner nicht mit\n",
+                    "der os.remove() Funktion löschen.",
+                    "directory (En) = Ordner (De)"
                 )
             )],
 
             ["NotADirectoryError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to do something on a non-directory\n",
+                    "that only works with directories.\n",
+                    "Example: you can't use os.listdir() on\n",
+                    "a file."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versuchst etwas mit einem nicht-Ordner zu tun,\n",
+                    "dass nur mit Ordnern funktioniert.\n",
+                    "Beispiel: du kannst os.lisdirt() nicht\n",
+                    "auf einer Datei nutzen.\n",
+                    "directory (En) = Ordner (De)"
                 )
             )],
 
             ["PermissionError", new Hint(
                 //english:
                 "".concat(
-                    "TODO"
+                    "You are trying to run some operation on\n",
+                    "your operating system that python doesn't\n",
+                    "have the permission for.\n",
+                    "Example: writing a file that requires\n",
+                    "admin privileges."
                 ),
                 //german
                 "".concat(
-                    "TODO"
+                    "Du versucht eine Operation auf deinem\n",
+                    "Betriebssystem auszuführen, für die\n",
+                    "Python nicht die Berechtigungen hat.\n",
+                    "Beispiel: eine Datei schreiben, die Admin-\n",
+                    "Rechte benötigt.\n",
+                    "permission (En) = Berechtigung (De)"
                 )
             )],
 
