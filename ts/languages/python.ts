@@ -316,7 +316,7 @@ export default class PythonLang implements LanguageInterface {
                     "   x = [\"A\", \"B\"]\n",
                     "   print(x[2])\n",
                     "Will throw this error, as the list x\n",
-                    "only has the indexes 0 and 1 for A and B."
+                    "only has the indices 0 and 1 for A and B."
 
                 ),
                 //german
