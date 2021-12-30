@@ -351,7 +351,7 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versuchts einen Wert in einem Dictionary\n",
+                    "Du versuchst einen Wert in einem Dictionary\n",
                     "zu nutzen, der darin nicht existiert.\n",
                     "Beispiel:\n",
                     "   x = {\"mein_key\": \"Hello\"}\n",
