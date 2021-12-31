@@ -74,6 +74,14 @@ export default class PythonLang implements LanguageInterface {
             }
         }
 
+        //if there is an explaination in the last line it's important
+        let explainIndex = lines[lines.length - 1].indexOf("Error: ");
+        if (explainIndex !== -1) {
+            lines[lines.length - 1] = lines[lines.length - 1].substring(0, explainIndex + 7)
+                + "<span class='importantEMP'>" + lines[lines.length - 1].substring(explainIndex + 7)
+                + "</span>"
+        }
+
         //Mark everything else unimportant
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
 
