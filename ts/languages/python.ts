@@ -40,17 +40,17 @@ export default class PythonLang implements LanguageInterface {
             //the ----> marking the important line
             if (lines[i].substring(0, 9) === "----&gt; ") {
                 lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
-                // console.log(lines[i] + " EINS");
+                // console.log(lines[i] + " ONE");
             }
             //tab and then one number for the line
             else if (/\s{6}\d+/.test(lines[i].substring(0, 7))) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
-                // console.log(lines[i] + " ZWEI");
+                // console.log(lines[i] + " TWO");
             }
             //the ------ line that seperates python errors
             else if (/-{10}/.test(lines[i].substring(0, 10))) {
                 lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
-                // console.log(lines[i] + " DREI");
+                // console.log(lines[i] + " THREE");
             }
             //for a different style which is marked like this
             else if (lines[i].substring(0, 7) === "  File ") {
@@ -70,7 +70,7 @@ export default class PythonLang implements LanguageInterface {
                     lines[i + 1] = "<span class='importantEMP'>" + lines[i + 1] + "</span>";
                     i++;
                 }
-                // console.log(lines[i] + " FUENF");
+                // console.log(lines[i] + " FOUR");
             }
         }
 
@@ -163,14 +163,14 @@ export default class PythonLang implements LanguageInterface {
             ["AssertionError", new Hint(
                 //english:
                 "".concat(
-                    "An error occured when an \"assert\" \n",
+                    "An error occurred when an \"assert\" \n",
                     "statement was run. \n",
                     "This usually happens with \n",
                     "failed automated tests. \n", 
                     "Different types of asserts exist. \n",
                     "Example: assert x == 6. \n", 
                     "It is expected, that x has the value 6.\n",
-                    "However if x is not 6 this error\n",
+                    "However, if x is not 6 this error\n",
                     "is thrown."
                 ),
                 //german
@@ -178,7 +178,7 @@ export default class PythonLang implements LanguageInterface {
                     "Es gab einen Fehler dabei ein \"assert\" \n",
                     "aus zu führen. \n",
                     "Dies passiert normal bei \n",
-                    "automatisierten Tests die nicht klappen.\n",
+                    "automatisierten Tests, die nicht klappen.\n",
                     "Es gibt verschiedene Arten von asserts.\n",
                     "Beispiel: assert x == 6\n",
                     "Hier wird erwartet, dass x den Wert 6 hat.\n",
@@ -191,7 +191,7 @@ export default class PythonLang implements LanguageInterface {
             ["AttributeError", new Hint(
                 //english:
                 "".concat(
-                    "An Error occured when trying to \n",
+                    "An Error occurred when trying to \n",
                     "use an invalid attribute. \n",
                     "An attribute is something that can \n",
                     "be accessed like so: x.some_attribute\n",
@@ -203,9 +203,9 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Es wurde versucht ein unbekanntes\n",
+                    "Es wurde versucht, ein unbekanntes\n",
                     "Attribut zu nutzen. \n",
-                    "Ein Attribut ist etwas auf das so\n",
+                    "Ein Attribut ist etwas, auf das so\n",
                     "zugegriffen wird: x.ein_attribut\n",
                     "Beispiel:\n",
                     "   x = 5\n",
@@ -230,7 +230,7 @@ export default class PythonLang implements LanguageInterface {
                 "".concat(
                     "Dieser Fehler wird normalerweise geworfen,\n",
                     "wenn ein input unterbrochen wird.\n",
-                    "Besipiel: input(\"Gib deinen Namen ein: \")\n",
+                    "Beispiel: input(\"Gib deinen Namen ein: \")\n",
                     "Ergibt diesen Fehler, wenn die resultierende\n",
                     "Aufforderung mit Strg + D unterbrochen wird.\n",
                     "EOF = End Of File (En) = Ende der Datei (De)"
@@ -253,12 +253,12 @@ export default class PythonLang implements LanguageInterface {
                 "".concat(
                     "This exception should not be thrown.\n",
                     "Do you perhaps catch it\n",
-                    "or throw it yourself somewhere?"
+                    "or raise it yourself somewhere?"
                 ),
                 //german
                 "".concat(
                     "Dieser Fehler sollte nicht geworfen werden.\n",
-                    "Catcht oder throwst du ihn selbst irgendwo?"
+                    "Fängst oder raist du ihn selbst irgendwo?"
                 )
             )],
 
@@ -272,7 +272,7 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Etwas, dass du importieren möchtest\n",
+                    "Etwas, dass du importieren möchtest,\n",
                     "kann nicht richtig geladen werden.\n",
                     "Hast du an den zugehörigen Dateien\n",
                     "etwas verändert?"
@@ -282,10 +282,10 @@ export default class PythonLang implements LanguageInterface {
             ["ModuleNotFoundError", new Hint(
                 //english:
                 "".concat(
-                    "A module that your are trying to import\n",
+                    "A module that you are trying to import\n",
                     "can't be found.\n",
                     "Did you make a typo, or have you\n",
-                    "possibly not installed it?",
+                    "possibly not installed it?\n",
                     "Example: import some_module\n",
                     "Will throw this error when\n",
                     "some_module can't be found"
@@ -310,7 +310,7 @@ export default class PythonLang implements LanguageInterface {
                     "that can't be accessed.\n",
                     "Remember that in programming\n",
                     "we start counting from zero!\n",
-                    "So the last element of a list is at\n",
+                    "The last element of a list is at\n",
                     "it's length - 1 and the first one at 0\n",
                     "Example:\n",
                     "   x = [\"A\", \"B\"]\n",
@@ -324,7 +324,7 @@ export default class PythonLang implements LanguageInterface {
                     "Du versuchst eine Stelle zu nutzen,\n",
                     "die nicht existiert.\n",
                     "Vergiss nicht, dass beim Programmieren\n",
-                    "bei Null angefangen wird zu zählen!\n",
+                    "bei null angefangen wird zu zählen!\n",
                     "Das letzte Element einer Liste ist also\n",
                     "bei ihrer Länge - 1 und das erste bei 0.\n",
                     "Beispiel:\n",
@@ -373,8 +373,8 @@ export default class PythonLang implements LanguageInterface {
                 //german
                 "".concat(
                     "Die Ausführung wurde durch eine\n",
-                    "Tastatur eingabe Unterbrochen.\n",
-                    "Hast du ausversehen Str + C\n",
+                    "Tastatur Eingabe unterbrochen.\n",
+                    "Hast du aus Versehen Strg + C\n",
                     "oder Entfernen gedrückt?\n",
                     "keyboard (En) = Tastatur (De)\n",
                     "interrupt (En) = Unterbrechung (De)"
@@ -406,10 +406,10 @@ export default class PythonLang implements LanguageInterface {
                 //german
                 "".concat(
                     "Dieser Fehler ergibt sich, wenn\n",
-                    "man versucht etwas zu nutzen,\n",
+                    "man versucht, etwas zu nutzen,\n",
                     "das noch nicht definiert ist.\n",
                     "Hast du einen Schreibfehler gemacht,\n",
-                    "oder nutzt du evtl. eine Variable bevor\n",
+                    "oder nutzt du evtl. eine Variable, bevor\n",
                     "sie definiert wurde?\n",
                     "Beispiel: print(a)\n",
                     "Wird diesen Fehler ergeben,\n",
@@ -426,8 +426,8 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versucht eine Funktion zu nutzen,\n",
-                    "die noch nicht implementiert ist\n",
+                    "Du versuchst eine Funktion zu nutzen,\n",
+                    "die noch nicht implementiert ist,\n",
                     "es aber sein sollte."
                 )
             )],
@@ -441,9 +441,9 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Etwas im Zusammehang mit dem Betriebssystem\n",
+                    "Etwas im Zusammenhang mit dem Betriebssystem\n",
                     "ist schiefgelaufen. Du musst selber mit dieser\n",
-                    "Fehlermeldung herausfinden was, sorry!"
+                    "Fehlermeldung herausfinden, was. Sorry!"
                 )
             )],
 
@@ -473,7 +473,7 @@ export default class PythonLang implements LanguageInterface {
             ["RecursionError", new Hint(
                 //english:
                 "".concat(
-                    "This error occurs, when a function calls itself\n",
+                    "This error occurs when a function calls itself\n",
                     "too many times in a row.\n",
                     "The usual maximum amount is 1000 times.\n",
                     "Is it possible that your function never stops\n",
@@ -487,11 +487,11 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Dieser Fehler ensteht, wenn sich eine Funktion\n",
-                    "selbst zu oft hintereinander aufruft\n",
-                    "Das normale Maximum ist 1000 mal.\n",
+                    "Dieser Fehler entsteht, wenn sich eine Funktion\n",
+                    "selbst zu oft hintereinander aufruft.\n",
+                    "Das normale Maximum ist 1000 Mal.\n",
                     "Ist es möglich, dass deine Funktion nie\n",
-                    "aufhört sich selbst aufzurufen?\n",
+                    "aufhört, sich selbst aufzurufen?\n",
                     "Beispiel:\n",
                     "   def funktion():\n",
                     "       return funktion():\n",
@@ -516,7 +516,7 @@ export default class PythonLang implements LanguageInterface {
             ["RuntimeError", new Hint(
                 //english:
                 "".concat(
-                    "Something went wrong when your code was run,\n",
+                    "Something went wrong when running your code,\n",
                     "and no other exception fits it.\n",
                     "Read what it says after this in your traceback."
                 ),
@@ -532,11 +532,11 @@ export default class PythonLang implements LanguageInterface {
             ["StopIteration", new Hint(
                 //english:
                 "".concat(
-                    "TODO https://www.w3schools.com/python/gloss_python_iterator_stop.asp"
+                    "TODO"
                 ),
                 //german
                 "".concat(
-                    "TODO https://www.w3schools.com/python/gloss_python_iterator_stop.asp"
+                    "TODO"
                 )
             )],
 
@@ -571,7 +571,7 @@ export default class PythonLang implements LanguageInterface {
             ["IndentationError", new Hint(
                 //english:
                 "".concat(
-                    "You indentation is wrong somewhere.\n"
+                    "Your indentation is wrong somewhere.\n"
                 ),
                 //german
                 "".concat(
@@ -601,8 +601,8 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Ein python interner Fehler ist aufgetreten.\n",
-                    "Wie hast du das geschafft?"
+                    "Ein Python interner Fehler ist aufgetreten.\n",
+                    "Wie hast du das geschafft?!"
                 )
             )],
 
@@ -614,7 +614,7 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Dieser Fehler sollte nicht geworden oder gefangen werden.\n",
+                    "Dieser Fehler sollte nicht geworfen oder gefangen werden.\n",
                     "Machst du das?"
                 )
             )],
@@ -631,7 +631,7 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versucht falsche Typen zu verwenden.\n",
+                    "Du versuchst falsche Typen zu verwenden.\n",
                     "Typen werden automatisch von Python erkannt.\n",
                     "Beispiel: a = \"numer: \" + 10\n",
                     "wird diesen Fehler produzieren, da der Typ von\n",
@@ -644,15 +644,15 @@ export default class PythonLang implements LanguageInterface {
             ["UnboundLocalError", new Hint(
                 //english:
                 "".concat(
-                    "You are trying assign a value to\n",
-                    "a varialbe outside of its scope.\n",
+                    "You are trying to assign a value to\n",
+                    "a variable outside of its scope.\n",
                     "To use variables from outside of functions\n",
-                    "inside of them you need to use \"global my_variable\"\n",
+                    "inside of them, you need to use \"global my_variable\"\n",
                     "inside of the function.\n",
                     "Example:\n",
                     "   x = 10\n",
                     "   def function():\n",
-                    "       # global x <- this would fix it",
+                    "       # global x <- this would fix it\n",
                     "       x += 1\n",
                     "   function()\n",
                     "will result in this error, as the variable x\n",
@@ -660,17 +660,17 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versuchst eine Variable außerhalb des Bereichs\n",
-                    "in dem sie definiert ist zu nutzen.\n",
+                    "Du versuchst eine Variable außerhalb des Bereichs,\n",
+                    "in dem sie definiert ist, zu nutzen.\n",
                     "Um eine Variable von außerhalb einer Funktion\n",
                     "in ihr zu verwenden, musst du\n",
                     "\"global meine_variable\" nutzen.\n",
                     "Beispiel:\n",
                     "   x = 10\n",
                     "   def funktion():\n",
-                    "       # global x <- das würde es beheben.",
+                    "       # global x <- das würde es beheben.\n",
                     "       x += 1\n",
-                    "   function()\n",
+                    "   funktion()\n",
                     "wird diesen Fehler ergeben, da die Variable x\n",
                     "nicht in der Funktion definiert wurde."
                 )
@@ -723,7 +723,7 @@ export default class PythonLang implements LanguageInterface {
             ["ValueError", new Hint(
                 //english:
                 "".concat(
-                    "You called a function with a paramter that\n",
+                    "You called a function with a parameter that\n",
                     "is the right type, but still doesn't work.\n",
                     "Example:\n",
                     "   list = []\n",
@@ -734,7 +734,7 @@ export default class PythonLang implements LanguageInterface {
                 //german
                 "".concat(
                     "Du hast eine Funktion mit einem Parameter\n",
-                    "aufgerufen der zwar den richtigen Typ hat,\n",
+                    "aufgerufen, der zwar den richtigen Typ hat,\n",
                     "aber trotzdem nicht funktioniert.\n",
                     "Beispiel:\n",
                     "   liste = []\n",
@@ -762,14 +762,14 @@ export default class PythonLang implements LanguageInterface {
                 "".concat(
                     "Dein Programm versucht durch null zu teilen.\n",
                     "Das ist mathematisch nicht möglich.\n",
-                    "Kümmere dich darum, dass dieser sonderfall\n",
+                    "Kümmere dich darum, dass dieser Sonderfall\n",
                     "nicht auftreten kann.\n",
                     "Beispiel:\n",
                     "   x = 0\n",
                     "   print(100 / x)\n",
-                    "Ergibt diesen Fehler, da python\n",
+                    "Ergibt diesen Fehler, da Python\n",
                     "nicht 100 geteilt durch 0 berechnen kann.\n",
-                    "zero division (En) = Teilund durch null (De)"
+                    "zero division (En) = Teilung durch null (De)"
                 )
             )],
 
@@ -858,7 +858,7 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versucht eine Datei zu erstellen die schon existiert.\n",
+                    "Du versuchst eine Datei zu erstellen, die schon existiert.\n",
                     "Mach das nicht.",
                     "file (En) = Datei (De)"
                 )
@@ -872,9 +872,9 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versucht eine Datei oder einen Ordner zu nutzen,\n",
+                    "Du versuchst eine Datei oder einen Ordner zu nutzen,\n",
                     "die oder der nicht existiert.\n",
-                    "Hast du einen Tippfehler gemacht.",
+                    "Hast du einen Tippfehler gemacht.\n",
                     "file (En) = Datei (De)"
                 )
             )],
@@ -895,15 +895,15 @@ export default class PythonLang implements LanguageInterface {
                 "".concat(
                     "You are trying to do something with a directory\n",
                     "that only works with files.\n",
-                    "Example: you can't delete a directory with the\n",
+                    "Example: You can't delete a directory with the\n",
                     "os.remove() function."
                 ),
                 //german
                 "".concat(
                     "Du versuchst etwas mit einem Ordner zu tun,\n",
                     "dass nur mit Dateien funktioniert.\n",
-                    "Beispiel: du kannst einen Ordner nicht mit\n",
-                    "der os.remove() Funktion löschen.",
+                    "Beispiel: Du kannst einen Ordner nicht mit\n",
+                    "der os.remove() Funktion löschen.\n",
                     "directory (En) = Ordner (De)"
                 )
             )],
@@ -918,9 +918,9 @@ export default class PythonLang implements LanguageInterface {
                 ),
                 //german
                 "".concat(
-                    "Du versuchst etwas mit einem nicht-Ordner zu tun,\n",
+                    "Du versuchst etwas mit einem Nicht-Ordner zu tun,\n",
                     "dass nur mit Ordnern funktioniert.\n",
-                    "Beispiel: du kannst os.lisdirt() nicht\n",
+                    "Beispiel: Du kannst os.lisdirt() nicht\n",
                     "auf einer Datei nutzen.\n",
                     "directory (En) = Ordner (De)"
                 )
@@ -940,7 +940,7 @@ export default class PythonLang implements LanguageInterface {
                     "Du versucht eine Operation auf deinem\n",
                     "Betriebssystem auszuführen, für die\n",
                     "Python nicht die Berechtigungen hat.\n",
-                    "Beispiel: eine Datei schreiben, die Admin-\n",
+                    "Beispiel: Eine Datei schreiben, die Admin-\n",
                     "Rechte benötigt.\n",
                     "permission (En) = Berechtigung (De)"
                 )
@@ -976,11 +976,11 @@ export default class PythonLang implements LanguageInterface {
                     "A traceback is a report containing\n",
                     "the function calls made in your code\n",
                     "that were involved in producing this error.\n",
-                    "In other languages this is called a stack trace,\n",
+                    "In other languages, this is called a stack trace,\n",
                     "or backtrace.\n",
                     "\"most recent call last\" means,\n",
                     "that the very bottom part of the traceback\n",
-                    "was the one that occured closest to\n",
+                    "was the one that occurred closest to\n",
                     "this error."
                 ),
                 //german
@@ -994,7 +994,7 @@ export default class PythonLang implements LanguageInterface {
                     "dass der unterste Teil des traceback\n",
                     "am nächsten zu diesem Fehler aufgerufen wurde.\n",
                     "traceback (En) = zurück Verfolgung (De)\n",
-                    "most recent call last (En) = jüngste Aufforderung zuletzt (De)"
+                    "most recent call last (En) = Jüngste Aufforderung zuletzt (De)"
                 )
             )]
         ]);
