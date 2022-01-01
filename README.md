@@ -3,7 +3,7 @@
 Error Message Parser - A website that makes programming error messages more readable  
 Accessible here: https://finn-ko.github.io/EMP/  
 
-## dependencies:
+## Dependencies:
 
 node/npm for dependency management, use `npm install` in this directory  
 https://docs.npmjs.com/downloading-and-installing-node-js-and-npm    
@@ -12,15 +12,15 @@ typescript transpiler - https://www.typescriptlang.org/
 http-server - to start a local server https://www.npmjs.com/package/http-server  
   `npm install -g http-server`  
   
-## scripts - these only work on linux!:
+## Scripts - These Only Work on Linux:
 
 `npm start` - builds the website and starts a local server  
 `npm run build` - only builds the webiste  
 `npm run dev` - starts the build in watch mode and a local server in parallel
 
-## build process manually:
+## Build Process Manually:
  
-run "tsc" to transpile ts files to js
+Run "tsc" to transpile ts files to js
 (run "http-server" to start a local server)  
   
 ## API  
