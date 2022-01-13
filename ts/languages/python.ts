@@ -30,7 +30,7 @@ export default class PythonLang implements LanguageInterface {
         }
 
         // failed tests require special attention
-        if (input.substring(0, "AssertionError: ".length) === "AssertionError: ") {
+        if (input.includes("\n&gt; ") && input.includes("\nE ")) {
             return this.highlightPyTestOutput(input);
         }
 

@@ -67,7 +67,7 @@ export default class PythonLang {
         if (input.substring(0, 9) === "testbook.") {
             input = this.cleanTestbookOutput(input);
         }
-        if (input.substring(0, "AssertionError: ".length) === "AssertionError: ") {
+        if (input.includes("\n&gt; ") && input.includes("\nE ")) {
             return this.highlightPyTestOutput(input);
         }
         let lines = input.split("\n");
