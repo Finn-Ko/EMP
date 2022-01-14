@@ -25,7 +25,7 @@ export default class PythonLang implements LanguageInterface {
     public color(input: string): string {
 
         //testbook output requires special attention
-        if (input.substring(0, 9) === "testbook.") {
+        if (input.includes("-\n\n#x1B[")) {
             input = this.cleanTestbookOutput(input);
         }
 

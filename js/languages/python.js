@@ -64,7 +64,7 @@ export default class PythonLang {
         return this.dictionary.get(keyword);
     }
     color(input) {
-        if (input.substring(0, 9) === "testbook.") {
+        if (input.includes("-\n\n#x1B[")) {
             input = this.cleanTestbookOutput(input);
         }
         if (input.includes("\n&gt; ") && input.includes("\nE ")) {
