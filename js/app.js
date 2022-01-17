@@ -12,6 +12,7 @@ const codeOutputHTML = document.getElementById("codeOutput");
 const spoLangSelector = document.getElementById("spoLang");
 const proLangSelector = document.getElementById("proLang");
 let stringToHighlight = "";
+alert("Test");
 document.addEventListener('paste', (e) => {
     if (e.clipboardData) {
         stringToHighlight = (e.clipboardData).getData('text');
