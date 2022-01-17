@@ -29,11 +29,11 @@ Accessible here: https://finn-ko.github.io/EMP/
 │   └── languages   Contains configurations for different languages
 │       └── ...		  with hint dictionaries and highlight algos.
 |
-├── js    Contains transpiler output - Do not change anything in this folder!
+├── js    Contains transpiler output - transpile is autorun on commit
 │   └── ...   Transpiled js files are in here,
 │             content will be overwritten by build process.
-│             This can't be included in .gitignore,
-│             as js files are necessary for the Github Page to work
+│             Github Actions autoruns transpile,
+│             js files are necessary for the Github Page to work.
 │
 ├── index.html      Website HTML
 ├── package.json    Node configuration
