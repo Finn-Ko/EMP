@@ -135,8 +135,8 @@ export default class PythonLang implements LanguageInterface {
 
         let endOfInitialMessage = input.indexOf("\n\n");
 
-        input = input.substring(0, endOfInitialMessage) 
-        + "</span>" + input.substring(endOfInitialMessage);
+        input = input.substring(0, endOfInitialMessage + 1) 
+        + "</span>" + input.substring(endOfInitialMessage + 1);
 
 
         let lines = input.split("\n");
@@ -145,7 +145,7 @@ export default class PythonLang implements LanguageInterface {
 
         let i = 1;
         let messagePresent = false;
-        while (lines[i]) {
+        while (lines[i] && !messagePresent) {
             if (lines[i].substring(0, 3) === " : ") {
                 messagePresent = true;
                 lines[i] = "<span class='importantEMP'>" + lines[i];
@@ -153,13 +153,15 @@ export default class PythonLang implements LanguageInterface {
             
             i++;
         }
+
         if (messagePresent) {
-            lines[i] = "</span>" + "";
-        } 
+            lines[i] = "</span>"
+        }
 
         //Mark everything else unimportant
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
 
+        console.log(input);
         return input;
     }
 

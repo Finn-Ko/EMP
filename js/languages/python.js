@@ -134,13 +134,13 @@ export default class PythonLang {
     }
     highlightPyTestOutput(input) {
         let endOfInitialMessage = input.indexOf("\n\n");
-        input = input.substring(0, endOfInitialMessage)
-            + "</span>" + input.substring(endOfInitialMessage);
+        input = input.substring(0, endOfInitialMessage + 1)
+            + "</span>" + input.substring(endOfInitialMessage + 1);
         let lines = input.split("\n");
         lines[0] = "<span class='importantEMP'>" + lines[0] + "</span><span class='normalEMP'>";
         let i = 1;
         let messagePresent = false;
-        while (lines[i]) {
+        while (lines[i] && !messagePresent) {
             if (lines[i].substring(0, 3) === " : ") {
                 messagePresent = true;
                 lines[i] = "<span class='importantEMP'>" + lines[i];
@@ -148,9 +148,10 @@ export default class PythonLang {
             i++;
         }
         if (messagePresent) {
-            lines[i] = "</span>" + "";
+            lines[i] = "</span>";
         }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
+        console.log(input);
         return input;
     }
 }
