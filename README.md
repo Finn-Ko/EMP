@@ -34,6 +34,7 @@ Accessible here: https://finn-ko.github.io/EMP/
 │             content will be overwritten by build process.
 │             Github Actions autoruns transpile,
 │             js files are necessary for the Github Page to work.
+|             Therefore can't be included in .gitignore.
 │
 ├── index.html      Website HTML
 ├── package.json    Node configuration
