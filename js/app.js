@@ -38,5 +38,3 @@ function rehighlight() {
     let proLang = proLangSelector.value;
     codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);
 }
-
-app.js
