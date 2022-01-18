@@ -6,8 +6,6 @@ const proLangSelector = document.getElementById("proLang")! as HTMLSelectElement
 
 let stringToHighlight = "";
 
-alert("Test");
-
 //rehighlight on input or different language selected
 document.addEventListener('paste', (e) => {
     if (e.clipboardData) {
