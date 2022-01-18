@@ -151,7 +151,6 @@ export default class PythonLang {
             lines[i] = "</span>";
         }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
-        console.log(input);
         return input;
     }
 }

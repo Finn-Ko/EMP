@@ -161,7 +161,6 @@ export default class PythonLang implements LanguageInterface {
         //Mark everything else unimportant
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
 
-        console.log(input);
         return input;
     }
 
