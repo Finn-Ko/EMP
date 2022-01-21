@@ -22,7 +22,7 @@ Accessible here: https://finn-ko.github.io/EMP/
 │
 ├── ts    Contains all of the TypeScript.
 │   ├── app.ts                  Main file for the website providing its functionality.
-│   ├── highlighterExport.ts    Main highlighting functionality which can be importet for API
+│   ├── highlighterExport.ts    Main highlighting functionality which can be imported for API
 │   ├── Hint.ts                 Class for hint structure
 │   ├── LanguageInterface.ts    Interface that defines functionalities for programming languages
 |   |
@@ -57,13 +57,27 @@ Run "tsc" to transpile ts files to js
   
 You can import the highligting and adding of hints functionality to your website.  
 To do this add the following script Tag:  
-`<script type="module"> import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js'; </script>`  
+<pre>
+<script type="module"> 
+import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js'; 
+</script>
+</pre>
+  
 And link one of the stylesheets from /css/EMP_* like so  
-`<link rel="stylesheet" type="text/css" href="https://finn-ko.github.io/EMP/css/EMP_dark.css" />`  
-You can now use the `insertHintsEMP(input, proLang, spoLang?)` function on your website inside of the script tag from above.  
+`<link rel="stylesheet" type="text/css" href="https://finn-ko.github.io/EMP/css/EMP_dark.css" />`   
+You can now use the  
+`insertHintsEMP(input, proLang, spoLang?)`  
+function on your website inside of the script tag from above.  
 If you wish to use the function outside of the script Tag you can add it as a property to `window` like so:  
-`<script type="module"> import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js'; window.insertHintsEMP = insertHintsEMP;</script>`  
-And then use it elsewhere with the `window.insertHintsEMP(input, proLang, spoLang?)` function.  
+<pre>
+<script type="module">
+import insertHintsEMP from 'https://finn-ko.github.io/EMP/js/highlighterExport.js';
+window.insertHintsEMP = insertHintsEMP;
+</script>  
+</pre>
+And then use it elsewhere with the  
+`window.insertHintsEMP(input, proLang, spoLang?)`  
+function.  
   
 ### Parameters:  
 - input: the "clean" error Message you want highlighted. (Clean means no html formating included)  
