@@ -7,11 +7,11 @@ export default class Hint {
         if (language === "english") {
             return this.english;
         }
-        else if (language === "german") {
+        else if (language === "german" && this.german) {
             return this.german;
         }
         else {
-            return "Spoken language not supported.";
+            return this.english;
         }
     }
 }
