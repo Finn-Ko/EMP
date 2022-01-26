@@ -150,6 +150,11 @@ export default class PythonLang {
         if (messagePresent) {
             lines[i] = "</span>";
         }
+        for (let j = 0; j < lines.length; j++) {
+            if (lines[j].substring(0, 6) === "&gt;  ") {
+                lines[j] = "<span class='normalEMP'>" + lines[j] + "</span>";
+            }
+        }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
         return input;
     }

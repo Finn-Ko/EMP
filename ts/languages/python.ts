@@ -155,11 +155,17 @@ export default class PythonLang implements LanguageInterface {
         }
 
         if (messagePresent) {
-            lines[i] = "</span>"
+            lines[i] = "</span>";
+        }
+
+        for (let j = 0; j < lines.length; j++) {
+            if (lines[j].substring(0, 6) === "&gt;  ") {
+                lines[j] = "<span class='normalEMP'>" + lines[j] + "</span>";
+            }
         }
 
         //Mark everything else unimportant
-        input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
+        input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
 
         return input;
     }
