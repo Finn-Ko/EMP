@@ -96,10 +96,14 @@ export default class PythonLang {
                 }
             }
         }
-        let explainIndex = lines[lines.length - 1].indexOf("Error: ");
+        let lastLine = lines.length - 1;
+        while (lines[lastLine] == "") {
+            lastLine--;
+        }
+        let explainIndex = lines[lastLine].indexOf("Error: ");
         if (explainIndex !== -1) {
-            lines[lines.length - 1] = lines[lines.length - 1].substring(0, explainIndex + 7)
-                + "<span class='importantEMP'>" + lines[lines.length - 1].substring(explainIndex + 7)
+            lines[lastLine] = lines[lastLine].substring(0, explainIndex + 7)
+                + "<span class='importantEMP'>" + lines[lastLine].substring(explainIndex + 7)
                 + "</span>";
         }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
