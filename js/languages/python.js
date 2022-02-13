@@ -5,9 +5,9 @@ export default class PythonLang {
             ["AssertionError", new Hint(`An error occurred when an \"assert\" 
 statement was run. 
 This usually happens with 
-failed automated tests. \n", 
+failed automated tests.
                     "Different types of asserts exist. 
-Example: assert x == 6. \n", 
+Example: assert x == 6.
                     "It is expected, that x has the value 6.
 However, if x is not 6 this error
 is thrown.`, `Es gab einen Fehler dabei ein \"assert\" 
