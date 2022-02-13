@@ -183,840 +183,692 @@ export default class PythonLang implements LanguageInterface {
             //exceptions https://docs.python.org/3/library/exceptions.html
             ["AssertionError", new Hint(
                 //english:
-                "".concat(
-                    "An error occurred when an \"assert\" \n",
-                    "statement was run. \n",
-                    "This usually happens with \n",
-                    "failed automated tests. \n", 
-                    "Different types of asserts exist. \n",
-                    "Example: assert x == 6. \n", 
-                    "It is expected, that x has the value 6.\n",
-                    "However, if x is not 6 this error\n",
-                    "is thrown."
-                ),
+`An error occurred when an \"assert\" 
+statement was run. 
+This usually happens with 
+failed automated tests. \n", 
+                    "Different types of asserts exist. 
+Example: assert x == 6. \n", 
+                    "It is expected, that x has the value 6.
+However, if x is not 6 this error
+is thrown.`,
+
                 //german
-                "".concat(
-                    "Es gab einen Fehler dabei ein \"assert\" \n",
-                    "aus zu führen. \n",
-                    "Dies passiert normal bei \n",
-                    "automatisierten Tests, die nicht klappen.\n",
-                    "Es gibt verschiedene Arten von asserts.\n",
-                    "Beispiel: assert x == 6\n",
-                    "Hier wird erwartet, dass x den Wert 6 hat.\n",
-                    "Wenn dies nicht der Fall ist,\n",
-                    "gibt es einen AssertionError.\n",
-                    "Assert (En) = Behaupten (De)"
-                )
+`Es gab einen Fehler dabei ein \"assert\" 
+auszuführen. 
+Dies passiert normalerweise bei 
+automatisierten Tests, die nicht klappen.
+Es gibt verschiedene Arten von asserts.
+Beispiel: assert x == 6
+Hier wird erwartet, dass x den Wert 6 hat.
+Wenn dies nicht der Fall ist,
+gibt es einen AssertionError.
+Assert (En) = Behaupten (De)`
             )],
 
             ["AttributeError", new Hint(
                 //english:
-                "".concat(
-                    "An Error occurred when trying to \n",
-                    "use an invalid attribute. \n",
-                    "An attribute is something that can \n",
-                    "be accessed like so: x.some_attribute\n",
-                    "Example: \n",
-                    "   x = 5\n",
-                    "   x.hello\n",
-                    "Will throw this error because the number x\n",
-                    "doesn't have a \"hello\" attribute."
-                ),
-                //german
-                "".concat(
-                    "Es wurde versucht, ein unbekanntes\n",
-                    "Attribut zu nutzen. \n",
-                    "Ein Attribut ist etwas, auf das so\n",
-                    "zugegriffen wird: x.ein_attribut\n",
-                    "Beispiel:\n",
-                    "   x = 5\n",
-                    "   x.hallo\n",
-                    "Wird diesen Fehler ergeben, da die Zahl x\n",
-                    "kein Attribut \"hallo\" hat.\n",
-                    "Attribute (En) = Attribut / Eigenschaft (De)"
-                )
-            )],
+`An Error occurred when trying to 
+use an invalid attribute. An attribute is something that can 
+be accessed like so: x.some_attribute
+Example: 
+   x = 5
+   x.hello
+Will throw this error because the number x
+doesn't have a \"hello\" attribute.`,
 
+                //german
+`Es wurde versucht, ein unbekanntes
+Attribut zu nutzen. 
+Ein Attribut ist etwas, auf das so
+zugegriffen wird: x.ein_attribut
+Beispiel:
+   x = 5
+   x.hallo
+Wird diesen Fehler ergeben, da die Zahl x
+kein Attribut \"hallo\" hat.
+Attribute (En) = Attribut / Eigenschaft (De)`
+            )],
+        
             ["EOFError", new Hint(
                 //english:
-                "".concat(
-                    "EOF is short for End Of File.\n",
-                    "This error usually occurs when an\n",
-                    "input function is interrupted somehow.\n",
-                    "Example: input(\"Enter your name: \")\n",
-                    "Will raise this error if the user\n",
-                    "interrupts the resulting prompt with Ctl + D\n"
-                ),
-                //german
-                "".concat(
-                    "Dieser Fehler wird normalerweise geworfen,\n",
-                    "wenn ein input unterbrochen wird.\n",
-                    "Beispiel: input(\"Gib deinen Namen ein: \")\n",
-                    "Ergibt diesen Fehler, wenn die resultierende\n",
-                    "Aufforderung mit Strg + D unterbrochen wird.\n",
-                    "EOF = End Of File (En) = Ende der Datei (De)"
-                )
-            )],
+`EOF is short for End Of File.
+This error usually occurs when an
+input function is interrupted somehow.
+Example: input(\"Enter your name: \")
+Will raise this error if the user
+interrupts the resulting prompt with Ctl + D\n`,
 
+                //german
+`Dieser Fehler wird normalerweise geworfen,
+wenn ein input unterbrochen wird.
+Beispiel: input(\"Gib deinen Namen ein: \")
+Ergibt diesen Fehler, wenn die resultierende
+Aufforderung mit Strg + D unterbrochen wird.
+EOF = End Of File (En) = Ende der Datei (De)`
+            )],
+            
             ["FloatingPointError", new Hint(
                 //english:
-                "".concat(
-                    "This exception is currently not in use, how did you end up here?"
-                ),
-                //german
-                "".concat(
-                    "Dieser Fehler ist zur Zeit ungenutzt, wie bist du hier gelandet?"
-                )
-            )],
+`This exception is currently not in use, how did you end up here?`,
 
+                //german
+`Dieser Fehler ist zur Zeit ungenutzt, wie bist du hier gelandet?`
+            )],
+            
             ["GeneratorExit", new Hint(
                 //english:
-                "".concat(
-                    "This exception should not be thrown.\n",
-                    "Do you perhaps catch it\n",
-                    "or raise it yourself somewhere?"
-                ),
-                //german
-                "".concat(
-                    "Dieser Fehler sollte nicht geworfen werden.\n",
-                    "Fängst oder raist du ihn selbst irgendwo?"
-                )
-            )],
+`This exception should not be thrown.
+Do you perhaps catch it
+or raise it yourself somewhere?`,
 
+                //german
+`Dieser Fehler sollte nicht geworfen werden.
+Fängst oder raist du ihn selbst irgendwo?`
+            )],
+            
             ["ImportError", new Hint(
                 //english:
-                "".concat(
-                    "Something that you are trying to import\n",
-                    "doesn't load properly.\n",
-                    "Did you change something about the files of\n",
-                    "the module you are trying to import?"
-                ),
-                //german
-                "".concat(
-                    "Etwas, dass du importieren möchtest,\n",
-                    "kann nicht richtig geladen werden.\n",
-                    "Hast du an den zugehörigen Dateien\n",
-                    "etwas verändert?"
-                )
-            )],
+`Something that you are trying to import
+doesn't load properly.
+Did you change something about the files of
+the module you are trying to import?`,
 
+                //german
+`Etwas, dass du importieren möchtest,
+kann nicht richtig geladen werden.
+Hast du an den zugehörigen Dateien
+etwas verändert?`
+            )],
+            
             ["ModuleNotFoundError", new Hint(
                 //english:
-                "".concat(
-                    "A module that you are trying to import\n",
-                    "can't be found.\n",
-                    "Did you make a typo, or have you\n",
-                    "possibly not installed it?\n",
-                    "Example: import some_module\n",
-                    "Will throw this error when\n",
-                    "some_module can't be found"
-                ),
-                //german
-                "".concat(
-                    "Ein Modul, dass du importieren möchtest,\n",
-                    "kann nicht gefunden werden.\n",
-                    "Hast du vielleicht einen Tippfehler gemacht,\n",
-                    "oder das Modul nicht installiert?\n",
-                    "Beispiel: import ein_modul\n",
-                    "Wird diesen Fehler ergeben,\n",
-                    "wenn ein_modul nicht gefunden wird.\n",
-                    "Module (En) = Modul / Bauelement (De)"
-                )
-            )],
+`A module that you are trying to import
+can't be found.
+Did you make a typo, or have you
+possibly not installed it?
+Example: import some_module
+Will throw this error when
+some_module can't be found`,
 
+                //german
+`Ein Modul, dass du importieren möchtest,
+kann nicht gefunden werden.
+Hast du vielleicht einen Tippfehler gemacht,
+oder das Modul nicht installiert?
+Beispiel: import ein_modul
+Wird diesen Fehler ergeben,
+wenn ein_modul nicht gefunden wird.
+Module (En) = Modul / Bauelement (De)`
+            )],
+            
             ["IndexError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to access an index\n",
-                    "that can't be accessed.\n",
-                    "Remember that in programming\n",
-                    "we start counting from zero!\n",
-                    "The last element of a list is at\n",
-                    "it's length - 1 and the first one at 0\n",
-                    "Example:\n",
-                    "   x = [\"A\", \"B\"]\n",
-                    "   print(x[2])\n",
-                    "Will throw this error, as the list x\n",
-                    "only has the indices 0 and 1 for A and B."
+`You are trying to access an index
+that can't be accessed.
+Remember that in programming
+we start counting from zero!
+The last element of a list is at
+it's length - 1 and the first one at 0
+Example:
+   x = [\"A\", \"B\"]
+   print(x[2])
+Will throw this error, as the list x
+only has the indices 0 and 1 for A and B.`,
 
-                ),
                 //german
-                "".concat(
-                    "Du versuchst eine Stelle zu nutzen,\n",
-                    "die nicht existiert.\n",
-                    "Vergiss nicht, dass beim Programmieren\n",
-                    "bei null angefangen wird zu zählen!\n",
-                    "Das letzte Element einer Liste ist also\n",
-                    "bei ihrer Länge - 1 und das erste bei 0.\n",
-                    "Beispiel:\n",
-                    "   x = [\"A\", \"B\"]\n",
-                    "   print(x[2])\n",
-                    "Wird diesen Fehler ergeben, weil die Liste x\n",
-                    "nur die Stellen 0 und 1 für A und B hat.\n",
-                    "index (En) = Index / Verzeichnis (De)"
-                )
+`Du versuchst eine Stelle zu nutzen,
+die nicht existiert.
+Vergiss nicht, dass beim Programmieren
+bei null angefangen wird zu zählen!
+Das letzte Element einer Liste ist also
+bei ihrer Länge - 1 und das erste bei 0.
+Beispiel:
+   x = [\"A\", \"B\"]
+   print(x[2])
+Wird diesen Fehler ergeben, weil die Liste x
+nur die Stellen 0 und 1 für A und B hat.
+index (En) = Index / Verzeichnis (De)`
             )],
-
+            
             ["KeyError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to access a key in a dictionary,\n",
-                    "that doesn't contain the key.\n",
-                    "Did you possibly make a typo?\n",
-                    "Example:\n",
-                    "   x = {\"my_key\": \"Hello\"}\n",
-                    "   x[\"wrong_key\"]\n",
-                    "Will throw this error, as the dictionary x\n",
-                    "doesn't contain the wrong_key.\n",
-                    "It only contains my_key."
-                ),
+`You are trying to access a key in a dictionary,
+that doesn't contain the key.
+Did you possibly make a typo?
+Example:
+   x = {\"my_key\": \"Hello\"}
+   x[\"wrong_key\"]
+Will throw this error, as the dictionary x
+doesn't contain the wrong_key.
+It only contains my_key.`,
+
                 //german
-                "".concat(
-                    "Du versuchst einen Wert in einem Dictionary\n",
-                    "zu nutzen, der darin nicht existiert.\n",
-                    "Beispiel:\n",
-                    "   x = {\"mein_key\": \"Hello\"}\n",
-                    "   x[\"falscher_key\"]\n",
-                    "Wird diesen Fehler produzieren, da das Dictionary\n",
-                    "nicht falscher_key enthält.\n",
-                    "Es enthält nur mein_key.\n",
-                    "key (En) = Schlüssel (De)\n",
-                    "dictionary (En) = Wörterbuch (De)"
-                )
+`Du versuchst einen Wert in einem Dictionary
+zu nutzen, der darin nicht existiert.
+Beispiel:
+   x = {\"mein_key\": \"Hello\"}
+   x[\"falscher_key\"]
+Wird diesen Fehler produzieren, da das Dictionary
+nicht falscher_key enthält.
+Es enthält nur mein_key.
+key (En) = Schlüssel (De)
+dictionary (En) = Wörterbuch (De)`
             )],
 
             ["KeyboardInterrupt", new Hint(
                 //english:
-                "".concat(
-                    "The execution was interrupted by keyboard input.\n",
-                    "Did you accidentally press Ctrl + C or delete?"
-                ),
-                //german
-                "".concat(
-                    "Die Ausführung wurde durch eine\n",
-                    "Tastatur Eingabe unterbrochen.\n",
-                    "Hast du aus Versehen Strg + C\n",
-                    "oder Entfernen gedrückt?\n",
-                    "keyboard (En) = Tastatur (De)\n",
-                    "interrupt (En) = Unterbrechung (De)"
-                )
-            )],
+`The execution was interrupted by keyboard input.
+Did you accidentally press Ctrl + C or delete?`,
 
+                //german
+`Die Ausführung wurde durch eine
+Tastatur Eingabe unterbrochen.
+Hast du aus Versehen Strg + C
+oder Entfernen gedrückt?
+keyboard (En) = Tastatur (De)
+interrupt (En) = Unterbrechung (De)`
+            )],
+            
             ["MemoryError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["NameError", new Hint(
                 //english:
-                "".concat(
-                    "This error is thrown, when you\n",
-                    "try to use something, that is not\n",
-                    "yet defined.\n",
-                    "Did you make a typo, or have you\n",
-                    "declared a variable after using it?\n",
-                    "Example: print(a)\n",
-                    "will throw this error, if a is not defined."
-                ),
+`This error is thrown, when you
+try to use something, that is not
+yet defined.
+Did you make a typo, or have you
+declared a variable after using it?
+Example: print(a)
+will throw this error, if a is not defined.`,
+
                 //german
-                "".concat(
-                    "Dieser Fehler ergibt sich, wenn\n",
-                    "man versucht, etwas zu nutzen,\n",
-                    "das noch nicht definiert ist.\n",
-                    "Hast du einen Schreibfehler gemacht,\n",
-                    "oder nutzt du evtl. eine Variable, bevor\n",
-                    "sie definiert wurde?\n",
-                    "Beispiel: print(a)\n",
-                    "Wird diesen Fehler ergeben,\n",
-                    "wenn a nicht definiert ist."
-                )
+`Dieser Fehler ergibt sich, wenn
+man versucht, etwas zu nutzen,
+das noch nicht definiert ist.
+Hast du einen Schreibfehler gemacht,
+oder nutzt du evtl. eine Variable, bevor
+sie definiert wurde?
+Beispiel: print(a)
+Wird diesen Fehler ergeben,
+wenn a nicht definiert ist.`
             )],
 
             ["NotImplementedError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to use a function,\n",
-                    "that is not yet implemented,\n",
-                    "but that is supposed to be."
-                ),
+`You are trying to use a function,
+that is not yet implemented,
+but that is supposed to be.`,
+
                 //german
-                "".concat(
-                    "Du versuchst eine Funktion zu nutzen,\n",
-                    "die noch nicht implementiert ist,\n",
-                    "es aber sein sollte."
-                )
+`Du versuchst eine Funktion zu nutzen,
+die noch nicht implementiert ist,
+es aber sein sollte.`
             )],
 
             ["OSError", new Hint(
                 //english:
-                "".concat(
-                    "Something connected to the operating system\n",
-                    "went wrong. You need to figure this out\n",
-                    "on your own with the error message, sorry!"
-                ),
-                //german
-                "".concat(
-                    "Etwas im Zusammenhang mit dem Betriebssystem\n",
-                    "ist schiefgelaufen. Du musst selber mit dieser\n",
-                    "Fehlermeldung herausfinden, was. Sorry!"
-                )
-            )],
+`Something connected to the operating system
+went wrong. You need to figure this out
+on your own with the error message, sorry!`,
 
+                //german
+`Etwas im Zusammenhang mit dem Betriebssystem
+ist schiefgelaufen. Du musst selber mit dieser
+Fehlermeldung herausfinden, was. Sorry!`
+            )],
+            
             ["OverflowError", new Hint(
                 //english:
-                "".concat(
-                    "Something is overflowing,\n",
-                    "this means it's becoming too large.\n",
-                    "Example:\n",
-                    "   import math\n",
-                    "   print(math.exp(1000))\n",
-                    "Causes this error,\n",
-                    "as the value of math.exp(1000) is too large."
-                ),
+`Something is overflowing,
+this means it's becoming too large.
+Example:
+   import math
+   print(math.exp(1000))
+Causes this error,
+as the value of math.exp(1000) is too large.`,
+
                 //german
-                "".concat(
-                    "Etwas wird zu groß.\n",
-                    "Beispiel:\n",
-                    "   import math\n",
-                    "   print(math.exp(1000))\n",
-                    "Ergibt diesen Fehler,\n",
-                    "da der Wert von math.exp(1000) zu groß ist.\n",
-                    "overflow (En) = Überlauf (De)"
-                )
+`Etwas wird zu groß.
+Beispiel:
+   import math
+   print(math.exp(1000))
+Ergibt diesen Fehler,
+da der Wert von math.exp(1000) zu groß ist.
+overflow (En) = Überlauf (De)`
             )],
 
             ["RecursionError", new Hint(
                 //english:
-                "".concat(
-                    "This error occurs when a function calls itself\n",
-                    "too many times in a row.\n",
-                    "The usual maximum amount is 1000 times.\n",
-                    "Is it possible that your function never stops\n",
-                    "calling itself?",
-                    "Example:\n",
-                    "   def function():\n",
-                    "       return function():\n",
-                    "   funciton()\n",
-                    "will throw this exception, as it will\n",
-                    "infinitely call itself."
-                ),
+`This error occurs when a function calls itself
+too many times in a row.
+The usual maximum amount is 1000 times.
+Is it possible that your function never stops
+calling itself?",
+                    "Example:
+   def function():
+       return function():
+   function()
+will throw this exception, as it will
+infinitely call itself.`,
+
                 //german
-                "".concat(
-                    "Dieser Fehler entsteht, wenn sich eine Funktion\n",
-                    "selbst zu oft hintereinander aufruft.\n",
-                    "Das normale Maximum ist 1000 Mal.\n",
-                    "Ist es möglich, dass deine Funktion nie\n",
-                    "aufhört, sich selbst aufzurufen?\n",
-                    "Beispiel:\n",
-                    "   def funktion():\n",
-                    "       return funktion():\n",
-                    "   funktion()\n",
-                    "wird diesen Fehler ergeben, da sich\n",
-                    "die Funktion unendlich oft selbst aufruft.\n",
-                    "recurisive (En) = rekursiv / selbstaufrufend (De)"
-                )
+`Dieser Fehler entsteht, wenn sich eine Funktion
+selbst zu oft hintereinander aufruft.
+Das normale Maximum ist 1000 Mal.
+Ist es möglich, dass deine Funktion nie
+aufhört, sich selbst aufzurufen?
+Beispiel:
+   def funktion():
+       return funktion():
+   funktion()
+wird diesen Fehler ergeben, da sich
+die Funktion unendlich oft selbst aufruft.
+recurisive (En) = rekursiv / selbstaufrufend (De)`
             )],
 
             ["ReferenceError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
-                //german
-                "".concat(
-                    "TODO"
-                )
-            )],
+`TODO`,
 
+                //german
+`TODO`
+            )],
+            
             ["RuntimeError", new Hint(
                 //english:
-                "".concat(
-                    "Something went wrong when running your code,\n",
-                    "and no other exception fits it.\n",
-                    "Read what it says after this in your traceback."
-                ),
+`Something went wrong when running your code,
+and no other exception fits it.
+Read what it says after this in your traceback.`,
+
                 //german
-                "".concat(
-                    "Etwas ist schiefgelaufen, während dein Programm\n",
-                    "ausfegührt wurde und kein anderer Fehler passt.\n",
-                    "Lies dir durch was hier nach in deinem traceback steht.\n",
-                    "runtime (En) = Laufzeit (De)"
-                )
+`Etwas ist schiefgelaufen, während dein Programm
+ausgeführt wurde und kein anderer Fehler passt.
+Lies dir durch was hier nach in deinem traceback steht.
+runtime (En) = Laufzeit (De)`
             )],
 
             ["StopIteration", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
-                //german
-                "".concat(
-                    "TODO"
-                )
-            )],
+`TODO`,
 
+                //german
+`TODO`
+            )],
+            
             ["StopAsyncIteration", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["SyntaxError", new Hint(
                 //english:
-                "".concat(
-                    "You wrote invalid python code somewhere.\n",
-                    "Example: a = 1 +% 2\n",
-                    "will throw this exception,\n",
-                    "as +% is not valid python."
-                ),
+`You wrote invalid python code somewhere.
+Example: a = 1 +% 2
+will throw this exception,
+as +% is not valid python.`,
+
                 //german
-                "".concat(
-                    "Du hast falschen Python code geschrieben.\n",
-                    "Beispiel: a = 1 +% 2\n",
-                    "wird diesen Fehler ergeben,\n",
-                    "da +% kein richtiges Python ist."
-                )
+`Du hast falschen Python code geschrieben.
+Beispiel: a = 1 +% 2
+wird diesen Fehler ergeben,
+da +% kein richtiges Python ist.`
             )],
 
             ["IndentationError", new Hint(
                 //english:
-                "".concat(
-                    "Your indentation is wrong somewhere.\n"
-                ),
+`Your indentation is wrong somewhere.\n`,
+
                 //german
-                "".concat(
-                    "Deine Einrückung ist falsch.\n",
-                    "indentation (En) = Einrückung (De)"
-                )
+`Deine Einrückung ist falsch.
+indentation (En) = Einrückung (De)`
             )],
 
             ["TabError", new Hint(
                 //english:
-                "".concat(
-                    "Looks like you mixed tab and space Characters\n",
-                    "in you indentations."
-                ),
+`Looks like you mixed tab and space Characters
+in you indentations.`,
+
                 //german
-                "".concat(
-                    "Du hast Tab und Leerzeichen bei der\n",
-                    "Einrückung vermischt."
-                )
+`Du hast Tab und Leerzeichen bei der
+Einrückung vermischt.`
             )],
 
             ["SystemError", new Hint(
                 //english:
-                "".concat(
-                    "Something internally went wrong with the python interpreter.\n",
-                    "How did you do this?!"
-                ),
+`Something internally went wrong with the python interpreter.
+How did you do this?!`,
+
                 //german
-                "".concat(
-                    "Ein Python interner Fehler ist aufgetreten.\n",
-                    "Wie hast du das geschafft?!"
-                )
+`Ein Python interner Fehler ist aufgetreten.
+Wie hast du das geschafft?!`
             )],
 
             ["SystemExit", new Hint(
                 //english:
-                "".concat(
-                    "This exception should not be thrown or caught.\n",
-                    "Are you doing this?"
-                ),
-                //german
-                "".concat(
-                    "Dieser Fehler sollte nicht geworfen oder gefangen werden.\n",
-                    "Machst du das?"
-                )
-            )],
+`This exception should not be thrown or caught.
+Are you doing this?`,
 
+                //german
+`Dieser Fehler sollte nicht geworfen oder gefangen werden.
+Machst du das?`
+            )],
+            
             ["TypeError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to use wrong types somewhere.\n",
-                    "Types are automatically detected by python.\n",
-                    "Example: a = \"number: \" + 10\n",
-                    "will throw this error, as the type of\n",
-                    "\"number: \" (str) can't be added to\n",
-                    "the type fo 10 (int)."
-                ),
+`You are trying to use wrong types somewhere.
+Types are automatically detected by python.
+Example: a = \"number: \" + 10
+will throw this error, as the type of
+\"number: \" (str) can't be added to
+the type fo 10 (int).`,
+
                 //german
-                "".concat(
-                    "Du versuchst falsche Typen zu verwenden.\n",
-                    "Typen werden automatisch von Python erkannt.\n",
-                    "Beispiel: a = \"numer: \" + 10\n",
-                    "wird diesen Fehler produzieren, da der Typ von\n",
-                    "\"nummer: \" (str) nicht mit dem Typ von\n",
-                    "10 (int) addiert werden kann.\n",
-                    "type (En) = Typ / Art (De)"
-                )
+`Du versuchst, falsche Typen zu verwenden.
+Typen werden automatisch von Python erkannt.
+Beispiel: a = \"numer: \" + 10
+wird diesen Fehler produzieren, da der Typ von
+\"nummer: \" (str) nicht mit dem Typ von
+10 (int) addiert werden kann.
+type (En) = Typ / Art (De)`
             )],
 
             ["UnboundLocalError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to assign a value to\n",
-                    "a variable outside of its scope.\n",
-                    "To use variables from outside of functions\n",
-                    "inside of them, you need to use \"global my_variable\"\n",
-                    "inside of the function.\n",
-                    "Example:\n",
-                    "   x = 10\n",
-                    "   def function():\n",
-                    "       # global x <- this would fix it\n",
-                    "       x += 1\n",
-                    "   function()\n",
-                    "will result in this error, as the variable x\n",
-                    "is not defined inside of the function."
-                ),
-                //german
-                "".concat(
-                    "Du versuchst eine Variable außerhalb des Bereichs,\n",
-                    "in dem sie definiert ist, zu nutzen.\n",
-                    "Um eine Variable von außerhalb einer Funktion\n",
-                    "in ihr zu verwenden, musst du\n",
-                    "\"global meine_variable\" nutzen.\n",
-                    "Beispiel:\n",
-                    "   x = 10\n",
-                    "   def funktion():\n",
-                    "       # global x <- das würde es beheben.\n",
-                    "       x += 1\n",
-                    "   funktion()\n",
-                    "wird diesen Fehler ergeben, da die Variable x\n",
-                    "nicht in der Funktion definiert wurde."
-                )
-            )],
+`You are trying to assign a value to
+a variable outside its scope.
+To use variables from outside of functions
+inside them, you need to use \"global my_variable\"
+inside the function.
+Example:
+   x = 10
+   def function():
+       # global x <- this would fix it
+       x += 1
+   function()
+will result in this error, as the variable x
+is not defined inside the function.`,
 
+                //german
+`Du versuchst eine Variable außerhalb des Bereichs,
+in dem sie definiert ist, zu nutzen.
+Um eine Variable von außerhalb einer Funktion
+in ihr zu verwenden, musst du
+\"global meine_variable\" nutzen.
+Beispiel:
+   x = 10
+   def funktion():
+       # global x <- das würde es beheben.
+       x += 1
+   funktion()
+wird diesen Fehler ergeben, da die Variable x
+nicht in der Funktion definiert wurde.`
+            )],
+            
             ["UnicodeError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["UnicodeEncodeError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["UnicodeDecodeError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["UnicodeTranslateError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["ValueError", new Hint(
                 //english:
-                "".concat(
-                    "You called a function with a parameter that\n",
-                    "is the right type, but still doesn't work.\n",
-                    "Example:\n",
-                    "   list = []\n",
-                    "   list.remove(\"x\")\n",
-                    "will cause this error, as the list does not\n",
-                    "contain the value \"x\"."
-                ),
-                //german
-                "".concat(
-                    "Du hast eine Funktion mit einem Parameter\n",
-                    "aufgerufen, der zwar den richtigen Typ hat,\n",
-                    "aber trotzdem nicht funktioniert.\n",
-                    "Beispiel:\n",
-                    "   liste = []\n",
-                    "   liste.remove(\"x\")\n",
-                    "wird diesen Fehler ergeben, da die Liste\n",
-                    "nicht den Wert \"x\" enthält.\n",
-                    "value (En) = Wert (De)"
-                )
-            )],
+`You called a function with a parameter that
+is the right type, but still doesn't work.
+Example:
+   list = []
+   list.remove(\"x\")
+will cause this error, as the list does not
+contain the value \"x\".`,
 
+                //german
+`Du hast eine Funktion mit einem Parameter
+aufgerufen, der zwar den richtigen Typ hat,
+aber trotzdem nicht funktioniert.
+Beispiel:
+   liste = []
+   liste.remove(\"x\")
+wird diesen Fehler ergeben, da die Liste
+nicht den Wert \"x\" enthält.
+value (En) = Wert (De)`
+            )],
+            
             ["ZeroDivisionError", new Hint(
                 //english:
-                "".concat(
-                    "Your code is trying to divide by zero.\n",
-                    "This is not mathematically possible.\n",
-                    "Make sure to handle the case in which\n",
-                    "the denominator is zero.\n",
-                    "Example:\n",
-                    "   x = 0\n",
-                    "   print(100 / x)\n",
-                    "Will cause this error, as python can't\n",
-                    "calculate 100 divided by 0."
-                ),
+`Your code is trying to divide by zero.
+This is not mathematically possible.
+Make sure to handle the case in which
+the denominator is zero.
+Example:
+   x = 0
+   print(100 / x)
+Will cause this error, as python can't
+calculate 100 divided by 0.`,
+
                 //german
-                "".concat(
-                    "Dein Programm versucht durch null zu teilen.\n",
-                    "Das ist mathematisch nicht möglich.\n",
-                    "Kümmere dich darum, dass dieser Sonderfall\n",
-                    "nicht auftreten kann.\n",
-                    "Beispiel:\n",
-                    "   x = 0\n",
-                    "   print(100 / x)\n",
-                    "Ergibt diesen Fehler, da Python\n",
-                    "nicht 100 geteilt durch 0 berechnen kann.\n",
-                    "zero division (En) = Teilung durch null (De)"
-                )
+`Dein Programm versucht durch null zu teilen.
+Das ist mathematisch nicht möglich.
+Kümmere dich darum, dass dieser Sonderfall
+nicht auftreten kann.
+Beispiel:
+   x = 0
+   print(100 / x)
+Ergibt diesen Fehler, da Python
+nicht 100 geteilt durch 0 berechnen kann.
+zero division (En) = Teilung durch null (De)`
             )],
 
             ["BlockingIOError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["ChildProcessError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["ConnectionError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["BrokenPipeError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["ConnectionAbortedError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["ConnectionRefusedError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["ConnectionResetError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["FileExistsError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to create a file that already exists.\n",
-                    "Don't do this."
-                ),
+`You are trying to create a file that already exists.
+Don't do this.`,
+
                 //german
-                "".concat(
-                    "Du versuchst eine Datei zu erstellen, die schon existiert.\n",
-                    "Mach das nicht.",
-                    "file (En) = Datei (De)"
-                )
+`Du versuchst eine Datei zu erstellen, die schon existiert.
+Mach das nicht.",
+                    "file (En) = Datei (De)`
             )],
 
             ["FileNotFoundError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to access a file or directory that\n",
-                    "does not exist. Did you make a typo?"
-                ),
+`You are trying to access a file or directory that
+does not exist. Did you make a typo?`,
+
                 //german
-                "".concat(
-                    "Du versuchst eine Datei oder einen Ordner zu nutzen,\n",
-                    "die oder der nicht existiert.\n",
-                    "Hast du einen Tippfehler gemacht.\n",
-                    "file (En) = Datei (De)"
-                )
+`Du versuchst eine Datei oder einen Ordner zu nutzen,
+die oder der nicht existiert.
+Hast du einen Tippfehler gemacht?
+file (En) = Datei (De)`
             )],
 
             ["InterruptedError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["IsADirectoryError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to do something with a directory\n",
-                    "that only works with files.\n",
-                    "Example: You can't delete a directory with the\n",
-                    "os.remove() function."
-                ),
+`You are trying to do something with a directory
+that only works with files.
+Example: You can't delete a directory with the
+os.remove() function.`,
+
                 //german
-                "".concat(
-                    "Du versuchst etwas mit einem Ordner zu tun,\n",
-                    "dass nur mit Dateien funktioniert.\n",
-                    "Beispiel: Du kannst einen Ordner nicht mit\n",
-                    "der os.remove() Funktion löschen.\n",
-                    "directory (En) = Ordner (De)"
-                )
+`Du versuchst etwas mit einem Ordner zu tun,
+das nur mit Dateien funktioniert.
+Beispiel: Du kannst einen Ordner nicht mit
+der os.remove() Funktion löschen.
+directory (En) = Ordner (De)`
             )],
 
             ["NotADirectoryError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to do something on a non-directory\n",
-                    "that only works with directories.\n",
-                    "Example: you can't use os.listdir() on\n",
-                    "a file."
-                ),
+`You are trying to do something on a non-directory
+that only works with directories.
+Example: you can't use os.listdir() on
+a file.`,
+
                 //german
-                "".concat(
-                    "Du versuchst etwas mit einem Nicht-Ordner zu tun,\n",
-                    "dass nur mit Ordnern funktioniert.\n",
-                    "Beispiel: Du kannst os.lisdirt() nicht\n",
-                    "auf einer Datei nutzen.\n",
-                    "directory (En) = Ordner (De)"
-                )
+`Du versuchst etwas mit einem Nicht-Ordner zu tun,
+das nur mit Ordnern funktioniert.
+Beispiel: Du kannst os.lisdirt() nicht
+auf einer Datei nutzen.
+directory (En) = Ordner (De)`
             )],
 
             ["PermissionError", new Hint(
                 //english:
-                "".concat(
-                    "You are trying to run some operation on\n",
-                    "your operating system that python doesn't\n",
-                    "have the permission for.\n",
-                    "Example: writing a file that requires\n",
-                    "admin privileges."
-                ),
+`You are trying to run some operation on
+your operating system that python doesn't
+have the permission for.
+Example: writing a file that requires
+admin privileges.`,
+
                 //german
-                "".concat(
-                    "Du versucht eine Operation auf deinem\n",
-                    "Betriebssystem auszuführen, für die\n",
-                    "Python nicht die Berechtigungen hat.\n",
-                    "Beispiel: Eine Datei schreiben, die Admin-\n",
-                    "Rechte benötigt.\n",
-                    "permission (En) = Berechtigung (De)"
-                )
+`Du versucht eine Operation auf deinem
+Betriebssystem auszuführen, für die
+Python nicht die Berechtigungen hat.
+Beispiel: Eine Datei schreiben, die Admin-
+Rechte benötigt.
+permission (En) = Berechtigung (De)`
             )],
 
             ["ProcessLookupError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             ["TimeoutError", new Hint(
                 //english:
-                "".concat(
-                    "TODO"
-                ),
+`TODO`,
+
                 //german
-                "".concat(
-                    "TODO"
-                )
+`TODO`
             )],
 
             //add keywords too? TODO
 
             ["Traceback (most recent call last)", new Hint(
                 //english:
-                "".concat(
-                    "A traceback is a report containing\n",
-                    "the function calls made in your code\n",
-                    "that were involved in producing this error.\n",
-                    "In other languages, this is called a stack trace,\n",
-                    "or backtrace.\n",
-                    "\"most recent call last\" means,\n",
-                    "that the very bottom part of the traceback\n",
-                    "was the one that occurred closest to\n",
-                    "this error."
-                ),
+`A traceback is a report containing
+the function calls made in your code
+that were involved in producing this error.
+In other languages, this is called a stack trace,
+or backtrace.
+\"most recent call last\" means,
+the very bottom part of the traceback
+was the one that occurred closest to
+this error.`,
+
                 //german
-                "".concat(
-                    "Ein traceback ist ein Bericht,\n",
-                    "der Funktionsaufrufe in deinem Code enthält,\n",
-                    "die zu diesem Fehler geführt haben.\n",
-                    "In anderen Sprachen nennt man dies auch\n",
-                    "einen stack trace, oder backtrace.\n",
-                    "\"most recent call last\" heißt,\n",
-                    "dass der unterste Teil des traceback\n",
-                    "am nächsten zu diesem Fehler aufgerufen wurde.\n",
-                    "traceback (En) = zurück Verfolgung (De)\n",
-                    "most recent call last (En) = Jüngste Aufforderung zuletzt (De)"
-                )
+`Ein Traceback ist ein Bericht,
+der Funktionsaufrufe in deinem Code enthält,
+die zu diesem Fehler geführt haben.
+In anderen Sprachen nennt man dies auch
+einen stack trace, oder backtrace.
+\"most recent call last\" heißt,
+dass der unterste Teil des traceback
+am nächsten zu diesem Fehler aufgerufen wurde.
+traceback (En) = Zurückverfolgung (De)
+most recent call last (En) = Jüngste Aufforderung zuletzt (De)`
+
             )]
         ]);
 
