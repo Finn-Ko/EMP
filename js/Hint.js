@@ -3,7 +3,7 @@ export default class Hint {
         this.english = english;
         this.german = german;
     }
-    getHintInLanguage(language) {
+    getLanguage(language) {
         if (language === "english") {
             return this.english;
         }

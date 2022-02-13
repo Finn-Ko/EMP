@@ -24,9 +24,9 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     }
     spoLang = spoLang.toLocaleLowerCase();
 
-    let languageObject = supportedLangs.get(proLang);
+    let languageO = supportedLangs.get(proLang);
 
-    if (!languageObject) {   
+    if (!languageO) {   
         return "Sorry, language is not supported!";
     }
 
@@ -59,18 +59,26 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
         }
     }
     //highlight the message
-    input = languageObject.color(input);
+    input = languageO.color(input);
 
     //iterate over input and check if it contains keyword from specified index
     for (let i = 0; i < input.length; i++) {
         //find keywords and place hints
-        for (let word of languageObject.getKeywordsSorted()) {
-            //console.log(input.substring(i, i + key.length));
+        for (let word of languageO.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
                 let toInsert =
-                "<div class='tooltipEMP'>" + word + "<span class='tooltiptextEMP'>" 
-                + languageObject.getHint(word)?.getHintInLanguage(spoLang) + "</span></div>"
-                input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
+                    "<div class='tooltipEMP'>" 
+                    + word 
+                    + "<span class='tooltiptextEMP'>" 
+                    + languageO.getHint(word)?.getLanguage(spoLang) 
+                    + "</span></div>";
+
+                input = 
+                    input.slice(0, i) 
+                    + toInsert 
+                    + input.slice(i + word.length);
+
+                //continue search after insert
                 i += toInsert.length;
                 break;
             }

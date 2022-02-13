@@ -14,8 +14,8 @@ function insertHintsEMP(input, proLang, spoLang) {
         return "No programming language given!";
     }
     spoLang = spoLang.toLocaleLowerCase();
-    let languageObject = supportedLangs.get(proLang);
-    if (!languageObject) {
+    let languageO = supportedLangs.get(proLang);
+    if (!languageO) {
         return "Sorry, language is not supported!";
     }
     for (let i = 0; i < input.length; i++) {
@@ -45,13 +45,19 @@ function insertHintsEMP(input, proLang, spoLang) {
             i += insert.length - 1;
         }
     }
-    input = languageObject.color(input);
+    input = languageO.color(input);
     for (let i = 0; i < input.length; i++) {
-        for (let word of languageObject.getKeywordsSorted()) {
+        for (let word of languageO.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
-                let toInsert = "<div class='tooltipEMP'>" + word + "<span class='tooltiptextEMP'>"
-                    + ((_a = languageObject.getHint(word)) === null || _a === void 0 ? void 0 : _a.getHintInLanguage(spoLang)) + "</span></div>";
-                input = [input.slice(0, i), toInsert, input.slice(i + word.length)].join('');
+                let toInsert = "<div class='tooltipEMP'>"
+                    + word
+                    + "<span class='tooltiptextEMP'>"
+                    + ((_a = languageO.getHint(word)) === null || _a === void 0 ? void 0 : _a.getLanguage(spoLang))
+                    + "</span></div>";
+                input =
+                    input.slice(0, i)
+                        + toInsert
+                        + input.slice(i + word.length);
                 i += toInsert.length;
                 break;
             }
