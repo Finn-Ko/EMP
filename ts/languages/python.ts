@@ -683,8 +683,8 @@ calculate 100 divided by 0.`,
                 //german
 `Dein Programm versucht durch null zu teilen.
 Das ist mathematisch nicht möglich.
-Kümmere dich darum, dass dieser Sonderfall
-nicht auftreten kann.
+Diesen Sonderfall solltest du irgendwie
+umgehen.
 Beispiel:
    x = 0
    print(100 / x)
