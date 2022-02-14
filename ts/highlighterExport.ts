@@ -60,6 +60,12 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     }
     //highlight the message
     input = langObj.color(input);
+
+    //benchmark addition
+    // let before = input;
+    // let startTime = new Date().getTime();
+    // for (let amount = 0; amount < 1000; amount++) {
+    //     input = before;
     
     //trie https://de.wikipedia.org/wiki/Trie
     //find keywords and place hints
@@ -93,6 +99,10 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
             i += toInsert.length;
         }
     }
+
+    //benchmark addition
+    // }
+    // console.log(new Date().getTime() - startTime);
 
     //iterate over input and check if it contains keyword from specified index
     //deprecated algorithm, see above for replacement
