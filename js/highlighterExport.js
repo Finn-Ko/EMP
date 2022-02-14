@@ -47,20 +47,20 @@ function insertHintsEMP(input, proLang, spoLang) {
     }
     input = langObj.color(input);
     for (let i = 0; i < input.length; i++) {
-        for (let word of langObj.getKeywordsSorted()) {
-            if (input.substring(i, i + word.length) === word) {
-                let toInsert = "<div class='tooltipEMP'>"
-                    + word
-                    + "<span class='tooltiptextEMP'>"
-                    + ((_a = langObj.getHint(word)) === null || _a === void 0 ? void 0 : _a.getLanguage(spoLang))
-                    + "</span></div>";
-                input =
-                    input.slice(0, i)
-                        + toInsert
-                        + input.slice(i + word.length);
-                i += toInsert.length;
-                break;
-            }
+        let searchString = input.substring(i, i + langObj.getKeywordsTrie().getLongestLength());
+        let foundLength = langObj.getKeywordsTrie().search(searchString);
+        if (foundLength > -1) {
+            let word = searchString.substring(0, foundLength);
+            let toInsert = "<div class='tooltipEMP'>"
+                + word
+                + "<span class='tooltiptextEMP'>"
+                + ((_a = langObj.getHint(word)) === null || _a === void 0 ? void 0 : _a.getLanguage(spoLang))
+                + "</span></div>";
+            input =
+                input.slice(0, i)
+                    + toInsert
+                    + input.slice(i + foundLength);
+            i += toInsert.length;
         }
     }
     return input;

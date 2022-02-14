@@ -1,21 +1,18 @@
 import LanguageInterface from "../LanguageInterface";
 import Hint from "../Hint.js";
+import Trie from "../Trie.js";
 
 //class for the python language
 export default class PythonLang implements LanguageInterface {
 
-    //only sort once when object is created
+    private keywordsTrie: Trie;
+
     constructor() {
-        this.keywords = [ ...this.dictionary.keys() ];
-        this.keywords.sort(function(a, b){
-            // ASC  -> a.length - b.length
-            // DESC -> b.length - a.length
-            return b.length - a.length;
-        });
+        this.keywordsTrie = new Trie(this.dictionary.keys());
     }
 
-    public getKeywordsSorted(): string[] {
-        return this.keywords;
+    public getKeywordsTrie(): Trie {
+        return this.keywordsTrie;
     }
 
     public getHint(keyword: string): Hint | undefined{
@@ -175,8 +172,6 @@ export default class PythonLang implements LanguageInterface {
 
         return input;
     }
-
-    private keywords: string[];
     
     private dictionary = new Map<string, Hint>(
         [
@@ -187,9 +182,9 @@ export default class PythonLang implements LanguageInterface {
 statement was run. 
 This usually happens with 
 failed automated tests.
-                    "Different types of asserts exist. 
+Different types of asserts exist. 
 Example: assert x == 6.
-                    "It is expected, that x has the value 6.
+It is expected, that x has the value 6.
 However, if x is not 6 this error
 is thrown.`,
 

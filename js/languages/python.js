@@ -1,4 +1,5 @@
 import Hint from "../Hint.js";
+import Trie from "../Trie.js";
 export default class PythonLang {
     constructor() {
         this.dictionary = new Map([
@@ -6,9 +7,9 @@ export default class PythonLang {
 statement was run. 
 This usually happens with 
 failed automated tests.
-                    "Different types of asserts exist. 
+Different types of asserts exist. 
 Example: assert x == 6.
-                    "It is expected, that x has the value 6.
+It is expected, that x has the value 6.
 However, if x is not 6 this error
 is thrown.`, `Es gab einen Fehler dabei ein \"assert\" 
 auszuführen. 
@@ -347,13 +348,10 @@ am nächsten zu diesem Fehler aufgerufen wurde.
 traceback (En) = Zurückverfolgung (De)
 most recent call last (En) = Jüngste Aufforderung zuletzt (De)`)]
         ]);
-        this.keywords = [...this.dictionary.keys()];
-        this.keywords.sort(function (a, b) {
-            return b.length - a.length;
-        });
+        this.keywordsTrie = new Trie(this.dictionary.keys());
     }
-    getKeywordsSorted() {
-        return this.keywords;
+    getKeywordsTrie() {
+        return this.keywordsTrie;
     }
     getHint(keyword) {
         return this.dictionary.get(keyword);

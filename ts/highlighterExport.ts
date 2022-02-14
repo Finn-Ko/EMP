@@ -60,31 +60,64 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     }
     //highlight the message
     input = langObj.color(input);
-
-    //iterate over input and check if it contains keyword from specified index
+    
+    //trie https://de.wikipedia.org/wiki/Trie
+    //find keywords and place hints
     for (let i = 0; i < input.length; i++) {
-        //find keywords and place hints
-        for (let word of langObj.getKeywordsSorted()) {
-            if (input.substring(i, i + word.length) === word) {
-                let toInsert =
-                    "<div class='tooltipEMP'>" 
-                    + word 
-                    + "<span class='tooltiptextEMP'>" 
-                    + langObj.getHint(word)?.getLanguage(spoLang) 
-                    + "</span></div>";
+        //only search a string that is as long as longest keyword
+        let searchString = 
+            input.substring(
+                i, 
+                i + langObj.getKeywordsTrie().getLongestLength()
+            );
 
-                input = 
-                    input.slice(0, i) 
-                    + toInsert 
-                    + input.slice(i + word.length);
+        let foundLength = langObj.getKeywordsTrie().search(searchString);
+        
+        //if word was found, place hint in HTML
+        if (foundLength > -1) {
+            let word = searchString.substring(0, foundLength);
 
-                //continue search after insert
-                i += toInsert.length;
-                break;
-            }
+            let toInsert =
+                "<div class='tooltipEMP'>" 
+                + word
+                + "<span class='tooltiptextEMP'>" 
+                + langObj.getHint(word)?.getLanguage(spoLang) 
+                + "</span></div>";
+
+            input = 
+                input.slice(0, i) 
+                + toInsert 
+                + input.slice(i + foundLength);
+
+            //continue search after insert
+            i += toInsert.length;
         }
     }
-    //trie? https://de.wikipedia.org/wiki/Trie
+
+    //iterate over input and check if it contains keyword from specified index
+    //deprecated algorithm, see above for replacement
+    // for (let i = 0; i < input.length; i++) {
+    //     //find keywords and place hints
+    //     for (let word of langObj.getKeywordsSorted()) {
+    //         if (input.substring(i, i + word.length) === word) {
+    //             let toInsert =
+    //                 "<div class='tooltipEMP'>" 
+    //                 + word 
+    //                 + "<span class='tooltiptextEMP'>" 
+    //                 + langObj.getHint(word)?.getLanguage(spoLang) 
+    //                 + "</span></div>";
+
+    //             input = 
+    //                 input.slice(0, i) 
+    //                 + toInsert 
+    //                 + input.slice(i + word.length);
+
+    //             //continue search after insert
+    //             i += toInsert.length;
+    //             break;
+    //         }
+    //     }
+    // }
     
     return input;
 }
