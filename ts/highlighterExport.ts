@@ -103,31 +103,6 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     //benchmark addition
     // }
     // console.log(new Date().getTime() - startTime);
-
-    //iterate over input and check if it contains keyword from specified index
-    //deprecated algorithm, see above for replacement
-    // for (let i = 0; i < input.length; i++) {
-    //     //find keywords and place hints
-    //     for (let word of langObj.getKeywordsSorted()) {
-    //         if (input.substring(i, i + word.length) === word) {
-    //             let toInsert =
-    //                 "<div class='tooltipEMP'>" 
-    //                 + word 
-    //                 + "<span class='tooltiptextEMP'>" 
-    //                 + langObj.getHint(word)?.getLanguage(spoLang) 
-    //                 + "</span></div>";
-
-    //             input = 
-    //                 input.slice(0, i) 
-    //                 + toInsert 
-    //                 + input.slice(i + word.length);
-
-    //             //continue search after insert
-    //             i += toInsert.length;
-    //             break;
-    //         }
-    //     }
-    // }
     
     return input;
 }

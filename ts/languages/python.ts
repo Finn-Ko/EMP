@@ -184,7 +184,7 @@ This usually happens with
 failed automated tests.
 Different types of asserts exist. 
 Example: assert x == 6.
-It is expected, that x has the value 6.
+It is expected that x has the value 6.
 However, if x is not 6 this error
 is thrown.`,
 
@@ -236,7 +236,7 @@ interrupts the resulting prompt with Ctl + D\n`,
 
                 //german
 `Dieser Fehler wird normalerweise geworfen,
-wenn ein input unterbrochen wird.
+wenn eine Eingabe unterbrochen wird.
 Beispiel: input(\"Gib deinen Namen ein: \")
 Ergibt diesen Fehler, wenn die resultierende
 Aufforderung mit Strg + D unterbrochen wird.
@@ -254,12 +254,11 @@ EOF = End Of File (En) = Ende der Datei (De)`
             ["GeneratorExit", new Hint(
                 //english:
 `This exception should not be thrown.
-Do you perhaps catch it
-or raise it yourself somewhere?`,
+Do you perhaps raise it yourself somewhere?`,
 
                 //german
 `Dieser Fehler sollte nicht geworfen werden.
-Fängst oder raist du ihn selbst irgendwo?`
+Raist du ihn selbst irgendwo?`
             )],
             
             ["ImportError", new Hint(
@@ -270,7 +269,7 @@ Did you change something about the files of
 the module you are trying to import?`,
 
                 //german
-`Etwas, dass du importieren möchtest,
+`Etwas, das du importieren möchtest,
 kann nicht richtig geladen werden.
 Hast du an den zugehörigen Dateien
 etwas verändert?`
@@ -287,7 +286,7 @@ Will throw this error when
 some_module can't be found`,
 
                 //german
-`Ein Modul, dass du importieren möchtest,
+`Ein Modul, das du importieren möchtest,
 kann nicht gefunden werden.
 Hast du vielleicht einen Tippfehler gemacht,
 oder das Modul nicht installiert?
@@ -303,8 +302,8 @@ Module (En) = Modul / Bauelement (De)`
 that can't be accessed.
 Remember that in programming
 we start counting from zero!
-The last element of a list is at
-it's length - 1 and the first one at 0
+The first elemt of a list is at 0
+and the last onr at it's length - 1.
 Example:
    x = [\"A\", \"B\"]
    print(x[2])
@@ -315,9 +314,8 @@ only has the indices 0 and 1 for A and B.`,
 `Du versuchst eine Stelle zu nutzen,
 die nicht existiert.
 Vergiss nicht, dass beim Programmieren
-bei null angefangen wird zu zählen!
-Das letzte Element einer Liste ist also
-bei ihrer Länge - 1 und das erste bei 0.
+bei Null angefangen wird zu zählen!
+Das erste Element einer Liste ist also bei 0 und das letzte bei ihrer Länge - 1.
 Beispiel:
    x = [\"A\", \"B\"]
    print(x[2])
@@ -375,8 +373,8 @@ interrupt (En) = Unterbrechung (De)`
 
             ["NameError", new Hint(
                 //english:
-`This error is thrown, when you
-try to use something, that is not
+`This error is thrown when you
+try to use something that is not
 yet defined.
 Did you make a typo, or have you
 declared a variable after using it?
@@ -409,7 +407,7 @@ es aber sein sollte.`
 
             ["OSError", new Hint(
                 //english:
-`Something connected to the operating system
+`Something related to the operating system
 went wrong. You need to figure this out
 on your own with the error message, sorry!`,
 
@@ -422,7 +420,8 @@ Fehlermeldung herausfinden, was. Sorry!`
             ["OverflowError", new Hint(
                 //english:
 `Something is overflowing,
-this means it's becoming too large.
+this means it's becoming too large
+for Python.
 Example:
    import math
    print(math.exp(1000))
@@ -430,7 +429,7 @@ Causes this error,
 as the value of math.exp(1000) is too large.`,
 
                 //german
-`Etwas wird zu groß.
+`Etwas wird zu groß für Python.
 Beispiel:
    import math
    print(math.exp(1000))
@@ -485,7 +484,7 @@ Read what it says after this in your traceback.`,
                 //german
 `Etwas ist schiefgelaufen, während dein Programm
 ausgeführt wurde und kein anderer Fehler passt.
-Lies dir durch was hier nach in deinem traceback steht.
+Lies dir durch was hier nach in deinem Traceback steht.
 runtime (En) = Laufzeit (De)`
             )],
 
@@ -507,24 +506,34 @@ runtime (En) = Laufzeit (De)`
 
             ["SyntaxError", new Hint(
                 //english:
-`You wrote invalid python code somewhere.
+`You wrote invalid Python code somewhere.
 Example: a = 1 +% 2
 will throw this exception,
-as +% is not valid python.`,
+as +% is not a valid Python code.`,
 
                 //german
 `Du hast falschen Python code geschrieben.
 Beispiel: a = 1 +% 2
 wird diesen Fehler ergeben,
-da +% kein richtiges Python ist.`
+da +% kein richtiger Python-Code ist.`
             )],
 
             ["IndentationError", new Hint(
                 //english:
-`Your indentation is wrong somewhere.\n`,
+`Your indentation is wrong somewhere.
+Example:
+    def function():
+    return "Hello!"
+Will cause this, as the return is not
+indentated correctly.`,
 
                 //german
 `Deine Einrückung ist falsch.
+Example:
+    def funktion():
+    return "Hallo!"
+Wird diesen Fehler ergeben, weil das
+return nicht richtig eingerückt ist.
 indentation (En) = Einrückung (De)`
             )],
 
@@ -540,7 +549,7 @@ Einrückung vermischt.`
 
             ["SystemError", new Hint(
                 //english:
-`Something internally went wrong with the python interpreter.
+`Something internally went wrong with the Python interpreter.
 How did you do this?!`,
 
                 //german
@@ -561,7 +570,7 @@ Machst du das?`
             ["TypeError", new Hint(
                 //english:
 `You are trying to use wrong types somewhere.
-Types are automatically detected by python.
+Types are automatically detected by Python.
 Example: a = \"number: \" + 10
 will throw this error, as the type of
 \"number: \" (str) can't be added to
@@ -644,7 +653,7 @@ nicht in der Funktion definiert wurde.`
             ["ValueError", new Hint(
                 //english:
 `You called a function with a parameter that
-is the right type, but still doesn't work.
+is the correct type, but still doesn't work.
 Example:
    list = []
    list.remove(\"x\")
@@ -672,7 +681,7 @@ the denominator is zero.
 Example:
    x = 0
    print(100 / x)
-Will cause this error, as python can't
+Will cause this error, as Python can't
 calculate 100 divided by 0.`,
 
                 //german
@@ -808,7 +817,7 @@ directory (En) = Ordner (De)`
             ["PermissionError", new Hint(
                 //english:
 `You are trying to run some operation on
-your operating system that python doesn't
+your operating system that Python doesn't
 have the permission for.
 Example: writing a file that requires
 admin privileges.`,
