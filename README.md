@@ -25,6 +25,7 @@ Accessible here: https://finn-ko.github.io/EMP/
 │   ├── highlighterExport.ts    Main highlighting functionality which can be imported for API
 │   ├── Hint.ts                 Class for hint structure
 │   ├── LanguageInterface.ts    Interface that defines functionalities for programming languages
+│   ├── Trie.ts                 Class that implements tries for highlighting algo
 |   |
 │   └── languages   Contains configurations for different languages
 │       └── ...		  with hint dictionaries and highlight algos.
