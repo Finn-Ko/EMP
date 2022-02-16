@@ -245,10 +245,12 @@ EOF = End Of File (En) = Ende der Datei (De)`
             
             ["FloatingPointError", new Hint(
                 //english:
-`This exception is currently not in use, how did you end up here?`,
+`This exception is currently not in use,
+how did you end up here?`,
 
                 //german
-`Dieser Fehler ist zur Zeit ungenutzt, wie bist du hier gelandet?`
+`Dieser Fehler ist zur Zeit ungenutzt,
+wie bist du hier gelandet?`
             )],
             
             ["GeneratorExit", new Hint(

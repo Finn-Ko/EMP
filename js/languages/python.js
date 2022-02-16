@@ -49,7 +49,9 @@ Beispiel: input(\"Gib deinen Namen ein: \")
 Ergibt diesen Fehler, wenn die resultierende
 Aufforderung mit Strg + D unterbrochen wird.
 EOF = End Of File (En) = Ende der Datei (De)`)],
-            ["FloatingPointError", new Hint(`This exception is currently not in use, how did you end up here?`, `Dieser Fehler ist zur Zeit ungenutzt, wie bist du hier gelandet?`)],
+            ["FloatingPointError", new Hint(`This exception is currently not in use,
+how did you end up here?`, `Dieser Fehler ist zur Zeit ungenutzt,
+wie bist du hier gelandet?`)],
             ["GeneratorExit", new Hint(`This exception should not be thrown.
 Do you perhaps raise it yourself somewhere?`, `Dieser Fehler sollte nicht geworfen werden.
 Raist du ihn selbst irgendwo?`)],
