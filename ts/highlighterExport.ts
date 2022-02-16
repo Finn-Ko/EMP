@@ -30,73 +30,70 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
         return "Sorry, language is not supported!";
     }
 
+    let escString = "";
+
     for (let i = 0; i < input.length; i++) {
         //escape html
         if (input.charAt(i) === "&") {
-            let insert = "&amp;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&amp;"
         }
         else if (input.charAt(i) === "<") {
-            let insert = "&lt;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&lt;";
         }
         else if (input.charAt(i) === ">") {
-            let insert = "&gt;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&gt;";
         }
         else if (input.charAt(i) === '"') {
-            let insert = "&quot;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&quot;";
         }
         else if (input.charAt(i) === "'") {
-            let insert = "&#039;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&#039;";
+        }
+        else {
+            escString += input.charAt(i);
         }
     }
     //highlight the message
-    input = langObj.color(input);
+    input = langObj.color(escString);
 
+
+    let output = "";
     //benchmark addition
     // let before = input;
     // let startTime = new Date().getTime();
     // for (let amount = 0; amount < 1000; amount++) {
+    //     output = "";
     //     input = before;
 
     //iterate over input and check if it contains keyword from specified index
     for (let i = 0; i < input.length; i++) {
+        let insert = input.charAt(i);
+
         //find keywords and place hints
         for (let word of langObj.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
-                let toInsert =
+                insert =
                     "<div class='tooltipEMP'>" 
-                    + word 
+                    + word
                     + "<span class='tooltiptextEMP'>" 
                     + langObj.getHint(word)?.getLanguage(spoLang) 
                     + "</span></div>";
 
-                input = 
-                    input.slice(0, i) 
-                    + toInsert 
-                    + input.slice(i + word.length);
-
-                //continue search after insert
-                i += toInsert.length;
+                //continue search after keyword
+                i += word.length;
                 break;
             }
         }
+
+        output += insert;
     }
     //trie? https://de.wikipedia.org/wiki/Trie
 
-    //benchmark addition
+    // benchmark addition
     // }
     // console.log(new Date().getTime() - startTime);
     
-    return input;
+    return output;
 }
 
 export default insertHintsEMP;

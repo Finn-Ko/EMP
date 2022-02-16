@@ -18,51 +18,45 @@ function insertHintsEMP(input, proLang, spoLang) {
     if (!langObj) {
         return "Sorry, language is not supported!";
     }
+    let escString = "";
     for (let i = 0; i < input.length; i++) {
         if (input.charAt(i) === "&") {
-            let insert = "&amp;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&amp;";
         }
         else if (input.charAt(i) === "<") {
-            let insert = "&lt;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&lt;";
         }
         else if (input.charAt(i) === ">") {
-            let insert = "&gt;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&gt;";
         }
         else if (input.charAt(i) === '"') {
-            let insert = "&quot;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&quot;";
         }
         else if (input.charAt(i) === "'") {
-            let insert = "&#039;";
-            input = [input.slice(0, i), insert, input.slice(i + 1)].join('');
-            i += insert.length - 1;
+            escString += "&#039;";
+        }
+        else {
+            escString += input.charAt(i);
         }
     }
-    input = langObj.color(input);
+    input = langObj.color(escString);
+    let output = "";
     for (let i = 0; i < input.length; i++) {
+        let insert = input.charAt(i);
         for (let word of langObj.getKeywordsSorted()) {
             if (input.substring(i, i + word.length) === word) {
-                let toInsert = "<div class='tooltipEMP'>"
-                    + word
-                    + "<span class='tooltiptextEMP'>"
-                    + ((_a = langObj.getHint(word)) === null || _a === void 0 ? void 0 : _a.getLanguage(spoLang))
-                    + "</span></div>";
-                input =
-                    input.slice(0, i)
-                        + toInsert
-                        + input.slice(i + word.length);
-                i += toInsert.length;
+                insert =
+                    "<div class='tooltipEMP'>"
+                        + word
+                        + "<span class='tooltiptextEMP'>"
+                        + ((_a = langObj.getHint(word)) === null || _a === void 0 ? void 0 : _a.getLanguage(spoLang))
+                        + "</span></div>";
+                i += word.length;
                 break;
             }
         }
+        output += insert;
     }
-    return input;
+    return output;
 }
 export default insertHintsEMP;
