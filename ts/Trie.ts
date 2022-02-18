@@ -38,16 +38,16 @@ class Trie {
     }
 
     //returns the length of a found word, or -1 if word wasn't found
-    private find(word: string, index: number, letterMap: Trie): number{
+    private find(word: string, index: number, letterMap: Trie): number {
         if (!letterMap) {
             return -1;
         }
 
         else if (letterMap.isWord) {
-            let recur = 
+            let recur =
                 this.find(
-                    word, 
-                    index + 1, 
+                    word,
+                    index + 1,
                     letterMap.map[word.charAt(index)]
                 );
 
@@ -61,8 +61,8 @@ class Trie {
 
         else if (letterMap.map[word[index]]) {
             return this.find(
-                word, 
-                index + 1, 
+                word,
+                index + 1,
                 letterMap.map[word.charAt(index)]
             );
         }

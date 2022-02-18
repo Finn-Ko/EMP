@@ -40,5 +40,5 @@ function rehighlight(): void {
     let proLang = proLangSelector.value;
 
     codeOutputHTML.innerHTML = insertHintsEMP(stringToHighlight, proLang, spoLang);
-    
+
 }

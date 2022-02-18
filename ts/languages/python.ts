@@ -15,10 +15,10 @@ export default class PythonLang implements LanguageInterface {
         return this.keywordsTrie;
     }
 
-    public getHint(keyword: string): Hint | undefined{
+    public getHint(keyword: string): Hint | undefined {
         return this.dictionary.get(keyword);
     }
-    
+
     public color(input: string): string {
 
         //testbook output requires special attention
@@ -53,14 +53,14 @@ export default class PythonLang implements LanguageInterface {
             else if (lines[i].substring(0, 7) === "  File ") {
                 let quoteEnd = lines[i].lastIndexOf("&quot;,");
                 let lineNumberEnd = lines[i].indexOf(", in");
-                lines[i] = 
+                lines[i] =
                     "<span class='normalEMP'>" +
                     //the filename is marked, it comes after "  File &quot;"
                     "  File &quot;<span class='importantEMP'>" + lines[i].substring(13, quoteEnd) + "</span>" +
                     //the line number is marked
-                    lines[i].substring(quoteEnd, quoteEnd + 13) + "<span class='importantEMP'>" + 
+                    lines[i].substring(quoteEnd, quoteEnd + 13) + "<span class='importantEMP'>" +
                     lines[i].substring(quoteEnd + 13, lineNumberEnd) + "</span>" + lines[i].substring(lineNumberEnd);
-                    "</span>";
+                "</span>";
 
                 //the next line contains the code if it starts with four spaces
                 if (/\s{4}/.test(lines[i + 1].substring(0, 4))) {
@@ -92,7 +92,7 @@ export default class PythonLang implements LanguageInterface {
     }
 
     private cleanTestbookOutput(input: string): string {
-        
+
         let weird = "#x1B[";
 
         //filter only the relevant part, which starts with the weird string
@@ -126,7 +126,7 @@ export default class PythonLang implements LanguageInterface {
                 weirdUntil++;
 
                 input = [input.slice(0, i), input.slice(weirdUntil)].join("");
-                
+
                 //search again from same position
                 i--;
             }
@@ -138,8 +138,8 @@ export default class PythonLang implements LanguageInterface {
 
         let endOfInitialMessage = input.indexOf("\n\n");
 
-        input = input.substring(0, endOfInitialMessage + 1) 
-        + "</span>" + input.substring(endOfInitialMessage + 1);
+        input = input.substring(0, endOfInitialMessage + 1)
+            + "</span>" + input.substring(endOfInitialMessage + 1);
 
 
         let lines = input.split("\n");
@@ -153,7 +153,7 @@ export default class PythonLang implements LanguageInterface {
                 messagePresent = true;
                 lines[i] = "<span class='importantEMP'>" + lines[i];
             }
-            
+
             i++;
         }
 
@@ -172,13 +172,13 @@ export default class PythonLang implements LanguageInterface {
 
         return input;
     }
-    
+
     private dictionary = new Map<string, Hint>(
         [
             //exceptions https://docs.python.org/3/library/exceptions.html
             ["AssertionError", new Hint(
                 //english:
-`An error occurred when an \"assert\" 
+                `An error occurred when an \"assert\" 
 statement was run. 
 This usually happens with 
 failed automated tests.
@@ -189,7 +189,7 @@ However, if x is not 6 this error
 is thrown.`,
 
                 //german
-`Es gab einen Fehler dabei ein \"assert\" 
+                `Es gab einen Fehler dabei ein \"assert\" 
 auszuführen. 
 Dies passiert normalerweise bei 
 automatisierten Tests, die nicht klappen.
@@ -203,7 +203,7 @@ Assert (En) = Behaupten (De)`
 
             ["AttributeError", new Hint(
                 //english:
-`An Error occurred when trying to 
+                `An Error occurred when trying to 
 use an invalid attribute. An attribute is something that can 
 be accessed like so: x.some_attribute
 Example: 
@@ -213,7 +213,7 @@ Will throw this error because the number x
 doesn't have a \"hello\" attribute.`,
 
                 //german
-`Es wurde versucht, ein unbekanntes
+                `Es wurde versucht, ein unbekanntes
 Attribut zu nutzen. 
 Ein Attribut ist etwas, auf das so
 zugegriffen wird: x.ein_attribut
@@ -224,10 +224,10 @@ Wird diesen Fehler ergeben, da die Zahl x
 kein Attribut \"hallo\" hat.
 Attribute (En) = Attribut / Eigenschaft (De)`
             )],
-        
+
             ["EOFError", new Hint(
                 //english:
-`EOF is short for End Of File.
+                `EOF is short for End Of File.
 This error usually occurs when an
 input function is interrupted somehow.
 Example: input(\"Enter your name: \")
@@ -235,51 +235,51 @@ Will raise this error if the user
 interrupts the resulting prompt with Ctl + D\n`,
 
                 //german
-`Dieser Fehler wird normalerweise geworfen,
+                `Dieser Fehler wird normalerweise geworfen,
 wenn eine Eingabe unterbrochen wird.
 Beispiel: input(\"Gib deinen Namen ein: \")
 Ergibt diesen Fehler, wenn die resultierende
 Aufforderung mit Strg + D unterbrochen wird.
 EOF = End Of File (En) = Ende der Datei (De)`
             )],
-            
+
             ["FloatingPointError", new Hint(
                 //english:
-`This exception is currently not in use,
+                `This exception is currently not in use,
 how did you end up here?`,
 
                 //german
-`Dieser Fehler ist zur Zeit ungenutzt,
+                `Dieser Fehler ist zur Zeit ungenutzt,
 wie bist du hier gelandet?`
             )],
-            
+
             ["GeneratorExit", new Hint(
                 //english:
-`This exception should not be thrown.
+                `This exception should not be thrown.
 Do you perhaps raise it yourself somewhere?`,
 
                 //german
-`Dieser Fehler sollte nicht geworfen werden.
+                `Dieser Fehler sollte nicht geworfen werden.
 Raist du ihn selbst irgendwo?`
             )],
-            
+
             ["ImportError", new Hint(
                 //english:
-`Something that you are trying to import
+                `Something that you are trying to import
 doesn't load properly.
 Did you change something about the files of
 the module you are trying to import?`,
 
                 //german
-`Etwas, das du importieren möchtest,
+                `Etwas, das du importieren möchtest,
 kann nicht richtig geladen werden.
 Hast du an den zugehörigen Dateien
 etwas verändert?`
             )],
-            
+
             ["ModuleNotFoundError", new Hint(
                 //english:
-`A module that you are trying to import
+                `A module that you are trying to import
 can't be found.
 Did you make a typo, or have you
 possibly not installed it?
@@ -288,7 +288,7 @@ Will throw this error when
 some_module can't be found`,
 
                 //german
-`Ein Modul, das du importieren möchtest,
+                `Ein Modul, das du importieren möchtest,
 kann nicht gefunden werden.
 Hast du vielleicht einen Tippfehler gemacht,
 oder das Modul nicht installiert?
@@ -297,10 +297,10 @@ Wird diesen Fehler ergeben,
 wenn ein_modul nicht gefunden wird.
 Module (En) = Modul / Bauelement (De)`
             )],
-            
+
             ["IndexError", new Hint(
                 //english:
-`You are trying to access an index
+                `You are trying to access an index
 that can't be accessed.
 Remember that in programming
 we start counting from zero!
@@ -313,7 +313,7 @@ Will throw this error, as the list x
 only has the indices 0 and 1 for A and B.`,
 
                 //german
-`Du versuchst eine Stelle zu nutzen,
+                `Du versuchst eine Stelle zu nutzen,
 die nicht existiert.
 Vergiss nicht, dass beim Programmieren
 bei Null angefangen wird zu zählen!
@@ -325,10 +325,10 @@ Wird diesen Fehler ergeben, weil die Liste x
 nur die Stellen 0 und 1 für A und B hat.
 index (En) = Index / Verzeichnis (De)`
             )],
-            
+
             ["KeyError", new Hint(
                 //english:
-`You are trying to access a key in a dictionary,
+                `You are trying to access a key in a dictionary,
 that doesn't contain the key.
 Did you possibly make a typo?
 Example:
@@ -339,7 +339,7 @@ doesn't contain the wrong_key.
 It only contains my_key.`,
 
                 //german
-`Du versuchst einen Wert in einem Dictionary
+                `Du versuchst einen Wert in einem Dictionary
 zu nutzen, der darin nicht existiert.
 Beispiel:
    x = {\"mein_key\": \"Hello\"}
@@ -353,29 +353,29 @@ dictionary (En) = Wörterbuch (De)`
 
             ["KeyboardInterrupt", new Hint(
                 //english:
-`The execution was interrupted by keyboard input.
+                `The execution was interrupted by keyboard input.
 Did you accidentally press Ctrl + C or delete?`,
 
                 //german
-`Die Ausführung wurde durch eine
+                `Die Ausführung wurde durch eine
 Tastatur Eingabe unterbrochen.
 Hast du aus Versehen Strg + C
 oder Entfernen gedrückt?
 keyboard (En) = Tastatur (De)
 interrupt (En) = Unterbrechung (De)`
             )],
-            
+
             ["MemoryError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["NameError", new Hint(
                 //english:
-`This error is thrown when you
+                `This error is thrown when you
 try to use something that is not
 yet defined.
 Did you make a typo, or have you
@@ -384,7 +384,7 @@ Example: print(a)
 will throw this error, if a is not defined.`,
 
                 //german
-`Dieser Fehler ergibt sich, wenn
+                `Dieser Fehler ergibt sich, wenn
 man versucht, etwas zu nutzen,
 das noch nicht definiert ist.
 Hast du einen Schreibfehler gemacht,
@@ -397,31 +397,31 @@ wenn a nicht definiert ist.`
 
             ["NotImplementedError", new Hint(
                 //english:
-`You are trying to use a function,
+                `You are trying to use a function,
 that is not yet implemented,
 but that is supposed to be.`,
 
                 //german
-`Du versuchst eine Funktion zu nutzen,
+                `Du versuchst eine Funktion zu nutzen,
 die noch nicht implementiert ist,
 es aber sein sollte.`
             )],
 
             ["OSError", new Hint(
                 //english:
-`Something related to the operating system
+                `Something related to the operating system
 went wrong. You need to figure this out
 on your own with the error message, sorry!`,
 
                 //german
-`Etwas im Zusammenhang mit dem Betriebssystem
+                `Etwas im Zusammenhang mit dem Betriebssystem
 ist schiefgelaufen. Du musst selber mit dieser
 Fehlermeldung herausfinden, was. Sorry!`
             )],
-            
+
             ["OverflowError", new Hint(
                 //english:
-`Something is overflowing,
+                `Something is overflowing,
 this means it's becoming too large
 for Python.
 Example:
@@ -431,7 +431,7 @@ Causes this error,
 as the value of math.exp(1000) is too large.`,
 
                 //german
-`Etwas wird zu groß für Python.
+                `Etwas wird zu groß für Python.
 Beispiel:
    import math
    print(math.exp(1000))
@@ -442,7 +442,7 @@ overflow (En) = Überlauf (De)`
 
             ["RecursionError", new Hint(
                 //english:
-`This error occurs when a function calls itself
+                `This error occurs when a function calls itself
 too many times in a row.
 The usual maximum amount is 1000 times.
 Is it possible that your function never stops
@@ -455,7 +455,7 @@ will throw this exception, as it will
 infinitely call itself.`,
 
                 //german
-`Dieser Fehler entsteht, wenn sich eine Funktion
+                `Dieser Fehler entsteht, wenn sich eine Funktion
 selbst zu oft hintereinander aufruft.
 Das normale Maximum ist 1000 Mal.
 Ist es möglich, dass deine Funktion nie
@@ -471,20 +471,20 @@ recurisive (En) = rekursiv / selbstaufrufend (De)`
 
             ["ReferenceError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
-            
+
             ["RuntimeError", new Hint(
                 //english:
-`Something went wrong when running your code,
+                `Something went wrong when running your code,
 and no other exception fits it.
 Read what it says after this in your traceback.`,
 
                 //german
-`Etwas ist schiefgelaufen, während dein Programm
+                `Etwas ist schiefgelaufen, während dein Programm
 ausgeführt wurde und kein anderer Fehler passt.
 Lies dir durch was hier nach in deinem Traceback steht.
 runtime (En) = Laufzeit (De)`
@@ -492,29 +492,29 @@ runtime (En) = Laufzeit (De)`
 
             ["StopIteration", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
-            
+
             ["StopAsyncIteration", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["SyntaxError", new Hint(
                 //english:
-`You wrote invalid Python code somewhere.
+                `You wrote invalid Python code somewhere.
 Example: a = 1 +% 2
 will throw this exception,
 as +% is not a valid Python code.`,
 
                 //german
-`Du hast falschen Python code geschrieben.
+                `Du hast falschen Python code geschrieben.
 Beispiel: a = 1 +% 2
 wird diesen Fehler ergeben,
 da +% kein richtiger Python-Code ist.`
@@ -522,7 +522,7 @@ da +% kein richtiger Python-Code ist.`
 
             ["IndentationError", new Hint(
                 //english:
-`Your indentation is wrong somewhere.
+                `Your indentation is wrong somewhere.
 Example:
     def function():
     return "Hello!"
@@ -530,7 +530,7 @@ Will cause this, as the return is not
 indentated correctly.`,
 
                 //german
-`Deine Einrückung ist falsch.
+                `Deine Einrückung ist falsch.
 Example:
     def funktion():
     return "Hallo!"
@@ -541,37 +541,37 @@ indentation (En) = Einrückung (De)`
 
             ["TabError", new Hint(
                 //english:
-`Looks like you mixed tab and space Characters
+                `Looks like you mixed tab and space Characters
 in you indentations.`,
 
                 //german
-`Du hast Tab und Leerzeichen bei der
+                `Du hast Tab und Leerzeichen bei der
 Einrückung vermischt.`
             )],
 
             ["SystemError", new Hint(
                 //english:
-`Something internally went wrong with the Python interpreter.
+                `Something internally went wrong with the Python interpreter.
 How did you do this?!`,
 
                 //german
-`Ein Python interner Fehler ist aufgetreten.
+                `Ein Python interner Fehler ist aufgetreten.
 Wie hast du das geschafft?!`
             )],
 
             ["SystemExit", new Hint(
                 //english:
-`This exception should not be thrown or caught.
+                `This exception should not be thrown or caught.
 Are you doing this?`,
 
                 //german
-`Dieser Fehler sollte nicht geworfen oder gefangen werden.
+                `Dieser Fehler sollte nicht geworfen oder gefangen werden.
 Machst du das?`
             )],
-            
+
             ["TypeError", new Hint(
                 //english:
-`You are trying to use wrong types somewhere.
+                `You are trying to use wrong types somewhere.
 Types are automatically detected by Python.
 Example: a = \"number: \" + 10
 will throw this error, as the type of
@@ -579,7 +579,7 @@ will throw this error, as the type of
 the type fo 10 (int).`,
 
                 //german
-`Du versuchst, falsche Typen zu verwenden.
+                `Du versuchst, falsche Typen zu verwenden.
 Typen werden automatisch von Python erkannt.
 Beispiel: a = \"numer: \" + 10
 wird diesen Fehler produzieren, da der Typ von
@@ -590,7 +590,7 @@ type (En) = Typ / Art (De)`
 
             ["UnboundLocalError", new Hint(
                 //english:
-`You are trying to assign a value to
+                `You are trying to assign a value to
 a variable outside its scope.
 To use variables from outside of functions
 inside them, you need to use \"global my_variable\"
@@ -605,7 +605,7 @@ will result in this error, as the variable x
 is not defined inside the function.`,
 
                 //german
-`Du versuchst eine Variable außerhalb des Bereichs,
+                `Du versuchst eine Variable außerhalb des Bereichs,
 in dem sie definiert ist, zu nutzen.
 Um eine Variable von außerhalb einer Funktion
 in ihr zu verwenden, musst du
@@ -619,42 +619,42 @@ Beispiel:
 wird diesen Fehler ergeben, da die Variable x
 nicht in der Funktion definiert wurde.`
             )],
-            
+
             ["UnicodeError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["UnicodeEncodeError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["UnicodeDecodeError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["UnicodeTranslateError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["ValueError", new Hint(
                 //english:
-`You called a function with a parameter that
+                `You called a function with a parameter that
 is the correct type, but still doesn't work.
 Example:
    list = []
@@ -663,7 +663,7 @@ will cause this error, as the list does not
 contain the value \"x\".`,
 
                 //german
-`Du hast eine Funktion mit einem Parameter
+                `Du hast eine Funktion mit einem Parameter
 aufgerufen, der zwar den richtigen Typ hat,
 aber trotzdem nicht funktioniert.
 Beispiel:
@@ -673,10 +673,10 @@ wird diesen Fehler ergeben, da die Liste
 nicht den Wert \"x\" enthält.
 value (En) = Wert (De)`
             )],
-            
+
             ["ZeroDivisionError", new Hint(
                 //english:
-`Your code is trying to divide by zero.
+                `Your code is trying to divide by zero.
 This is not mathematically possible.
 Make sure to handle the case in which
 the denominator is zero.
@@ -687,7 +687,7 @@ Will cause this error, as Python can't
 calculate 100 divided by 0.`,
 
                 //german
-`Dein Programm versucht durch null zu teilen.
+                `Dein Programm versucht durch null zu teilen.
 Das ist mathematisch nicht möglich.
 Diesen Sonderfall solltest du irgendwie
 umgehen.
@@ -701,78 +701,78 @@ zero division (En) = Teilung durch null (De)`
 
             ["BlockingIOError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["ChildProcessError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["ConnectionError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["BrokenPipeError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["ConnectionAbortedError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["ConnectionRefusedError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["ConnectionResetError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["FileExistsError", new Hint(
                 //english:
-`You are trying to create a file that already exists.
+                `You are trying to create a file that already exists.
 Don't do this.`,
 
                 //german
-`Du versuchst eine Datei zu erstellen, die schon existiert.
+                `Du versuchst eine Datei zu erstellen, die schon existiert.
 Mach das nicht.",
                     "file (En) = Datei (De)`
             )],
 
             ["FileNotFoundError", new Hint(
                 //english:
-`You are trying to access a file or directory that
+                `You are trying to access a file or directory that
 does not exist. Did you make a typo?`,
 
                 //german
-`Du versuchst eine Datei oder einen Ordner zu nutzen,
+                `Du versuchst eine Datei oder einen Ordner zu nutzen,
 die oder der nicht existiert.
 Hast du einen Tippfehler gemacht?
 file (En) = Datei (De)`
@@ -780,21 +780,21 @@ file (En) = Datei (De)`
 
             ["InterruptedError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["IsADirectoryError", new Hint(
                 //english:
-`You are trying to do something with a directory
+                `You are trying to do something with a directory
 that only works with files.
 Example: You can't delete a directory with the
 os.remove() function.`,
 
                 //german
-`Du versuchst etwas mit einem Ordner zu tun,
+                `Du versuchst etwas mit einem Ordner zu tun,
 das nur mit Dateien funktioniert.
 Beispiel: Du kannst einen Ordner nicht mit
 der os.remove() Funktion löschen.
@@ -803,13 +803,13 @@ directory (En) = Ordner (De)`
 
             ["NotADirectoryError", new Hint(
                 //english:
-`You are trying to do something on a non-directory
+                `You are trying to do something on a non-directory
 that only works with directories.
 Example: you can't use os.listdir() on
 a file.`,
 
                 //german
-`Du versuchst etwas mit einem Nicht-Ordner zu tun,
+                `Du versuchst etwas mit einem Nicht-Ordner zu tun,
 das nur mit Ordnern funktioniert.
 Beispiel: Du kannst os.lisdirt() nicht
 auf einer Datei nutzen.
@@ -818,14 +818,14 @@ directory (En) = Ordner (De)`
 
             ["PermissionError", new Hint(
                 //english:
-`You are trying to run some operation on
+                `You are trying to run some operation on
 your operating system that Python doesn't
 have the permission for.
 Example: writing a file that requires
 admin privileges.`,
 
                 //german
-`Du versucht eine Operation auf deinem
+                `Du versucht eine Operation auf deinem
 Betriebssystem auszuführen, für die
 Python nicht die Berechtigungen hat.
 Beispiel: Eine Datei schreiben, die Admin-
@@ -835,25 +835,25 @@ permission (En) = Berechtigung (De)`
 
             ["ProcessLookupError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             ["TimeoutError", new Hint(
                 //english:
-`TODO`,
+                `TODO`,
 
                 //german
-`TODO`
+                `TODO`
             )],
 
             //add keywords too? TODO
 
             ["Traceback (most recent call last)", new Hint(
                 //english:
-`A traceback is a report containing
+                `A traceback is a report containing
 the function calls made in your code
 that were involved in producing this error.
 In other languages, this is called a stack trace,
@@ -864,7 +864,7 @@ was the one that occurred closest to
 this error.`,
 
                 //german
-`Ein Traceback ist ein Bericht,
+                `Ein Traceback ist ein Bericht,
 der Funktionsaufrufe in deinem Code enthält,
 die zu diesem Fehler geführt haben.
 In anderen Sprachen nennt man dies auch

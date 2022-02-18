@@ -9,7 +9,7 @@ let supportedLangs = new Map<string, LanguageInterface>(
 
     ]);
 
-function insertHintsEMP(input: string, proLang: string, spoLang?: string ): string {
+function insertHintsEMP(input: string, proLang: string, spoLang?: string): string {
 
     //default spoken languge is english if not given otherwise
     if (!spoLang) {
@@ -26,7 +26,7 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
 
     let langObj = supportedLangs.get(proLang);
 
-    if (!langObj) {   
+    if (!langObj) {
         return "Sorry, language is not supported!";
     }
 
@@ -56,37 +56,37 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     //highlight the message
     input = langObj.color(escString);
 
-    
+
     //benchmark addition
     // let output = "";
     // let before = input;
     // let startTime = new Date().getTime();
     // for (let amount = 0; amount < 1000; amount++) {
     //     input = before;
-    
+
     //trie https://de.wikipedia.org/wiki/Trie
     //find keywords and place hints
     let output = "";
 
     for (let i = 0; i < input.length; i++) {
         //only search a string that is as long as longest keyword
-        let searchString = 
+        let searchString =
             input.substring(
-                i, 
+                i,
                 i + langObj.getKeywordsTrie().getLongestLength()
             );
 
         let foundLength = langObj.getKeywordsTrie().search(searchString);
-        
+
         //if word was found, place hint in HTML
         if (foundLength > -1) {
             let word = searchString.substring(0, foundLength);
 
             output +=
-                "<div class='tooltipEMP'>" 
+                "<div class='tooltipEMP'>"
                 + word
-                + "<span class='tooltiptextEMP'>" 
-                + langObj.getHint(word)?.getLanguage(spoLang) 
+                + "<span class='tooltiptextEMP'>"
+                + langObj.getHint(word)?.getLanguage(spoLang)
                 + "</span></div>";
 
             //continue search after keyword
@@ -100,7 +100,7 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string ): stri
     //benchmark addition
     // }
     // console.log(new Date().getTime() - startTime);
-    
+
     return output;
 }
 
