@@ -52,7 +52,7 @@ function insertHintsEMP(input, proLang, spoLang) {
                     + "<span class='tooltiptextEMP'>"
                     + ((_a = langObj.getHint(word)) === null || _a === void 0 ? void 0 : _a.getLanguage(spoLang))
                     + "</span></div>";
-            i += foundLength;
+            i += foundLength - 1;
         }
         else {
             output += input.charAt(i);

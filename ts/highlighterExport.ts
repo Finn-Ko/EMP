@@ -90,7 +90,7 @@ function insertHintsEMP(input: string, proLang: string, spoLang?: string): strin
                 + "</span></div>";
 
             //continue search after keyword
-            i += foundLength;
+            i += foundLength - 1;
         }
         else {
             output += input.charAt(i);
