@@ -1,5 +1,5 @@
 import PythonLang from './languages/python.js';
-import CLang from './languages/c.js';
+import CLang from './languages/python.js';
 let supportedLangs = new Map([
     ["python", new PythonLang()],
     ["c", new CLang()]
