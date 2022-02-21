@@ -15,6 +15,8 @@ export default class CLang {
         return this.dictionary.get(keyword);
     }
     color(input) {
+        let lines = input.split("\n");
+        input = lines.join('');
         return input;
     }
 }

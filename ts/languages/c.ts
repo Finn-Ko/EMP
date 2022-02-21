@@ -20,6 +20,12 @@ export default class CLang implements LanguageInterface {
     }
 
     public color(input: string): string {
+
+        let lines = input.split("\n");
+
+        //TODO algorithm for coloring
+        
+        input = lines.join('');
         return input;
     }
 
