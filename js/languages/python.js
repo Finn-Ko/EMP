@@ -404,11 +404,13 @@ most recent call last (En) = Jüngste Aufforderung zuletzt (De)`)]
         while (lines[lastLine] == "") {
             lastLine--;
         }
-        let explainIndex = lines[lastLine].indexOf("Error: ");
-        if (explainIndex !== -1) {
-            lines[lastLine] = lines[lastLine].substring(0, explainIndex + 7)
-                + "<span class='importantEMP'>" + lines[lastLine].substring(explainIndex + 7)
-                + "</span>";
+        if (lines[lastLine]) {
+            let explainIndex = lines[lastLine].indexOf("Error: ");
+            if (explainIndex !== -1) {
+                lines[lastLine] = lines[lastLine].substring(0, explainIndex + 7)
+                    + "<span class='importantEMP'>" + lines[lastLine].substring(explainIndex + 7)
+                    + "</span>";
+            }
         }
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>";
         return input;

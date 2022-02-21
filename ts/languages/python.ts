@@ -78,12 +78,15 @@ export default class PythonLang implements LanguageInterface {
             lastLine--;
         }
 
-        let explainIndex = lines[lastLine].indexOf("Error: ");
-        if (explainIndex !== -1) {
-            lines[lastLine] = lines[lastLine].substring(0, explainIndex + 7)
-                + "<span class='importantEMP'>" + lines[lastLine].substring(explainIndex + 7)
-                + "</span>"
+        if (lines[lastLine]) {
+            let explainIndex = lines[lastLine].indexOf("Error: ");
+            if (explainIndex !== -1) {
+                lines[lastLine] = lines[lastLine].substring(0, explainIndex + 7)
+                    + "<span class='importantEMP'>" + lines[lastLine].substring(explainIndex + 7)
+                    + "</span>"
+            }
         }
+        
 
         //Mark everything else unimportant
         input = "<span class='unimportantEMP'>" + lines.join("\n") + "</span>"
