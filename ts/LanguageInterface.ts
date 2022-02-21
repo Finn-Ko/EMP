@@ -2,8 +2,7 @@ import Hint from "./Hint";
 import Trie from "./Trie";
 
 export default interface LanguageInterface {
-    //returns keywords sorted in descending order
-    //the sorting is best done once in cosntructor for performance reasons
+    //gets trie containing keyword for hints
     getKeywordsTrie(): Trie;
 
     //just passes through to the internal dictionary
