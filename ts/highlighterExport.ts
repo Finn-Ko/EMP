@@ -1,11 +1,13 @@
 import LanguageInterface from './LanguageInterface';
 import PythonLang from './languages/python.js';
+import CLang from './languages/python.js';
 
 //Supported languages, add new additions here and import files above
 let supportedLangs = new Map<string, LanguageInterface>(
     [
         //add new languages here
-        ["python", new PythonLang()]
+        ["python", new PythonLang()],
+        ["c", new CLang()]
 
     ]);
 
