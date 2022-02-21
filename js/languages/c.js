@@ -4,6 +4,7 @@ export default class CLang {
     constructor() {
         this.dictionary = new Map([
             ["AddressSanitizer", new Hint(`TODO`, `TODO`)],
+            ["LeakSanitizer", new Hint(`TODO`, `TODO`)],
         ]);
         this.keywordsTrie = new Trie(this.dictionary.keys());
     }

@@ -32,6 +32,14 @@ export default class CLang implements LanguageInterface {
                 //german
                 `TODO`
             )],
+
+            ["LeakSanitizer", new Hint(
+                //english:
+                `TODO`,
+
+                //german
+                `TODO`
+            )],
         ]
     );
 
