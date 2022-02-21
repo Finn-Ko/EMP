@@ -1,6 +1,8 @@
 import PythonLang from './languages/python.js';
+import CLang from './languages/python.js';
 let supportedLangs = new Map([
-    ["python", new PythonLang()]
+    ["python", new PythonLang()],
+    ["c", new CLang()]
 ]);
 function insertHintsEMP(input, proLang, spoLang) {
     var _a;
