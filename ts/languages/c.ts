@@ -20,12 +20,43 @@ export default class CLang implements LanguageInterface {
     }
 
     public color(input: string): string {
+        if (!input) {
+            return "";
+        }
 
         let lines = input.split("\n");
 
-        //TODO algorithm for coloring
+        let i = 0;
+        while (i < lines.length && !/^=+$/.test(lines[i])) {
+            i++;
+        }
+
+        //everything not marked otherwise is unimportant
+        lines[i] = "<span class='unimportantEMP'>" + lines[i];
+
+
+        //==1==ERROR: line is important
+        i++;
+        if (lines[i].substring(0, 11) === "==1==ERROR:") {
+            lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
+        }
+
+        while (i < lines.length) {
+            //summary is important
+            if (/^SUMMARY/.test(lines[i])) {
+                lines[i] = "<span class='importantEMP'>" + lines[i] + "</span>";
+            }
+
+            //every line that doesn't start blank should be visible
+            else if (!/^ /.test(lines[i])) {
+                lines[i] = "<span class='normalEMP'>" + lines[i] + "</span>";
+            }
+
+            i++;
+        }
         
-        input = lines.join('');
+        lines[lines.length - 1] += "</span>";
+        input = lines.join('\n');
         return input;
     }
 
